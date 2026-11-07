@@ -1,0 +1,31 @@
+{
+  "mixagens_por_atmosfera": [
+    {
+      "atmosfera": "reflexiva",
+      "faixa": "Sonata K. 545 · II. Andante",
+      "quadros": 180,
+      "decodificacao": true
+    },
+    {
+      "atmosfera": "acolhedora",
+      "faixa": "Sonata K. 331 · tema do Andante grazioso",
+      "quadros": 180,
+      "decodificacao": true
+    },
+    {
+      "atmosfera": "didatica",
+      "faixa": "Sonata K. 545 · I. Allegro",
+      "quadros": 180,
+      "decodificacao": true
+    },
+    {
+      "atmosfera": "dinamica",
+      "faixa": "Sonata K. 545 · III. Rondo",
+      "quadros": 180,
+      "decodificacao": true
+    }
+  ],
+  "reserva_reflexiva": true,
+  "prioridades_testadas": true,
+  "regressao_projeto_antigo": true
+}

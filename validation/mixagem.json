@@ -1,0 +1,13 @@
+{
+  "faixas": "tons sintéticos de teste",
+  "duracao_s": 6,
+  "quadros": 180,
+  "preferencia_padrao_testada": true,
+  "faixa_salva_prevalece": true,
+  "troca_explicita_testada": true,
+  "repeticao_testada": true,
+  "fades_testados": true,
+  "erros_preservam_mp4_anterior": true,
+  "nivel_padrao_medido_db": -20.0,
+  "nivel_alternativo_medido_db": -25.02
+}

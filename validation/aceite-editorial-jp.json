@@ -1,0 +1,120 @@
+{
+  "estados_antes": 8,
+  "estados_depois": 28,
+  "trechos_mapeados": 35,
+  "maior_intervalo_antes_s": 36.14,
+  "maior_intervalo_depois_s": 11.52,
+  "quadros_mp4_por_versao": 4217,
+  "duracao_audio_s": 140.58,
+  "audio_aac_identico": true,
+  "audio_hash": "SHA256=799c16b5e2c91e260faabeac1a9c76324df3802f7ea1d09eefb2f3e927d69c59",
+  "quadros_intermediarios": 77,
+  "efeitos_decodificados": [
+    {
+      "estado": "S007",
+      "evento": "Detalhe do gráfico",
+      "quadro_entrada": 991,
+      "inicio_s": 33.02,
+      "erro_medio_rgb_pre_entrada_inicio_meio_final": [
+        1.794,
+        1.846,
+        1.923,
+        1.888
+      ],
+      "variacao_rgb_inicio_meio": 1.903
+    },
+    {
+      "estado": "S008",
+      "evento": "Realce dos eixos",
+      "quadro_entrada": 1168,
+      "inicio_s": 38.94,
+      "erro_medio_rgb_pre_entrada_inicio_meio_final": [
+        1.883,
+        1.678,
+        1.686,
+        1.687
+      ],
+      "variacao_rgb_inicio_meio": 0.1
+    },
+    {
+      "estado": "S015",
+      "evento": "+4%",
+      "quadro_entrada": 2356,
+      "inicio_s": 78.54,
+      "erro_medio_rgb_pre_entrada_inicio_meio_final": [
+        1.704,
+        1.715,
+        1.68,
+        1.689
+      ],
+      "variacao_rgb_inicio_meio": 0.265
+    },
+    {
+      "estado": "S016",
+      "evento": "+6%",
+      "quadro_entrada": 2437,
+      "inicio_s": 81.24,
+      "erro_medio_rgb_pre_entrada_inicio_meio_final": [
+        1.689,
+        1.71,
+        1.681,
+        1.692
+      ],
+      "variacao_rgb_inicio_meio": 0.294
+    },
+    {
+      "estado": "S019",
+      "evento": "≈ −1,89%",
+      "quadro_entrada": 2690,
+      "inicio_s": 89.66,
+      "erro_medio_rgb_pre_entrada_inicio_meio_final": [
+        1.708,
+        1.744,
+        1.692,
+        1.693
+      ],
+      "variacao_rgb_inicio_meio": 0.251
+    }
+  ],
+  "falhas_ensaiadas": [
+    {
+      "caso": "Identidade de áudio incompatível",
+      "bloqueado": true
+    },
+    {
+      "caso": "Somente parágrafos com entradas internas",
+      "bloqueado": true
+    },
+    {
+      "caso": "Conferência crítica omitida",
+      "bloqueado": true
+    },
+    {
+      "caso": "Plano alterado após renderização",
+      "bloqueado": true
+    },
+    {
+      "caso": "Quadro intermediário ausente",
+      "bloqueado": true
+    },
+    {
+      "caso": "Mapa visual incompleto",
+      "bloqueado": true
+    }
+  ],
+  "corte_em_intervalo_curto": true,
+  "ritmo": [
+    {
+      "slide_id": "S023",
+      "duracao_s": 1.62,
+      "motivo": "A segunda linha acrescenta uma frase curta à síntese anterior; a leitura começa com a primeira linha já na tela.",
+      "estado": "justificado"
+    },
+    {
+      "slide_id": "S026",
+      "duracao_s": 1.64,
+      "motivo": "A ilustração breve entra quando o exemplo é nomeado e termina na transição para o encerramento.",
+      "estado": "justificado"
+    }
+  ]
+}

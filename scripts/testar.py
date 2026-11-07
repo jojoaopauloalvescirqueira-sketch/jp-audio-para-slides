@@ -14,7 +14,9 @@ def main():
   results.append({'cenario':name,'passou':True});return r
  inp=work/'entrada.wav';subprocess.run([a.ffmpeg,'-y','-v','error','-f','lavfi','-i','sine=frequency=440:sample_rate=16000','-t','6',str(inp)],check=True)
  text='Atender começa pela escuta.\n\nPrioridade orienta a fila. Cada resposta esclarece o próximo passo.\n\nEncerramos confirmando o entendimento.\n';(work/'roteiro.txt').write_text(text)
- run('Preparar tema diferente com três parágrafos','preparar.py',['--audio',inp,'--roteiro',work/'roteiro.txt','--titulo','Atendimento ao cliente','--autor','Equipe','--ffprobe',a.ffprobe])
+ run('Preparar tema diferente com três parágrafos','preparar.py',['--audio',inp,'--roteiro',work/'roteiro.txt','--titulo','Atendimento ao cliente','--autor','Equipe','--ffprobe',a.ffprobe,'--perfil-visual','legado'])
+ # Simula a configuração de um projeto salvo antes da política de trilha.
+ legacy=read(root/'projeto.json');legacy.pop('trilha_obrigatoria');write(root/'projeto.json',legacy)
  ps=read(root/'material/paragrafos.json');scenes=[{'id':'S001','p':1,'tipo':'capa','title':'Atendimento ao cliente','frase_gatilho':'Atender começa'},{'id':'S002','p':2,'tipo':'ideia','title':'Escuta e prioridade','frase_gatilho':'Prioridade orienta'},{'id':'S003','p':2,'tipo':'ideia','title':'Clareza no próximo passo','frase_gatilho':'Cada resposta'},{'id':'S004','p':3,'tipo':'final','title':'Confirmar o entendimento','frase_gatilho':'Encerramos confirmando'}];write(root/'material/slides.json',scenes)
  run('Áudio único sem marcações é bloqueado','sincronizar.py',['--ffprobe',a.ffprobe],error='exige marcações')
  bad=copy.deepcopy(scenes);bad[2]['frase_gatilho']='não existe';write(root/'material/slides.json',bad);run('Gatilho ausente é rejeitado','gerar_slides.py',['--html-only'],error='gatilho ausente');write(root/'material/slides.json',scenes)

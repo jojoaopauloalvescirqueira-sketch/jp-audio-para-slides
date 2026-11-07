@@ -1,0 +1,173 @@
+{
+  "faixas": {
+    "k545-andante": {
+      "arquivo": "mozart-k545-andante.ogg",
+      "nome": "Sonata K. 545 · II. Andante",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "perfil": "Andamento moderado para história, análises, ressalvas e passagens densas.",
+      "nivel_relativo_db": -20,
+      "fonte": "https://commons.wikimedia.org/wiki/File:K545_andante.ogg",
+      "credito": "Versão MIDI do Mutopia Project, disponibilizada no Wikimedia Commons",
+      "licenca": "Public Domain Mark 1.0",
+      "sha256": "6e9d4836065233e7a068956e9d7c14953bd7fa4fd11179952aee1c39adff6f63",
+      "duracao_s": 220.814
+    },
+    "k331-tema": {
+      "arquivo": "mozart-k331-tema.ogg",
+      "nome": "Sonata K. 331 · tema do Andante grazioso",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "perfil": "Tema cantável para introduções, conversas e narrações leves.",
+      "nivel_relativo_db": -20,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No._11,_Tema.ogg",
+      "credito": "Versão MIDI do Mutopia Project, convertida para OGG por Dbenbenn",
+      "licenca": "Public Domain Mark 1.0",
+      "sha256": "d4365f3d91a05837d5c9933bbd2c7aa579c062e669c17cbab58fc24d8a891136",
+      "duracao_s": 117.179
+    },
+    "k545-allegro": {
+      "arquivo": "mozart-k545-allegro.ogg",
+      "nome": "Sonata K. 545 · I. Allegro",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "perfil": "Pulso regular para explicações leves, demonstrações e sequências de passos.",
+      "nivel_relativo_db": -22,
+      "fonte": "https://commons.wikimedia.org/wiki/File:K545_allegro.ogg",
+      "credito": "Conversão MIDI do Mutopia Project por Raul654",
+      "licenca": "Domínio público por declaração do autor da conversão",
+      "sha256": "cbaf9528f0969a4aff14901b798d7d9ca13bc125da8ff3a435cc9d9621777ed4",
+      "duracao_s": 125.06
+    },
+    "k545-rondo": {
+      "arquivo": "mozart-k545-rondo.ogg",
+      "nome": "Sonata K. 545 · III. Rondo",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "perfil": "Movimento leve e vivo para aberturas ágeis e sínteses enérgicas.",
+      "nivel_relativo_db": -23,
+      "fonte": "https://commons.wikimedia.org/wiki/File:K545_rondo.ogg",
+      "credito": "Versão MIDI do Mutopia Project, disponibilizada no Wikimedia Commons",
+      "licenca": "Public Domain Mark 1.0",
+      "sha256": "b7cc244eea5c8cb80eef1e0bacbc14b7508dbb4378a0bcb6b67941cd01b207a3",
+      "duracao_s": 81.627
+    },
+    "k333-andante": {
+      "arquivo": "k333-andante.ogg",
+      "nome": "Sonata K. 333 · II. Andante cantabile",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "nivel_relativo_db": -21,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Wolfgang_Amadeus_Mozart_-_sonata_no._13_in_b_flat_major%2C_k.333_-_ii._andante_cantabile.ogg",
+      "credito": "Brendan Kinsella · Musopen",
+      "licenca": "Domínio público por declaração do detentor; crédito solicitado por Musopen",
+      "preparo": "Arquivo OGG original.",
+      "sha256": "2e2c74801921b635ce2109db99d313aead3f5799aceb3ef907117a2263034b29",
+      "sha256_original": "2e2c74801921b635ce2109db99d313aead3f5799aceb3ef907117a2263034b29",
+      "duracao_s": 375.787
+    },
+    "k333-allegro": {
+      "arquivo": "k333-allegro.ogg",
+      "nome": "Sonata K. 333 · I. Allegro",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "nivel_relativo_db": -23,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Wolfgang_Amadeus_Mozart_-_sonata_no._13_in_b_flat_major%2C_k.333_-_i._allegro.ogg",
+      "credito": "Brendan Kinsella · Musopen",
+      "licenca": "Domínio público por declaração do detentor; crédito solicitado por Musopen",
+      "preparo": "Arquivo OGG original.",
+      "sha256": "84e220de833b2de6191a41eafb85f64293045c8d92823568e546f441c9a87f67",
+      "sha256_original": "84e220de833b2de6191a41eafb85f64293045c8d92823568e546f441c9a87f67",
+      "duracao_s": 332.987
+    },
+    "k333-allegretto": {
+      "arquivo": "k333-allegretto.ogg",
+      "nome": "Sonata K. 333 · III. Allegretto grazioso",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "nivel_relativo_db": -23,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Wolfgang_Amadeus_Mozart_-_sonata_no._13_in_b_flat_major%2C_k.333_-_iii._allegretto_grazioso.ogg",
+      "credito": "Brendan Kinsella · Musopen",
+      "licenca": "Domínio público por declaração do detentor; crédito solicitado por Musopen",
+      "preparo": "Arquivo OGG original.",
+      "sha256": "3b720db6c3cecbc406ba8d561defe97bc95421fe6943af951f023f4ab22fddad",
+      "sha256_original": "3b720db6c3cecbc406ba8d561defe97bc95421fe6943af951f023f4ab22fddad",
+      "duracao_s": 397.547
+    },
+    "k330-allegretto": {
+      "arquivo": "k330-allegretto.m4a",
+      "nome": "Sonata K. 330 · III. Allegretto",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "nivel_relativo_db": -22,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Mozart%2C_Wolfgang_Amadeus_%E2%80%94_Piano_Sonata_No._10_in_C_major%2C_K._330%2C_3rd_movement_%E2%80%94_Vadim_Chaimovich_%E2%80%94_Musopen_-8825.mp3",
+      "credito": "Vadim Chaimovich · Musopen",
+      "licenca": "Domínio público por declaração do intérprete",
+      "preparo": "Conversão para AAC 112 kbps para distribuição local.",
+      "sha256": "fd2b19ab1018885c84ff9052db26aea64ae62aeff4aba0e6b045fccc17c9dfe1",
+      "sha256_original": "44b26366722091115bbdce1a97705787d17cb6d6f2d9584d8152897cb8d15995",
+      "duracao_s": 231.145
+    },
+    "k331-variacao5": {
+      "arquivo": "k331-variacao5.ogg",
+      "nome": "Sonata K. 331 · I. Variação 5 (Adagio)",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "nivel_relativo_db": -20,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No._11%2C_Variation_5.ogg",
+      "credito": "Versão MIDI do Mutopia Project, convertida para OGG por Dbenbenn",
+      "licenca": "Public Domain Mark 1.0",
+      "preparo": "Arquivo OGG original.",
+      "sha256": "dba9398388df24452d0cd2beabbf1028e00bfb72db9fa9cefc09818cdb5f8b31",
+      "sha256_original": "dba9398388df24452d0cd2beabbf1028e00bfb72db9fa9cefc09818cdb5f8b31",
+      "duracao_s": 251.231
+    },
+    "k550-andante": {
+      "arquivo": "k550-andante.m4a",
+      "nome": "Sinfonia K. 550 · II. Andante",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "nivel_relativo_db": -24,
+      "fonte": "https://commons.wikimedia.org/wiki/File:Mozart_-_Symphony_No._40_in_G_minor%2C_K550_-_II._Andante_%28Musopen_Symphony%29.flac",
+      "credito": "Musopen Symphony · Musopen",
+      "licenca": "Domínio público por declaração do detentor",
+      "preparo": "Conversão para AAC 112 kbps para distribuição local.",
+      "sha256": "f5d27c89953ae03d7f5de38708edb2d8b3841fa4eaac5119fc204120a5487945",
+      "sha256_original": "ae3e45623e02b8b7417a174f1f4ce1c50f01f28fa213049e7e38ac5ceb88fd58",
+      "duracao_s": 456.16
+    }
+  },
+  "atmosferas": {
+    "reflexiva": {
+      "perfil": "História, análise, leitura densa ou sóbria.",
+      "faixas": [
+        "k545-andante",
+        "k333-andante",
+        "k331-variacao5",
+        "k550-andante",
+        "k331-tema"
+      ]
+    },
+    "acolhedora": {
+      "perfil": "Conversas, introduções serenas e leitura leve.",
+      "faixas": [
+        "k331-tema",
+        "k333-andante",
+        "k331-variacao5",
+        "k545-andante",
+        "k333-allegretto"
+      ]
+    },
+    "didatica": {
+      "perfil": "Explicações com etapas, exemplos e ritmo regular.",
+      "faixas": [
+        "k545-allegro",
+        "k333-allegro",
+        "k330-allegretto",
+        "k333-allegretto",
+        "k331-tema",
+        "k545-andante"
+      ]
+    },
+    "dinamica": {
+      "perfil": "Aberturas ágeis, demonstrações leves e recapitulações enérgicas.",
+      "faixas": [
+        "k545-rondo",
+        "k333-allegretto",
+        "k333-allegro",
+        "k330-allegretto",
+        "k545-allegro"
+      ]
+    }
+  }
+}

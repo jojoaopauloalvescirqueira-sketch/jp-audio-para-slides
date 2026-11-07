@@ -29,7 +29,7 @@ try {
     if(only.size&&!only.has(scene.id)) continue;
     await page.evaluate(id=>window.show(id),scene.id);
     await page.evaluate(async()=>Promise.all([...document.images].filter(i=>i.closest('.active')).map(i=>i.decode())));
-    const issues=await page.evaluate(()=>{
+    const inspect=()=>page.evaluate(()=>{
       const slide=document.querySelector('.slide.active');
       const box=slide.getBoundingClientRect();
       const vertical=box.width===1080&&box.height===1920;
@@ -37,7 +37,7 @@ try {
       const ymax=box.top+(vertical?1430:.921*box.height);
       const arr=[],texts=[];
       for(const e of slide.querySelectorAll('h1,h2,p,.caption,.note,.source')) {
-        if(!e.textContent.trim()) continue;
+        if(!e.textContent.trim() || e.closest('.editorial-placeholder')) continue;
         const r=e.getBoundingClientRect();
         if(!r.width||!r.height) continue;
         const item={tag:e.className||e.tagName,text:e.textContent};
@@ -51,8 +51,55 @@ try {
         if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2)
           arr.push({erro:'sobreposicao',textos:[texts[i].item.text,texts[j].item.text]});
       }
+      if(slide.classList.contains('editorial-jp')) {
+        const mark=slide.querySelector('.watermark');
+        if(!mark || !mark.naturalWidth) arr.push({erro:'marca ausente'});
+        else {
+          const r=mark.getBoundingClientRect();
+          const width=Math.min(box.width*.09,160);
+          if(Math.abs(r.width-width)>1 || Math.abs(r.right-(box.right-box.width*.08))>1 ||
+             Math.abs(r.bottom-(vertical?box.top+1430:box.bottom-box.height*.04))>1 ||
+             Number(getComputedStyle(mark).opacity)!==.55)
+            arr.push({erro:'geometria ou opacidade da marca'});
+          for(const {r:b,item} of texts) {
+            if(Math.min(r.right,b.right)-Math.max(r.left,b.left)>2 &&
+               Math.min(r.bottom,b.bottom)-Math.max(r.top,b.top)>2)
+              arr.push({erro:'marca sobreposta a texto',texto:item.text});
+          }
+        }
+        const figures=[...slide.querySelectorAll('.figure-image img')];
+        for(const [i,img] of figures.entries()) {
+          const r=img.getBoundingClientRect(), panel=img.closest('.figure-image').getBoundingClientRect();
+          if(r.left<panel.left-1 || r.right>panel.right+1 || r.top<panel.top-1 || r.bottom>panel.bottom+1)
+            arr.push({erro:'figura fora da área preparada'});
+          for(const other of figures.slice(i+1)) {
+            const b=other.getBoundingClientRect();
+            if(Math.min(r.right,b.right)-Math.max(r.left,b.left)>1 &&
+               Math.min(r.bottom,b.bottom)-Math.max(r.top,b.top)>1)
+              arr.push({erro:'vistas da figura sobrepostas'});
+          }
+        }
+      }
       return arr;
     });
+    const issues=[];
+    const motion=scene.movimento;
+    if(motion) {
+      fs.mkdirSync(path.join(out,'movimento'),{recursive:true});
+      for(let frame=1;frame<=8;frame++) {
+        await page.evaluate(({id,motion,frame})=>{
+          const target=document.getElementById(id).querySelector(`[data-alvo="${motion.alvo}"]`);
+          if(!target) throw new Error('Alvo de movimento ausente: '+id);
+          const progress=frame/8;
+          if(motion.tipo==='revelar') target.style.opacity=String(progress);
+          if(motion.tipo==='realcar') target.style.borderColor=`rgba(82,112,94,${progress})`;
+          if(motion.tipo==='aproximar')
+            for(const img of target.querySelectorAll('img')) img.style.transform=`scale(${1+.06*progress})`;
+        },{id:scene.id,motion,frame});
+        issues.push(...(await inspect()).map(issue=>({...issue,quadro:frame})));
+        if(frame<8) await page.screenshot({path:path.join(out,'movimento',`${scene.id}-${String(frame).padStart(2,'0')}.png`)});
+      }
+    } else issues.push(...await inspect());
     checks.push({slide:scene.id,issues});
     if(issues.length) console.log(scene.id,JSON.stringify(issues));
     await page.screenshot({path:path.join(out,'png',scene.id+'.png')});

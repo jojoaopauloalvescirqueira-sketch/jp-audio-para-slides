@@ -1,17 +1,20 @@
 """Preparação e retomada sem síntese de voz ou dependência de outra skill."""
 import argparse,shutil,sys
 from pathlib import Path
+from editorial import initialize, PROFILE
 from fala import clean_paragraphs,compare_speech
 from projeto import read,write,sha,audio_files,binary,probe,config
 from validar_roteiro import validate
 
-def iniciar(root,titulo,artigo=None,autor=''):
+def iniciar(root,titulo,artigo=None,autor='',perfil_visual=PROFILE):
  root=Path(root)
  if not titulo.strip():raise ValueError('Título ausente.')
  if (root/'projeto.json').exists():raise ValueError('Projeto existente; use registrar_roteiro ou anexar_audio para retomar.')
  if artigo and not Path(artigo).is_file():raise ValueError('Artigo ausente.')
  mat=root/'material';mat.mkdir(parents=True,exist_ok=True)
- c={'titulo':titulo,'autor':autor,'subtitulo':'','audio':None,'formato':'16:9','fps':30,'idioma':'pt','estado':'roteirizacao'}
+ visual=initialize(root) if perfil_visual==PROFILE else {'perfil_visual':'legado'}
+ visual['trilha_obrigatoria']=True
+ c={**visual,'titulo':titulo,'autor':autor,'subtitulo':'','audio':None,'formato':'16:9','fps':30,'idioma':'pt','estado':'roteirizacao'}
  if artigo:
   artigo=Path(artigo);dest=mat/('artigo'+artigo.suffix);shutil.copy2(artigo,dest)
   c['artigo']={'arquivo':dest.relative_to(root).as_posix(),'sha256':sha(dest)}
@@ -58,11 +61,11 @@ def anexar(root,source,ffprobe=None):
 
 def main():
  p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='acao',required=True)
- a=sub.add_parser('iniciar');a.add_argument('--root',required=True,type=Path);a.add_argument('--titulo',required=True);a.add_argument('--autor',default='');a.add_argument('--artigo',type=Path)
+ a=sub.add_parser('iniciar');a.add_argument('--root',required=True,type=Path);a.add_argument('--titulo',required=True);a.add_argument('--autor',default='');a.add_argument('--artigo',type=Path);a.add_argument('--perfil-visual',choices=[PROFILE,'legado'],default=PROFILE)
  a=sub.add_parser('registrar_roteiro');a.add_argument('--root',required=True,type=Path);a.add_argument('--limpo',required=True,type=Path);a.add_argument('--studio',type=Path);a.add_argument('--model',default='eleven_v4');a.add_argument('--audio-tag',action='append',default=[]);a.add_argument('--literal-tag',action='append',default=[])
  a=sub.add_parser('anexar_audio');a.add_argument('--root',required=True,type=Path);a.add_argument('--audio',required=True,type=Path);a.add_argument('--ffprobe')
  a=p.parse_args()
- if a.acao=='iniciar':iniciar(a.root,a.titulo,a.artigo,a.autor)
+ if a.acao=='iniciar':iniciar(a.root,a.titulo,a.artigo,a.autor,a.perfil_visual)
  elif a.acao=='registrar_roteiro':registrar(a.root,a.limpo,a.studio,a.model,a.audio_tag,a.literal_tag)
  else:anexar(a.root,a.audio,a.ffprobe)
  print('Etapa concluída. Consulte projeto.json; sincronização exige áudio e marcações verificadas.')

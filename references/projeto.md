@@ -37,6 +37,10 @@ Tipos: capa, figura, ideia, conta, definicao, sintese, final. `p` é base 1; `en
 
 Para vistas densas, adicionar `vistas: {"21:9": [[x0,y0,x1,y1], ...]}` com coordenadas de 0 a 1 e caixas válidas. A vista larga também serve ao padrão 16:9. Para vertical, usar a chave 9:16 ou preparar mais slides com gatilhos próprios. O arquivo integral permanece no material.
 
+O perfil visual padrão para novos projetos é `editorial_jp`. Consulte [Editorial JP](editorial-jp.md) para `mapa_visual.json`, layouts adicionais, alvos de movimento e o manifesto dos quadros. Ausência de `perfil_visual` seleciona o legado.
+
+Projetos novos registram `trilha_obrigatoria: true`. A primeira exportação com música registra a faixa copiada, seu SHA-256 e o nível relativo em `projeto.json.trilha`. Para sequências, `trilha.faixas` guarda os mesmos dados em ordem. Consulte [trilha e mixagem](sincronizacao.md#trilha-e-mixagem).
+
 ## Geração
 
 ```sh

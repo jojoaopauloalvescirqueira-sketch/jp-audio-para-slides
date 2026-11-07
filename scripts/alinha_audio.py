@@ -42,6 +42,7 @@ def main():
    run_start=None
  for s in scenes:
   i=starts[s['p']-1]+sum(pos<s['char_start'] for _,pos in tokens(ps[s['p']-1]['texto']));t,method,gap,seconds=stamp(i);window=range(max(0,i-10),min(len(aa),i+15));coverage=sum(j in match for j in window)/len(window);reasons=[]
+  if c['perfil_visual']=='editorial_jp' and s.get('conferir_audio'):reasons.append('entrada crítica indicada no plano visual')
   if t is None:reasons.append('entrada sem âncoras dos dois lados')
   if method!='reconhecido':reasons.append('entrada '+method)
   if coverage<.65:reasons.append('baixa correspondência textual local; conferir também números por extenso')

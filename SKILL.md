@@ -2,12 +2,12 @@
 name: jp-roteirizacao-e-slides
 description: Transformar artigo autoral em roteiro didático e preparar roteiro pronto, com ou sem áudio, para slides, apresentação HTML e vídeo sincronizado no padrão visual JP. Use para artigo → roteiro → áudio fornecido → slides e vídeo; não para escrever artigo a partir de tema, gerar voz ou publicar automaticamente.
 metadata:
-  version: "1.1.0"
+  version: "1.2.3"
 ---
 
 # JP Roteirização e Slides
 
-Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Preservar o padrão visual aprovado. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
+Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Usar o perfil Editorial JP para ligar a composição e o ritmo às ideias narradas. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
 
 ## Escolher a entrada e concluir a etapa disponível
 
@@ -27,25 +27,27 @@ Descobrir dependências no ambiente; no Codex desktop, consultar o runtime empac
 
 ## Plano editorial e visuais
 
-Ler integralmente a fala e os complementos relevantes. Manter a ordem da narração. Usar o plano fornecido ou reconstruir blocos, função didática e entradas, identificando a reconstrução. Registrar o mapa nos materiais do projeto.
+Ler integralmente a fala e os complementos relevantes. Manter a ordem da narração. Usar o plano fornecido ou reconstruir blocos, função didática e entradas, identificando a reconstrução. Registrar o mapa nos materiais do projeto. No perfil Editorial JP, dividir cada parágrafo em trechos literais e registrar uma decisão para cada trecho em `material/mapa_visual.json`. Cobrir também os trechos que mantêm o visual. Consultar [planejamento visual e movimento](references/editorial-jp.md).
 
 - Capa: título exato confirmado, autoria e subtítulo quando disponíveis. Imagem de capa é opcional; não reutilizar capa ou dados de um projeto anterior.
 - Ideias e figuras: uma âncora curta, normalmente até 12 palavras. Evitar transcrever a fala na tela. Definições em uma linha; sínteses com até três tópicos.
-- Cálculos e comparações: preservar números, unidades, aproximações e condições; revelar etapas nas respectivas frases. Não antecipar o resultado antes de ele ser explicado.
+- Cálculos e comparações: preservar números, unidades, aproximações e condições; criar um estado distinto para cada novo valor ou passo que a fala introduzir. Manter posição e contexto durante a revelação. Marcar entradas críticas para conferência com o áudio.
 - Figuras: buscar os arquivos originais pelas referências fornecidas e conferir correspondência com a fala. Preservar eixos, períodos, notas, crédito e qualificações como projeção, hipótese ou evidência incompleta. Não substituir uma série histórica por uma versão atualizada.
 - Sem fontes para gráficos, usar os conceitos e contas que a fala já apresenta. Não inventar séries nem imagens que pareçam evidência. Fontes inacessíveis ou figuras inadequadas devem ser explicitadas, sem bloquear os demais slides.
 
-Aplicar [direção visual](references/visual.md) e abrir a amostra em `assets/referencia-visual.jpg` para composição, não para copiar conteúdo. Fontes, autoria, marca e CTA pertencem ao projeto atual; não embutir identidade ou endereço antigos. Consultar fontes e artigo quando necessários, sem refazer pesquisa factual não solicitada nem intensificar as afirmações do autor.
+Aplicar [direção visual](references/visual.md) e abrir a amostra em `assets/referencia-visual.jpg` para composição, não para copiar conteúdo. Manter autoria e CTA do projeto. Usar a marca d’água JP Wealth do perfil no canto inferior direito. Consultar fontes e artigo quando necessários, sem refazer pesquisa factual não solicitada nem intensificar as afirmações do autor.
 
 ## Sincronia e exportação
 
+Incluir música de fundo nos vídeos de projetos novos. Respeite a faixa indicada ou o padrão do usuário. Quando couber à skill escolher, leia a fala e considere a emoção predominante, o ritmo e a densidade de explicação. Escolha a atmosfera na [biblioteca de Mozart](references/trilhas.md) e registre por que ela serve àquele vídeo. A duração da narração orienta a seleção entre uma faixa inteira e uma sequência compatível com a leitura. Em temas sensíveis, cifras e argumentos densos, prefira o perfil reflexivo. Siga [trilha e mixagem](references/sincronizacao.md#trilha-e-mixagem).
+
 Seguir [sincronização](references/sincronizacao.md). Para áudio único, reconhecer localmente com timestamps e alinhar ao roteiro; marcações externas verificadas também são aceitas. Duração total ou velocidade média não estabelecem a sincronia.
 
-Conferir as entradas sinalizadas no contexto do áudio. Documentar correções ou confirmação nas marcações; não preencher aprovações em lote apenas para destravar a exportação. Correspondência textual não é precisão acústica. Distinguir claramente timestamps reconhecidos, variações lexicais e posições interpoladas.
+Conferir as entradas sinalizadas no contexto do áudio. As trocas internas do perfil Editorial JP exigem marcações por cena. Revisar cenas abaixo de 2 s ou acima de 12 s e documentar as exceções. Documentar correções ou confirmação nas marcações; não preencher aprovações em lote apenas para destravar a exportação. Correspondência textual não é precisão acústica. Distinguir claramente timestamps reconhecidos, variações lexicais e posições interpoladas.
 
-Por padrão, gerar PNGs, HTML e MP4 em **16:9, 1920×1080**, mantendo a composição interna **21:9, 2520×1080**, proporcional e centralizada, com preenchimento `#FAFAF7`. Este é o visual do último vídeo aprovado. Alternativas explícitas: 21:9 direto ou 9:16 com reorganização; não deformar gráficos nem cortar conteúdo para preencher a tela.
+Por padrão, gerar PNGs, HTML e MP4 em **16:9, 1920×1080**, mantendo a composição interna **21:9, 2520×1080**, proporcional e centralizada, com preenchimento `#FAFAF7`. Projetos novos selecionam Editorial JP; projetos sem perfil usam a composição legada. Alternativas explícitas: 21:9 direto ou 9:16 com reorganização; não deformar gráficos nem cortar conteúdo para preencher a tela.
 
-Gerar via HTML/CSS e Playwright. Para o vídeo, usar H.264, 30 fps, preset `veryfast`, áudio AAC ou cópia de AAC compatível. Preservar o áudio sem recompressão quando compatível; declarar quando houve conversão de codec. Exportar em arquivo temporário exclusivo, verificar metadados e decodificação, e somente então substituir a saída final. Não sobrescrever a única cópia dos insumos.
+Gerar via HTML/CSS e Playwright. Usar movimento breve apenas em elementos ligados a uma entrada falada. A versão estável de cada estado fica no PNG e na prévia HTML. A timeline do MP4 incorpora os quadros intermediários sem alterar as durações. Para o vídeo, usar H.264, 30 fps, preset `veryfast`, áudio AAC ou cópia de AAC compatível. Preservar o original da narração. Na exportação com trilha, codificar a mixagem em AAC e registrar a faixa, o volume e a repetição. Projetos antigos sem trilha ainda aceitam cópia de AAC compatível. Exportar em arquivo temporário exclusivo, verificar metadados e decodificação, e somente então substituir a saída final. Não sobrescrever a única cópia dos insumos.
 
 ## Conferência e entrega
 

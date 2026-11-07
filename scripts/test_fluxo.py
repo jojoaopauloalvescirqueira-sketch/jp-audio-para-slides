@@ -12,7 +12,7 @@ class EntryCases(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.base=Path(self.tmp.name);self.root=self.base/'projeto'
   self.clean=self.base/'limpo.txt';self.clean.write_text('A água evapora [1].\n\nO vapor pode condensar.\n')
   self.studio=self.base/'studio.txt';self.studio.write_text('[thoughtful] A água evapora [1].\n\nO vapor pode condensar.\n')
- def init(self):iniciar(self.root,'Ciclo da água');registrar(self.root,self.clean,self.studio)
+ def init(self):iniciar(self.root,'Ciclo da água',perfil_visual='legado');registrar(self.root,self.clean,self.studio)
  def plan(self):write(self.root/'material/slides.json',[{'id':'S001','tipo':'capa','p':1,'frase_gatilho':'A água','title':'Ciclo da água'},{'id':'S002','tipo':'ideia','p':2,'frase_gatilho':'O vapor','title':'Condensação'}])
  def test_article_entry_keeps_source_and_requires_no_audio(self):
   article=self.base/'artigo.md';article.write_text('# Água\nA água evapora e o vapor pode condensar.')

@@ -1,4 +1,4 @@
-# JP Roteirização e Slides · 1.1.0
+# JP Roteirização e Slides · 1.2.3
 
 Skill `$jp-roteirizacao-e-slides`: artigo autoral → roteiro → áudio fornecido pelo usuário → slides e vídeo sincronizado. Independente de outras skills. Não gera voz nem acessa serviços pagos.
 
@@ -6,7 +6,7 @@ Skill `$jp-roteirizacao-e-slides`: artigo autoral → roteiro → áudio forneci
 - Roteiro sem áudio: preservação da fala e planejamento visual; áudio fica pendente.
 - Áudio e roteiro: fluxo direto de slides, HTML e vídeo, compatível com projetos 1.0.
 
-Padrão: 16:9, 1920×1080, composição larga centralizada em fundo `#FAFAF7`. Alternativas 21:9 e 9:16 configuráveis. Sem PowerPoint por padrão.
+Padrão 16:9, 1920×1080 e perfil Editorial JP para projetos novos. O perfil acrescenta mapa visual integral, comparações e diagramas, marca JP Wealth e movimento pontual ligado à fala. Projetos existentes sem perfil mantêm o legado. Alternativas 21:9 e 9:16 configuráveis. Sem PowerPoint por padrão. Projetos novos incluem música de fundo. Use uma faixa própria ou a seleção editorial da [biblioteca local de Mozart](references/trilhas.md). A biblioteca inclui dez faixas e monta sequências para leituras longas.
 
 Copie esta pasta para `~/.codex/skills/jp-roteirizacao-e-slides` ou use o instalador de skills com este repositório privado. O identificador é `jp-roteirizacao-e-slides` e a descoberta automática está habilitada em `agents/openai.yaml`.
 

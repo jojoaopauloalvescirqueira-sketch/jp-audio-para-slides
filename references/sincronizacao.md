@@ -27,6 +27,8 @@ Marcações externas devem registrar a identidade dos áudios e a duração medi
 
 Sem marcações, uma pasta completa de áudios por parágrafo permite medir cada duração e estimar trocas internas pela posição das palavras. O método é registrado como estimado. Preferir reconhecimento/alinhamento real quando a fala tiver pausas ou contas cuja posição interna precise ser mais precisa.
 
+No perfil Editorial JP, entradas internas exigem marcações por cena com hash do plano, do roteiro e identidade do áudio. Entradas indicadas com `conferir_audio` exigem registro específico em `revisao.conferidos`. A timeline informa a contagem de quadros intermediários por estado.
+
 Áudio ausente, duplicado, marcação incompleta, gatilho ambíguo, intervalos fora da duração e áudio diferente são erros bloqueantes. Não usar a estimativa de 140 palavras/minuto como tempo final.
 
 ## Exportar
@@ -38,6 +40,19 @@ python3 "$SKILL/scripts/gerar_slides.py" --root "$PROJETO" --html-only
 
 O primeiro comando escreve timeline contínua, concatenação e vídeo; o segundo atualiza os botões de áudio da prévia com as entradas reais. Os parâmetros --ffmpeg e --ffprobe aceitam executáveis fora do PATH. Sem --renderizar, gravar somente a timeline.
 
-AAC compatível é copiado; outros codecs são convertidos para AAC por compatibilidade com MP4. Declarar esse resultado em vez de prometer ausência de recompressão. Para áudios individuais, o sincronizador pode criar uma faixa unificada para a prévia; isso não cria voz nova. Conferir o áudio final por comparação de sinal quando houver conversão de codec, além de início/fim e duração.
+Sem trilha, AAC compatível pode ser copiado e outros codecs são convertidos para AAC por compatibilidade com MP4. Com trilha, a exportação codifica a mixagem em AAC. Declarar esse resultado em vez de prometer ausência de recompressão. Para áudios individuais, o sincronizador pode criar uma faixa unificada para a prévia; isso não cria voz nova. Conferir o áudio final por comparação de sinal quando houver conversão de codec, além de início/fim e duração.
 
 Usar arquivo temporário exclusivo e substituição atômica. Verificar resolução, 30 fps, número de quadros, duração e decodificação integral antes de concluir. Não inferir integridade apenas dos metadados.
+
+
+## Trilha e mixagem
+
+A escolha do usuário vale por vídeo ou como padrão reutilizável. A ordem é `--trilha`, faixa registrada no projeto, arquivo local indicado por `JP_TRILHA_PADRAO` e [biblioteca da skill](trilhas.md). Use `--atmosfera` e `--motivo-trilha` para a seleção editorial da biblioteca. Exportação direta de projeto novo sem classificação usa a reserva reflexiva. Projetos antigos podem optar pela biblioteca com `--atmosfera`.
+
+```sh
+python3 "$SKILL/scripts/sincronizar.py" --root "$PROJETO" --renderizar --trilha /caminho/faixa.mp3
+```
+
+O nível inicial da música é de 20 a 24 dB abaixo do nível médio medido da voz conforme o catálogo, com ganho limitado e limitador de pico. Ajuste o nível relativo com `--nivel-trilha-db -25` para uma trilha mais discreta. A biblioteca prioriza uma faixa compatível com a duração. Para leituras mais longas, encadeia peças do mesmo perfil com sobreposição gradual de 1,5 s, inclusive na fronteira do ciclo quando ele é repetido. A música acompanha o fim do vídeo e recebe entrada e saída suaves. Uma faixa avulsa indicada pelo usuário pode ser repetida conforme a duração.
+
+O MP4 carrega a mixagem. A transcrição, o alinhamento e a escuta de entrada da prévia HTML usam a narração. O projeto conserva a faixa usada em `material/trilhas/` com sua identidade SHA-256 e registra a escolha para novas exportações. O relatório de sincronização indica a faixa ou sequência, origens, nível, ganho, repetição e fades. Em uma sequência, as fontes locais são registradas em ordem e o ciclo derivado é temporário. A duração e os quadros do vídeo continuam definidos pela narração.

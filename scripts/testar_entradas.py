@@ -13,6 +13,11 @@ clean=root/'limpo.txt';clean.write_text('A evaporação converte água líquida 
 studio=root/'studio.txt';studio.write_text('[thoughtful] '+clean.read_text())
 p=root/'projeto';iniciar(p,'Ciclo da água',article);registrar(p,clean,studio)
 write(p/'material/slides.json',[{'id':'S001','p':1,'tipo':'capa','title':'Ciclo da água','frase_gatilho':'A evaporação'},{'id':'S002','p':2,'tipo':'definicao','title':'Condensação','body':'O vapor passa ao estado líquido.','frase_gatilho':'Na condensação'},{'id':'S003','p':2,'tipo':'sintese','lines':['Evaporação e condensação participam do ciclo','O ciclo inclui outros processos'],'frase_gatilho':'Esses processos'}])
+write(p/'material/mapa_visual.json',[
+ {'p':1,'trecho':'A evaporação converte água líquida em vapor.','decisao':'nova','slide_id':'S001','motivo':'Abertura do tema.'},
+ {'p':2,'trecho':'Na condensação, o vapor passa ao estado líquido.','decisao':'nova','slide_id':'S002','motivo':'Definição do processo.'},
+ {'p':2,'trecho':'Esses processos participam do ciclo da água; não são o ciclo inteiro.','decisao':'nova','slide_id':'S003','motivo':'Ressalva sobre o escopo.'},
+])
 for name,text in {'guia_producao.md':'Modelo recomendado: eleven_v4. Voz e interpretação não testadas. Áudio pendente. P001: definir evaporação; P002: explicar condensação e preservar limite.','mapa_didatico.md':'Blocos reconstruídos. P001 → artigo, frase 1 → S001; P002 → frases 2–3 → S002–S003.','fidelidade.md':'Conferência manual: todos os processos e a ressalva final do artigo constam da fala. Sem novos dados ou omissões centrais. Nenhuma evidência de aprendizagem foi medida.'}.items():(p/'material'/name).write_text(text)
 def run(script,*args):subprocess.run([sys.executable,str(stage/'scripts'/script),'--root',str(p),*args],check=True,capture_output=True,text=True)
 run('gerar_slides.py','--node',args.node);run('validar.py')

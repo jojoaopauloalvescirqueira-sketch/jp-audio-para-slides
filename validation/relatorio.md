@@ -1,43 +1,37 @@
-# Validação — jp-roteirizacao-e-slides 1.1.0
+# Validação da candidata 1.2.0
 
-Executada em 6 de novembro de 2026. Identificador atualizado para `jp-roteirizacao-e-slides`; exibição: **JP Roteirização e Slides**. Padrão visual 16:9, 1920×1080 com composição interna larga. A integração não gera voz nem acessa ElevenLabs.
+O perfil Editorial JP passou pelo recorte de 1971 de 140,58 s. A montagem passou de 8 para 28 estados, com 35 trechos literais no mapa visual. O maior intervalo sem troca passou de 36,14 s para 11,52 s. Dois estados abaixo de dois segundos foram justificados no relatório de ritmo.
 
-## Implementado
+Os MP4 anterior e novo têm 4.217 quadros, 1920×1080 e 30 fps. Os pacotes AAC correspondem entre ambos e à narração de origem. A nova montagem decodificou integralmente. Foram gerados 77 quadros intermediários para 11 efeitos. As amostras decodificadas conferiram com o PNG anterior, o início, o meio e o estado estável do efeito nas trocas do detalhe do gráfico, do realce dos eixos e dos três números.
 
-Roteirização e orientação vocal incorporadas com referências próprias, validador e testes locais. Três entradas: artigo, roteiro sem áudio, áudio e roteiro. O helper `fluxo.py` inicializa, registra fala canônica e retoma após receber áudio. Artigo e hash ficam no pacote; o agente produz roteiro, guia, mapa e conferência de fidelidade. As etapas sem áudio não criam timeline medida nem vídeo.
+- +4% entra em 78,54 s.
+- +6% entra em 81,24 s.
+- O resultado aproximado −1,89% entra em 89,66 s, depois de a fórmula ficar visível.
 
-Limpeza compartilhada preserva citações e colchetes literais, admite controles declarados e exceções literais. Comparação considera palavras e fronteiras de parágrafos. Mudanças silenciosas da fala canônica e do áudio são recusadas no fluxo de retomada. Os contratos existentes de slides e marcações permanecem compatíveis. Atualizados metadados, instruções, referências, README e testes.
+A conferência da fala usou uma transcrição local integral e uma segunda passagem por recortes da narração, incluindo a ressalva em que a primeira passagem perdeu o prefixo de “independe”. Treze entradas têm evidência específica em `revisao.conferidos`. A segunda passagem usou o mesmo modelo base com parâmetros e recortes diferentes. A precisão perceptiva e o conforto do ritmo ainda devem ser avaliados por audição humana na prévia antes de adotar a candidata.
 
-## Verificações executadas
+Passaram a renderização e a geometria dos 28 estados e 77 intermediários em 16:9, 21:9 e 9:16, com verificações da marca, margem, texto e separação das vistas. O MP4 de aceite é 16:9. A prévia HTML foi verificada com navegação e áudio. No recorte legado, os oito PNGs renderizados com a candidata permaneceram idênticos pixel a pixel.
 
-- **27/27 testes unitários:** 16 cenários transportados e 11 de integração/segurança textual. Incluem perfis vocais, SSML, estimativas sem áudio medido, controles experimentais, citações, igualdade da fala, segmentação, adulteração da fala canônica, ausência/duplicidade de arquivos, arquivo sem faixa de áudio e preservação do material ao retomar.
-- **19/19 cenários da regressão visual/técnica:** outro tema (atendimento), três parágrafos, quatro slides; PNG/HTML nos formatos 16:9, 21:9 e 9:16; vídeo H.264 de 180 quadros/6 s; cobertura, continuidade, dimensões, margens e decodificação. Falhas exercitadas: gatilho ausente/ambíguo, hash/duração incompatíveis, revisão pendente, alinhamento insuficiente, áudios ausentes/duplicados e preservação do vídeo anterior em erro.
-- **Novos pontos de entrada e retomada:** artigo curto sobre o ciclo da água, roteiro limpo/Studio com dois parágrafos e três cenas; guia, mapa e conferência de fidelidade com fonte explícita. Prévia sem áudio gerada e validada, sem timeline/vídeo. Arquivo de seis segundos medido com ffprobe e anexado à mesma pasta; hashes de fala, parágrafos e plano ficaram iguais. Não se inventaram marcações após a anexação. O teste incluído `testar_entradas.py` repetiu preparação, preview, medição e retomada com áudio sintético.
-- **Compatibilidade com o projeto aprovado:** recorte de 1971, seis parágrafos, oito slides, 140,58 s, incluindo capa, figura, definição, cálculo em três etapas, síntese e encerramento. Renderização da 1.1.0 idêntica pixel a pixel aos oito PNGs anteriores. Vídeo existente validado com cobertura integral do recorte, timeline contínua, 1920×1080 e decodificação integral. Não houve modificação do projeto fonte.
-- **HTML legado regenerado:** seleção, navegação por teclado, reprodução do áudio, ausência de erros JavaScript e de overflow horizontal passaram.
-- **Independência:** os testes usaram os scripts da cópia de desenvolvimento, sem importar a instalação de `jp-tiktok-artigos`. A verificação de importações não encontrou dependência dessa skill. Os hashes da skill original foram conferidos sem alterações.
-- **Descoberta e estrutura:** `quick_validate.py` da skill-creator aprovou o pacote. `agents/openai.yaml` conserva invocação implícita habilitada e comando `$jp-roteirizacao-e-slides`.
+Passaram 27 testes unitários, 19 cenários de regressão, entrada por artigo sem áudio e retomada. Foram exercitados os bloqueios de identidade de áudio incompatível, marcações somente por parágrafo para trocas internas, revisão crítica ausente, plano alterado, quadro intermediário ausente e mapa incompleto. O teste com intervalo inferior a oito quadros usou corte.
 
-Os JSONs nesta pasta registram regressão técnica e comparação com o recorte legado. Os testes unitários e os dois motores de teste estão incluídos em scripts/ e podem ser executados em uma pasta temporária externa.
+O JSON `aceite-editorial-jp.json` contém as medidas do recorte, amostras dos efeitos e casos de falha. Os JSONs de validação anteriores a 1.2.0 permanecem como evidência histórica.
 
-## Reprodução dos testes
+## Candidata 1.2.1 com trilha
 
-```sh
-python3 -m unittest discover -s scripts -p 'test_*.py'
-python3 scripts/testar_entradas.py --workspace /tmp/jp-entradas-nova-pasta --ffprobe /caminho/ffprobe --node /caminho/node
-python3 scripts/testar.py --workspace /tmp/jp-regressao-nova-pasta --ffmpeg /caminho/ffmpeg --ffprobe /caminho/ffprobe --node /caminho/node
-```
+A escolha por vídeo, a faixa padrão local e a reutilização da escolha salva foram testadas em exportações reais com tons sintéticos. Mediram-se −20,00 dB e −25,02 dB em relação à voz sintética para os ajustes de −20 e −25 dB. Passaram os fades, a repetição, a preservação do MP4 anterior quando falta uma faixa válida e a contagem de 180 quadros em seis segundos. Os resultados detalhados estão em `mixagem.json`. Os tons são recursos de teste. A faixa definitiva será a escolhida pelo usuário.
 
-Os dois últimos comandos requerem Pillow, Node, Playwright/Chromium; `NODE`, `PLAYWRIGHT_MODULE` e `CHROME_PATH` são alternativas para dependências fora do PATH. Usar pastas novas; não reaproveitar a única cópia de um projeto como fixture. O verificador oficial de estrutura usa PyYAML, dependência apenas da ferramenta de verificação.
+A exportação com uma faixa sintética no recorte de 1971 manteve 140,58 s, 4.217 quadros e os 77 intermediários. A mixagem passou pela decodificação integral. O recorte de comparação da versão 1.2.0 continua disponível para referência visual.
 
-## Limitações
+## Candidata 1.2.2 com biblioteca local
 
-Os testes com tom/silêncio sintético verificam contratos, arquivos e exportação; não validam reconhecimento acústico ou qualidade vocal. O recorte real reutilizou marcações previamente revisadas: não foi executado novo ASR nem nova audição integral nesta integração. A identidade pixel a pixel cobre oito slides, não todos os 127 do projeto original.
+As quatro faixas de Mozart foram conferidas por formato, duração e hash. A procedência e a indicação de domínio público estão vinculadas a cada arquivo no catálogo.
 
-A pequena conferência de fidelidade do exemplo foi manual; o validador textual não audita fatos ou a qualidade pedagógica de artigos arbitrários. Não houve ensaio com alunos, teste de voz clonada ou confirmação de modelo na conta. A documentação oficial de ElevenLabs foi consultada nesta data; recomendações devem ser reconferidas diante de mudanças. Limites de geração não são limites de duração total da aula.
+Passaram as quatro exportações com seleção por atmosfera, a reserva reflexiva, a precedência da faixa registrada e do padrão pessoal, a troca manual e a reprodução de projeto antigo sem trilha. O recorte de 1971 selecionou o Andante com justificativa editorial e manteve 140,58 s e 4.217 quadros. A exportação passou pela decodificação integral. A adequação emocional continua sendo uma decisão editorial. As verificações automáticas confirmam a escolha do arquivo e a mixagem.
 
-A versão 1.1.0 reúne as instruções e os instrumentos, mas o agente continua responsável por ler o artigo integral, escrever o roteiro e revisar cada produção. Nenhuma publicação de conteúdo ou operação paga é autorizada pela skill.
+## Candidata 1.2.3 para leituras longas
 
-## Renomeação
+A biblioteca passou de quatro para dez faixas, com 43min10s de material distinto. Os dez áudios conferiram por hash e decodificação integral.
 
-Nome de exibição atualizado para **JP Roteirização e Slides**, comando `$jp-roteirizacao-e-slides`. Alteração restrita a identidade, metadados e documentação; scripts de produção preservados. Estrutura e 27 testes textuais reconferidos após a renomeação.
+Um ensaio de mixagem com voz sintética cobriu 57min27s, com cinco faixas no perfil reflexivo. A sequência teve 1.413,682 s por ciclo e entrou em seu terceiro ciclo. A mixagem AAC manteve 3.447,000 s e decodificou integralmente. Amostras antes e depois das repetições indicaram presença de música abaixo do tom sintético. O arquivo `leitura-longa.json` contém as medidas e os créditos usados.
+
+Também passaram a exportação MP4 curta com sequência e crossfade, a troca explícita por uma faixa, a reserva reflexiva e a exportação de um projeto legado. A verificação da leitura longa foi de áudio, com avaliação perceptiva das transições reservada à prévia de cada produção.

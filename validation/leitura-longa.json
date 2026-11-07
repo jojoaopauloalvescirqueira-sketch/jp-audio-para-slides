@@ -1,0 +1,140 @@
+{
+  "duracao_s": 3447.0,
+  "programa": {
+    "modo": "sequencia",
+    "nome": "Sequência Mozart",
+    "selecao": {
+      "origem": "biblioteca",
+      "atmosfera": "reflexiva",
+      "metodo": "avaliacao_editorial",
+      "motivo": "Ensaio de leitura longa de 57min27s.",
+      "compositor": "Wolfgang Amadeus Mozart",
+      "fonte": "https://commons.wikimedia.org/wiki/File:K545_andante.ogg",
+      "credito": "Versão MIDI do Mutopia Project, disponibilizada no Wikimedia Commons",
+      "licenca": "Public Domain Mark 1.0"
+    },
+    "faixas": [
+      {
+        "arquivo": "material/trilhas/6e9d4836065233e7a068956e9d7c14953bd7fa4fd11179952aee1c39adff6f63.ogg",
+        "nome": "Sonata K. 545 · II. Andante",
+        "sha256": "6e9d4836065233e7a068956e9d7c14953bd7fa4fd11179952aee1c39adff6f63",
+        "nivel_relativo_db": -20,
+        "selecao": {
+          "origem": "biblioteca",
+          "atmosfera": "reflexiva",
+          "metodo": "avaliacao_editorial",
+          "motivo": "Ensaio de leitura longa de 57min27s.",
+          "compositor": "Wolfgang Amadeus Mozart",
+          "fonte": "https://commons.wikimedia.org/wiki/File:K545_andante.ogg",
+          "credito": "Versão MIDI do Mutopia Project, disponibilizada no Wikimedia Commons",
+          "licenca": "Public Domain Mark 1.0"
+        },
+        "ganho_aplicado_db": -18.1,
+        "duracao_faixa_s": 220.81415
+      },
+      {
+        "arquivo": "material/trilhas/2e2c74801921b635ce2109db99d313aead3f5799aceb3ef907117a2263034b29.ogg",
+        "nome": "Sonata K. 333 · II. Andante cantabile",
+        "sha256": "2e2c74801921b635ce2109db99d313aead3f5799aceb3ef907117a2263034b29",
+        "nivel_relativo_db": -21,
+        "selecao": {
+          "origem": "biblioteca",
+          "atmosfera": "reflexiva",
+          "metodo": "avaliacao_editorial",
+          "motivo": "Ensaio de leitura longa de 57min27s.",
+          "compositor": "Wolfgang Amadeus Mozart",
+          "fonte": "https://commons.wikimedia.org/wiki/File:Wolfgang_Amadeus_Mozart_-_sonata_no._13_in_b_flat_major%2C_k.333_-_ii._andante_cantabile.ogg",
+          "credito": "Brendan Kinsella · Musopen",
+          "licenca": "Domínio público por declaração do detentor; crédito solicitado por Musopen"
+        },
+        "ganho_aplicado_db": -9.7,
+        "duracao_faixa_s": 375.786667
+      },
+      {
+        "arquivo": "material/trilhas/dba9398388df24452d0cd2beabbf1028e00bfb72db9fa9cefc09818cdb5f8b31.ogg",
+        "nome": "Sonata K. 331 · I. Variação 5 (Adagio)",
+        "sha256": "dba9398388df24452d0cd2beabbf1028e00bfb72db9fa9cefc09818cdb5f8b31",
+        "nivel_relativo_db": -20,
+        "selecao": {
+          "origem": "biblioteca",
+          "atmosfera": "reflexiva",
+          "metodo": "avaliacao_editorial",
+          "motivo": "Ensaio de leitura longa de 57min27s.",
+          "compositor": "Wolfgang Amadeus Mozart",
+          "fonte": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No._11%2C_Variation_5.ogg",
+          "credito": "Versão MIDI do Mutopia Project, convertida para OGG por Dbenbenn",
+          "licenca": "Public Domain Mark 1.0"
+        },
+        "ganho_aplicado_db": -15.2,
+        "duracao_faixa_s": 251.231179
+      },
+      {
+        "arquivo": "material/trilhas/f5d27c89953ae03d7f5de38708edb2d8b3841fa4eaac5119fc204120a5487945.m4a",
+        "nome": "Sinfonia K. 550 · II. Andante",
+        "sha256": "f5d27c89953ae03d7f5de38708edb2d8b3841fa4eaac5119fc204120a5487945",
+        "nivel_relativo_db": -24,
+        "selecao": {
+          "origem": "biblioteca",
+          "atmosfera": "reflexiva",
+          "metodo": "avaliacao_editorial",
+          "motivo": "Ensaio de leitura longa de 57min27s.",
+          "compositor": "Wolfgang Amadeus Mozart",
+          "fonte": "https://commons.wikimedia.org/wiki/File:Mozart_-_Symphony_No._40_in_G_minor%2C_K550_-_II._Andante_%28Musopen_Symphony%29.flac",
+          "credito": "Musopen Symphony · Musopen",
+          "licenca": "Domínio público por declaração do detentor"
+        },
+        "ganho_aplicado_db": -20.6,
+        "duracao_faixa_s": 456.16
+      },
+      {
+        "arquivo": "material/trilhas/d4365f3d91a05837d5c9933bbd2c7aa579c062e669c17cbab58fc24d8a891136.ogg",
+        "nome": "Sonata K. 331 · tema do Andante grazioso",
+        "sha256": "d4365f3d91a05837d5c9933bbd2c7aa579c062e669c17cbab58fc24d8a891136",
+        "nivel_relativo_db": -20,
+        "selecao": {
+          "origem": "biblioteca",
+          "atmosfera": "reflexiva",
+          "metodo": "avaliacao_editorial",
+          "motivo": "Ensaio de leitura longa de 57min27s.",
+          "compositor": "Wolfgang Amadeus Mozart",
+          "fonte": "https://commons.wikimedia.org/wiki/File:Piano_Sonata_No._11,_Tema.ogg",
+          "credito": "Versão MIDI do Mutopia Project, convertida para OGG por Dbenbenn",
+          "licenca": "Public Domain Mark 1.0"
+        },
+        "ganho_aplicado_db": -17.6,
+        "duracao_faixa_s": 117.178934
+      }
+    ],
+    "duracao_ciclo_s": 1413.681625,
+    "transicao_s": 1.5,
+    "ciclos": 3,
+    "repetida": true,
+    "fade_in_s": 1.0,
+    "fade_out_s": 1.5
+  },
+  "amostras": [
+    {
+      "inicio_s": 20,
+      "residuo_fora_do_tom_db": -18.86
+    },
+    {
+      "inicio_s": 220.114,
+      "residuo_fora_do_tom_db": -25.33
+    },
+    {
+      "inicio_s": 1433.682,
+      "residuo_fora_do_tom_db": -18.9
+    },
+    {
+      "inicio_s": 2847.363,
+      "residuo_fora_do_tom_db": -15.74
+    },
+    {
+      "inicio_s": 3400,
+      "residuo_fora_do_tom_db": -13.52
+    }
+  ],
+  "decodificacao_integral": true,
+  "originais_da_biblioteca_decodificados": 10,
+  "testa": "Mixagem de áudio com narração sintética"
+}

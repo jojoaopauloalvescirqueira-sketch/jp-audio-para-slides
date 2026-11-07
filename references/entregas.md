@@ -7,7 +7,8 @@
 - slides/manifest.csv: slide_id, arquivo_png, paragrafo_inicio, paragrafo_fim, frase_gatilho, tipo, figura_artigo, duracao_estimada_s. A última coluna é explicitamente estimada a 140 palavras/minuto.
 - slides/timeline.csv, intervalos_roteiro.json, concat.ffconcat e sincronizacao.json: tempos, quadros, métodos e identidade dos áudios.
 - material/ com originais preservados, roteiro limpo, metadados e fontes; referências locais e URLs em FONTES.md, incluindo páginas e limitações dos gráficos.
-- scripts/ necessários para reproduzir, requisitos e LEIAME.md com comandos reais. Copiar os scripts desta skill para o projeto; os comandos já usam --root, sem depender da instalação original.
+- No perfil Editorial JP, entregar o mapa visual, o manifesto de renderização e os quadros intermediários junto aos PNGs.
+- scripts/ e assets/ necessários para reproduzir, requisitos e LEIAME.md com comandos reais. Copiar os scripts desta skill para o projeto; os comandos já usam --root, sem depender da instalação original.
 - Plano de aula e mapa de parágrafos fornecidos ou reconstruídos, com função didática, fontes e entradas.
 
 Fornecer ZIP quando útil. Não incluir caches, bibliotecas, modelos ASR, executáveis, arquivos temporários ou materiais de outro projeto. Informar tamanho se o áudio tornar o pacote grande.

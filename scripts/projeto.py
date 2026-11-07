@@ -1,6 +1,7 @@
 """Contratos comuns de projeto; não contém conteúdo de apresentações."""
 import hashlib,json,math,re,shutil,subprocess
 from pathlib import Path
+from editorial import PROFILE, KINDS, validate as validate_editorial
 
 FORMATS={'16:9':(1920,1080),'21:9':(2520,1080),'9:16':(1080,1920)}
 TYPES={'capa','figura','ideia','conta','definicao','sintese','final'}
@@ -45,6 +46,8 @@ def config(root):
  c=read(Path(root)/'projeto.json')
  if not c.get('titulo','').strip():raise ValueError('Título do projeto ausente.')
  c.setdefault('autor','');c.setdefault('subtitulo','');c.setdefault('marca','');c.setdefault('cta_rotulo','');c.setdefault('cta_url','');c.setdefault('capa','');c.setdefault('formato','16:9');c.setdefault('idioma','pt');c.setdefault('fps',30)
+ c.setdefault('perfil_visual','legado')
+ if c['perfil_visual'] not in {'legado',PROFILE}:raise ValueError('Perfil visual desconhecido.')
  if c['formato'] not in FORMATS:raise ValueError('Formato desconhecido.')
  if c['fps']!=30:raise ValueError('Esta versão exporta em 30 fps.')
  return c
@@ -76,7 +79,7 @@ def load(root,require_audio=True):
   if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]*',s['id']):raise ValueError('ID de slide inválido.')
   if s['id'] in ids:raise ValueError('IDs de slides duplicados.')
   ids.add(s['id'])
-  if s['tipo'] not in TYPES:raise ValueError(f'Tipo de slide inválido: {s["id"]}')
+  if s['tipo'] not in (TYPES | KINDS if c['perfil_visual']==PROFILE else TYPES):raise ValueError(f'Tipo de slide inválido: {s["id"]}')
   if not isinstance(s['p'],int) or not 1<=s['p']<=len(ps):raise ValueError('Parágrafo inicial fora do roteiro.')
   text=ps[s['p']-1]['texto'];tr=s['frase_gatilho']
   if not isinstance(tr,str) or not tr.strip():raise ValueError(f'Gatilho vazio: {s["id"]}')
@@ -106,6 +109,7 @@ def load(root,require_audio=True):
   while end<len(ps) and offset[end]<s['word_end']:end+=1
   if 'end' in s and s['end']!=end:raise ValueError(f'Fim de parágrafo não corresponde ao intervalo: {s["id"]}')
   s['end']=end;s['estimativa_s']=(s['word_end']-s['word_start'])*60/140
+ if c['perfil_visual']==PROFILE:validate_editorial(root,c,ps,scenes,sources)
  return c,ps,scenes,sources
 
 def outdir(root,fmt):return Path(root)/('slides' if fmt=='16:9' else 'slides-'+fmt.replace(':','x'))

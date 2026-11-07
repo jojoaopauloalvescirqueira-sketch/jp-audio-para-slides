@@ -1,8 +1,8 @@
-# Direção visual aprovada
+# Direção visual de base
 
 ## Composição
 
-Fundo #FAFAF7; texto #202725; destaque #52705E; texto secundário #626B66. Fonte Arial, Helvetica ou equivalente sans-serif disponível. Sem gradientes, ícones decorativos, painéis de interface ou animações chamativas.
+Fundo #FAFAF7; texto #202725; destaque #52705E; texto secundário #626B66. Fonte Arial, Helvetica ou equivalente sans-serif disponível. Sem gradientes, ícones decorativos ou painéis de interface. Para composições de comparação, diagramas, marca e movimentos breves, seguir [Editorial JP](editorial-jp.md).
 
 A amostra em assets/referencia-visual.jpg é apenas evidência do estilo aprovado; seus temas, nomes e números não são dados de novos trabalhos.
 
