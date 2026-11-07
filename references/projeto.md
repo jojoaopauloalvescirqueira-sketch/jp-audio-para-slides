@@ -12,9 +12,11 @@ O preparador mede as entradas com ffprobe, copia o material, produz roteiro limp
 
 Para um ambiente separado, instalar `requirements.txt`; para ASR, também `requirements-asr.txt`. Instalar o pacote Node do projeto com o package.json incluído e o navegador Playwright. Preferir dependências já disponíveis. O renderizador procura Playwright junto ao script, no projeto e em PLAYWRIGHT_MODULE, nessa ordem. Não incluir node_modules ou modelos no ZIP final.
 
+Entradas sem áudio e retomada usam [fluxo de roteiros](roteiros.md). Os contratos existentes de slides, marcações e vídeo permanecem compatíveis. `validar.py` permite conferir PNG/layout sem áudio; `--video` exige áudio e timeline.
+
 ## Arquivos
 
-`projeto.json`: `titulo`, `subtitulo`, `autor`, `marca`, `cta_rotulo`, `cta_url`, `capa` (caminho relativo opcional), `audio` (arquivo ou pasta relativa), `formato` (16:9 padrão), `idioma` (pt padrão), `fps` (30). Campos de autoria, capa e CTA vazios são válidos; não os preencher com dados de outro projeto. `audio_previa` é usado quando o sincronizador unifica uma pasta de áudios.
+`projeto.json`: `titulo`, `subtitulo`, `autor`, `marca`, `cta_rotulo`, `cta_url`, `capa` (caminho relativo opcional), `audio` (arquivo ou pasta relativa; null antes da entrega do áudio), `formato` (16:9 padrão), `idioma` (pt padrão), `fps` (30). Campos de autoria, capa e CTA vazios são válidos; não os preencher com dados de outro projeto. `audio_previa` é usado quando o sincronizador unifica uma pasta de áudios.
 
 `material/paragrafos.json`: lista de objetos `{"id":"P001","texto":"fala integral"}`. Preservar a segmentação do roteiro original. Se a fala estiver em MD ou contiver metadados, separar editorialmente fala e instruções antes de numerar; não presumir que todo título ou tabela de produção é falado.
 

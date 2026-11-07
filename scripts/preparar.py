@@ -3,12 +3,12 @@
 import argparse,re,shutil,sys
 from pathlib import Path
 from projeto import audio_files,binary,probe,sha,write
-VOICE=re.compile(r'\[(?:warm|curious|thoughtful|skeptical|serious|slowly|excited|sad|happy|whispering|whispers|laughs|sighs|short pause|long pause|pause|calm|confident|dramatic)\]',re.I)
+from fala import clean_paragraphs
 def main():
- p=argparse.ArgumentParser();p.add_argument('--root',required=True,type=Path);p.add_argument('--audio',required=True,type=Path);p.add_argument('--roteiro',required=True,type=Path);p.add_argument('--titulo',required=True);p.add_argument('--autor',default='');p.add_argument('--subtitulo',default='');p.add_argument('--artigo',type=Path);p.add_argument('--ffprobe');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--root',required=True,type=Path);p.add_argument('--audio',required=True,type=Path);p.add_argument('--roteiro',required=True,type=Path);p.add_argument('--titulo',required=True);p.add_argument('--autor',default='');p.add_argument('--subtitulo',default='');p.add_argument('--artigo',type=Path);p.add_argument('--ffprobe');p.add_argument('--audio-tag',action='append',default=[]);p.add_argument('--literal-tag',action='append',default=[]);a=p.parse_args()
  if (a.root/'projeto.json').exists():raise ValueError('Projeto existente; não será sobrescrito.')
  if not a.roteiro.is_file():raise ValueError('Roteiro ausente.')
- raw=a.roteiro.read_text(encoding='utf-8-sig');clean=VOICE.sub('',raw);paras=[x.strip() for x in re.split(r'\n\s*\n',clean.strip()) if x.strip()]
+ raw=a.roteiro.read_text(encoding='utf-8-sig');paras=clean_paragraphs(raw,a.audio_tag,a.literal_tag)
  if not paras:raise ValueError('Roteiro vazio.')
  files=audio_files(a.audio,len(paras));ffprobe=binary('ffprobe',a.ffprobe)
  measurements=[{'arquivo':f.name,'duracao_s':float(probe(f,ffprobe)['format']['duration']),'sha256':sha(f)} for f in files]

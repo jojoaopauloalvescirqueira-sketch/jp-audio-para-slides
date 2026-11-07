@@ -5,7 +5,7 @@ from pathlib import Path
 from projeto import load,read,write,outdir,FORMATS,binary,probe
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--root',required=True,type=Path);ap.add_argument('--formato',choices=list(FORMATS));ap.add_argument('--video',action='store_true');ap.add_argument('--ffprobe');ap.add_argument('--ffmpeg');a=ap.parse_args();root=a.root.resolve();c,ps,scenes,sources=load(root);fmt=a.formato or c['formato'];out=outdir(root,fmt)
+ ap=argparse.ArgumentParser();ap.add_argument('--root',required=True,type=Path);ap.add_argument('--formato',choices=list(FORMATS));ap.add_argument('--video',action='store_true');ap.add_argument('--ffprobe');ap.add_argument('--ffmpeg');a=ap.parse_args();root=a.root.resolve();c,ps,scenes,sources=load(root,require_audio=a.video);fmt=a.formato or c['formato'];out=outdir(root,fmt)
  from PIL import Image
  report={'paragrafos':len(ps),'slides':len(scenes),'figuras_referenciadas':len({str(s['figura']) for s in scenes if s['figura'] is not None}),'formato':fmt,'resolucao':FORMATS[fmt],'cobertura_roteiro':True}
  for s in scenes:

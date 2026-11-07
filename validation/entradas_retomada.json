@@ -1,0 +1,7 @@
+{
+  "artigo_roteiro_sem_audio": true,
+  "preview_sem_tempos_medidos": true,
+  "retomada_audio_ffprobe": true,
+  "fala_paragrafos_plano_preservados": true,
+  "limite": "Áudio sintético de seis segundos; teste de contrato e medição, sem reconhecimento acústico."
+}

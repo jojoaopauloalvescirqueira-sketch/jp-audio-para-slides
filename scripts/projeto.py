@@ -49,16 +49,23 @@ def config(root):
  if c['fps']!=30:raise ValueError('Esta versão exporta em 30 fps.')
  return c
 
-def audio(root,c):return (Path(root)/c['audio']).resolve()
+def audio(root,c):
+ if not c.get('audio'):raise ValueError('Áudio pendente; forneça-o e execute anexar_audio.py antes de sincronizar.')
+ return (Path(root)/c['audio']).resolve()
 def audio_identity(root,c,ps):
  files=audio_files(audio(root,c),len(ps))
  return {f'P{i:03}':sha(p) for i,p in enumerate(files,1)} if audio(root,c).is_dir() else {'unico':sha(files[0])}
 
-def load(root):
+def load(root,require_audio=True):
  root=Path(root);c=config(root);ps=read(root/'material/paragrafos.json');scenes=read(root/'material/slides.json');sources=read(root/'material/fontes_figuras.json')
+ if c.get('roteiro_sha256'):
+  from fala import paragraphs,normalize
+  canonical=root/'material/roteiro_limpo.txt'
+  if sha(canonical)!=c['roteiro_sha256'] or [normalize(p['texto']) for p in ps]!=[normalize(p) for p in paragraphs(canonical.read_text(encoding='utf-8'))]:raise ValueError('Fala canônica alterada ou parágrafos incompatíveis; revise o projeto.')
  if not ps or not scenes:raise ValueError('Roteiro ou plano de slides vazio; prepare as cenas antes de gerar.')
  if [p['id'] for p in ps]!=[f'P{i:03}' for i in range(1,len(ps)+1)]:raise ValueError('Parágrafos precisam ter IDs consecutivos.')
- audio_files(audio(root,c),len(ps));offset=[0]
+ if require_audio:audio_files(audio(root,c),len(ps))
+ offset=[0]
  for p in ps:
   if not p['texto'].strip():raise ValueError('Parágrafo vazio.')
   offset.append(offset[-1]+len(p['texto'].split()))

@@ -1,6 +1,6 @@
 # Entrega e aceite
 
-## Pacote padrão
+## Pacote padrão após receber áudio
 
 - video.mp4 em 16:9; formatos alternativos têm nomes distintos.
 - slides/png/S001.png… e slides/apresentacao.html, com navegação, texto correspondente e botões de áudio depois de existir marcação.
@@ -11,6 +11,8 @@
 - Plano de aula e mapa de parágrafos fornecidos ou reconstruídos, com função didática, fontes e entradas.
 
 Fornecer ZIP quando útil. Não incluir caches, bibliotecas, modelos ASR, executáveis, arquivos temporários ou materiais de outro projeto. Informar tamanho se o áudio tornar o pacote grande.
+
+Antes do áudio, entregar os materiais de [roteirização](roteiros.md), planejamento visual e prévias disponíveis, com estado explícito. Timeline medida e vídeo permanecem pendentes.
 
 ## Conferência
 

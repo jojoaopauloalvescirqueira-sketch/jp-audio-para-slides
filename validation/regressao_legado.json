@@ -1,0 +1,42 @@
+{
+  "artigo_roteiro_sem_audio": "passou",
+  "preview_sem_tempos_medidos": "passou",
+  "retomada_audio_real_ffprobe": "passou",
+  "fala_paragrafos_plano_preservados": true,
+  "legado_video_validado": true,
+  "regressao_pixels": [
+    {
+      "slide": "S001.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S002.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S003.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S004.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S005.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S006.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S007.png",
+      "pixels_identicos": true
+    },
+    {
+      "slide": "S008.png",
+      "pixels_identicos": true
+    }
+  ],
+  "limite": "O tema água usa tom sintético para testar contrato e medição, não ASR. O áudio legado é fala real previamente alinhada; o teste reutiliza marcas e não alega nova audição integral."
+}

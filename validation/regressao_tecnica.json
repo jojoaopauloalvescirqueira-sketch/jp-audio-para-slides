@@ -1,0 +1,81 @@
+{
+  "limite": "Áudio sintético: estes casos verificam contratos, renderização e falhas, não reconhecimento acústico.",
+  "cenarios": [
+    {
+      "cenario": "Preparar tema diferente com três parágrafos",
+      "passou": true
+    },
+    {
+      "cenario": "Áudio único sem marcações é bloqueado",
+      "passou": true
+    },
+    {
+      "cenario": "Gatilho ausente é rejeitado",
+      "passou": true
+    },
+    {
+      "cenario": "Gatilho ambíguo é rejeitado",
+      "passou": true
+    },
+    {
+      "cenario": "Alinhar fixture textual de outro tema",
+      "passou": true
+    },
+    {
+      "cenario": "Áudio incompatível por hash é rejeitado",
+      "passou": true
+    },
+    {
+      "cenario": "Duração incompatível é rejeitada",
+      "passou": true
+    },
+    {
+      "cenario": "Revisão pendente bloqueia exportação",
+      "passou": true
+    },
+    {
+      "cenario": "Alinhamento sem correspondência é rejeitado",
+      "passou": true
+    },
+    {
+      "cenario": "Áudio intermediário ausente identificado",
+      "passou": true
+    },
+    {
+      "cenario": "Duplicidade de áudios identificada",
+      "passou": true
+    },
+    {
+      "cenario": "Erro preserva a saída anterior",
+      "passou": true
+    },
+    {
+      "cenario": "Renderizar padrão 16:9 sem fontes fixas",
+      "passou": true
+    },
+    {
+      "cenario": "Exportar MP4 sintético para verificar o motor",
+      "passou": true
+    },
+    {
+      "cenario": "Validar vídeo e cobertura",
+      "passou": true
+    },
+    {
+      "cenario": "Renderizar formato 21:9",
+      "passou": true
+    },
+    {
+      "cenario": "Validar formato 21:9",
+      "passou": true
+    },
+    {
+      "cenario": "Renderizar formato 9:16",
+      "passou": true
+    },
+    {
+      "cenario": "Validar formato 9:16",
+      "passou": true
+    }
+  ]
+}

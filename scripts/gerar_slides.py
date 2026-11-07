@@ -6,13 +6,13 @@ from projeto import load, outdir, FORMATS, audio_identity, sha
 
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--formato',choices=['16:9','21:9','9:16']);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--html-only',action='store_true');ap.add_argument('--node',default=os.environ.get('NODE','node'));ap.add_argument('--somente',default='');args=ap.parse_args();root=args.root.resolve();cfg,ps,scenes,sources=load(root);args.formato=args.formato or cfg['formato']
+ ap=argparse.ArgumentParser();ap.add_argument('--formato',choices=['16:9','21:9','9:16']);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--html-only',action='store_true');ap.add_argument('--node',default=os.environ.get('NODE','node'));ap.add_argument('--somente',default='');args=ap.parse_args();root=args.root.resolve();cfg,ps,scenes,sources=load(root,require_audio=False);args.formato=args.formato or cfg['formato']
  vertical=args.formato=='9:16';w,h=FORMATS[args.formato];out=outdir(root,args.formato);(out/'png').mkdir(parents=True,exist_ok=True)
  marks=json.loads((root/'material/marcacoes_audio.json').read_text()) if (root/'material/marcacoes_audio.json').exists() else {'slides':[]}
- valid_marks=marks.get('audio_identidade')==audio_identity(root,cfg,ps) and (not marks.get('plano_sha256') or marks['plano_sha256']==sha(root/'material/slides.json'))
+ valid_marks=bool(cfg.get('audio')) and marks.get('audio_identidade')==audio_identity(root,cfg,ps) and (not marks.get('plano_sha256') or marks['plano_sha256']==sha(root/'material/slides.json'))
  timings={m['slide_id']:m['inicio_s'] for m in marks.get('slides',[]) if m.get('inicio_s') is not None} if valid_marks else {}
- preview=cfg.get('audio_previa',cfg['audio']);preview=preview if (root/preview).is_file() else ''
- audio_tag='<audio id="narracao" controls preload="metadata" src="../'+html.escape(preview)+'"></audio>' if preview else '<span>Prévia de áudio disponível após sincronizar os parágrafos.</span><audio id="narracao" hidden></audio>'
+ preview=cfg.get('audio_previa',cfg.get('audio'));preview=preview if preview and (root/preview).is_file() else ''
+ audio_tag='<audio id="narracao" controls preload="metadata" src="../'+html.escape(preview)+'"></audio>' if preview else '<span>Áudio pendente ou prévia ainda não sincronizada.</span><audio id="narracao" hidden></audio>'
  source_map={str(s['id']):s for s in sources}
  E=html.escape;articles=[]
  for s in scenes:
