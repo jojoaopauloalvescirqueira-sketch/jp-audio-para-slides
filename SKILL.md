@@ -1,11 +1,11 @@
 ---
-name: jp-audio-para-slides
+name: jp-roteirizacao-e-slides
 description: Transformar artigo autoral em roteiro didático e preparar roteiro pronto, com ou sem áudio, para slides, apresentação HTML e vídeo sincronizado no padrão visual JP. Use para artigo → roteiro → áudio fornecido → slides e vídeo; não para escrever artigo a partir de tema, gerar voz ou publicar automaticamente.
 metadata:
   version: "1.1.0"
 ---
 
-# JP Roteiros, Slides e Vídeos
+# JP Roteirização e Slides
 
 Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Preservar o padrão visual aprovado. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
 

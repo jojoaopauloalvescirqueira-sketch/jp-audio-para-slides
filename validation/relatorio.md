@@ -1,6 +1,6 @@
-# Validação — jp-audio-para-slides 1.1.0
+# Validação — jp-roteirizacao-e-slides 1.1.0
 
-Executada em 6 de novembro de 2026. Identificador preservado; exibição: **JP Roteiros, Slides e Vídeos**. Padrão visual 16:9, 1920×1080 com composição interna larga. A integração não gera voz nem acessa ElevenLabs.
+Executada em 6 de novembro de 2026. Identificador atualizado para `jp-roteirizacao-e-slides`; exibição: **JP Roteirização e Slides**. Padrão visual 16:9, 1920×1080 com composição interna larga. A integração não gera voz nem acessa ElevenLabs.
 
 ## Implementado
 
@@ -16,7 +16,7 @@ Limpeza compartilhada preserva citações e colchetes literais, admite controles
 - **Compatibilidade com o projeto aprovado:** recorte de 1971, seis parágrafos, oito slides, 140,58 s, incluindo capa, figura, definição, cálculo em três etapas, síntese e encerramento. Renderização da 1.1.0 idêntica pixel a pixel aos oito PNGs anteriores. Vídeo existente validado com cobertura integral do recorte, timeline contínua, 1920×1080 e decodificação integral. Não houve modificação do projeto fonte.
 - **HTML legado regenerado:** seleção, navegação por teclado, reprodução do áudio, ausência de erros JavaScript e de overflow horizontal passaram.
 - **Independência:** os testes usaram os scripts da cópia de desenvolvimento, sem importar a instalação de `jp-tiktok-artigos`. A verificação de importações não encontrou dependência dessa skill. Os hashes da skill original foram conferidos sem alterações.
-- **Descoberta e estrutura:** `quick_validate.py` da skill-creator aprovou o pacote. `agents/openai.yaml` conserva invocação implícita habilitada e comando `$jp-audio-para-slides`.
+- **Descoberta e estrutura:** `quick_validate.py` da skill-creator aprovou o pacote. `agents/openai.yaml` conserva invocação implícita habilitada e comando `$jp-roteirizacao-e-slides`.
 
 Os JSONs nesta pasta registram regressão técnica e comparação com o recorte legado. Os testes unitários e os dois motores de teste estão incluídos em scripts/ e podem ser executados em uma pasta temporária externa.
 
@@ -37,3 +37,7 @@ Os testes com tom/silêncio sintético verificam contratos, arquivos e exportaç
 A pequena conferência de fidelidade do exemplo foi manual; o validador textual não audita fatos ou a qualidade pedagógica de artigos arbitrários. Não houve ensaio com alunos, teste de voz clonada ou confirmação de modelo na conta. A documentação oficial de ElevenLabs foi consultada nesta data; recomendações devem ser reconferidas diante de mudanças. Limites de geração não são limites de duração total da aula.
 
 A versão 1.1.0 reúne as instruções e os instrumentos, mas o agente continua responsável por ler o artigo integral, escrever o roteiro e revisar cada produção. Nenhuma publicação de conteúdo ou operação paga é autorizada pela skill.
+
+## Renomeação
+
+Nome de exibição atualizado para **JP Roteirização e Slides**, comando `$jp-roteirizacao-e-slides`. Alteração restrita a identidade, metadados e documentação; scripts de produção preservados. Estrutura e 27 testes textuais reconferidos após a renomeação.
