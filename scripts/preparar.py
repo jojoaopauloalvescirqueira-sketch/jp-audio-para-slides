@@ -23,7 +23,7 @@ def main():
  write(mat/'paragrafos.json',[{'id':f'P{i:03}','texto':t} for i,t in enumerate(paras,1)]);write(mat/'slides.json',[]);write(mat/'fontes_figuras.json',[]);write(mat/'entradas.json',measurements)
  visual=initialize(a.root) if a.perfil_visual==PROFILE else {'perfil_visual':'legado'}
  visual['trilha_obrigatoria']=True
- write(a.root/'projeto.json',{**visual,'titulo':a.titulo,'subtitulo':a.subtitulo,'autor':a.autor,'marca':'','cta_rotulo':'','cta_url':'','capa':'','audio':dest.relative_to(a.root).as_posix(),'formato':'16:9','idioma':'pt','fps':30})
+ write(a.root/'projeto.json',{**visual,'titulo':a.titulo,'subtitulo':a.subtitulo,'autor':a.autor,'marca':'','cta_rotulo':'','cta_url':'','capa':'','audio':dest.relative_to(a.root).as_posix(),'formato':'16:9','estilo_video':None,'idioma':'pt','fps':30})
  print(f'{len(paras)} parágrafos preparados. Preencha material/slides.json com o plano editorial.')
 if __name__=='__main__':
  try:main()

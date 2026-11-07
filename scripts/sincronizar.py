@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Timeline e MP4 a partir de durações medidas e entradas verificáveis."""
-import argparse,csv,math,subprocess,sys,tempfile
+import argparse,csv,math,subprocess,sys
 from pathlib import Path
-from trilha import select as select_music, prepare as prepare_music, saved_selection
+from trilha import select as select_music
+from video_export import export
 from editorial import PROFILE, FRAME_COUNT, check_render, frame_paths
 from projeto import load,audio,audio_files,audio_identity,binary,probe,read,write,sha,outdir,ffquote,FORMATS
 
@@ -90,48 +91,10 @@ def main():
  if editorial:
   report.update(perfil_visual=PROFILE,ritmo=rhythm,quadros_intermediarios=sum(r['quadros_intermediarios'] for r in rows))
  if a.renderizar:
-  ff=binary('ffmpeg',a.ffmpeg);target=root/('video.mp4' if fmt=='16:9' else 'video-'+fmt.replace(':','x')+'.mp4');audio_input=['-i',str(files[0])] if len(files)==1 else ['-f','concat','-safe','0','-i',str(out/'audios.ffconcat')]
-  codecs=[next(s['codec_name'] for s in i['streams'] if s['codec_type']=='audio') for i in infos];copy_audio=len(files)==1 and codecs[0]=='aac'
-  codec=['-c:a','copy'] if copy_audio else ['-c:a','aac','-b:a','192k']
-  if len(files)>1:
-   # Normalize derived copies: concat demuxing original files with mixed codecs/rates is unsafe.
-   preview=root/'material/narracao-unificada.m4a'
-   with tempfile.TemporaryDirectory(prefix='.audio-normalizada-',dir=root) as directory:
-    directory=Path(directory);normalized=[];channels=max(int(next(s for s in i['streams'] if s['codec_type']=='audio').get('channels',1)) for i in infos)
-    for index,file in enumerate(files):
-     dest=directory/f'{index:06}.wav';subprocess.run([ff,'-y','-v','error','-i',str(file),'-vn','-ar','48000','-ac',str(channels),'-c:a','pcm_s16le',str(dest)],check=True);normalized.append(dest)
-    tracklist=directory/'audio.ffconcat';tracklist.write_text('ffconcat version 1.0\n'+'\n'.join('file '+ffquote(x) for x in normalized)+'\n',encoding='utf-8')
-    derived=directory/'unificada.m4a';subprocess.run([ff,'-y','-v','error','-f','concat','-safe','0','-i',str(tracklist),'-c:a','aac','-b:a','192k',str(derived)],check=True);derived.replace(preview)
-   if abs(float(probe(preview,ffprobe)['format']['duration'])-total)>.15:raise ValueError('A unificação dos áudios mudou a duração total.')
-   audio_input=['-i',str(preview)];codec=['-c:a','copy']
-  with tempfile.TemporaryDirectory(prefix='.mix-',dir=root) as scratch:
-   audio_map=['-map','1:a:0']
-   track_record=None
-   if music:
-    narration=files[0] if len(files)==1 else preview
-    music_input,graph,track_record=prepare_music(root,music,narration,total,ff,ffprobe,report['audio_identidade'].values(),Path(scratch))
-    audio_input+=music_input
-    audio_map=['-filter_complex',graph,'-map','[mix]']
-    codec=['-c:a','aac','-b:a','192k']
-    copy_audio=False
-   handle=tempfile.NamedTemporaryFile(prefix='.render-',suffix='.mp4',dir=root,delete=False);stage=Path(handle.name);handle.close()
-   try:
-    subprocess.run([ff,'-y','-hide_banner','-loglevel','warning','-f','concat','-safe','0','-i',str(out/'concat.ffconcat'),*audio_input,'-map','0:v:0',*audio_map,'-vf','fps=30','-c:v','libx264','-preset','veryfast','-tune','stillimage','-crf','20','-threads',str(a.threads),'-pix_fmt','yuv420p',*codec,'-t',f'{total:.6f}','-movflags','+faststart',str(stage)],check=True)
-    vi=probe(stage,ffprobe);v=next(s for s in vi['streams'] if s['codec_type']=='video')
-    if (v['width'],v['height'])!=FORMATS[fmt] or v['avg_frame_rate']!='30/1' or int(v['nb_frames'])!=round(total*30) or abs(float(vi['format']['duration'])-total)>.1:raise ValueError('Metadados do vídeo não conferem.')
-    subprocess.run([ff,'-v','error','-xerror','-i',str(stage),'-map','0:v:0','-map','0:a:0','-f','null','-'],check=True)
-    if copy_audio and len(files)==1:
-     def ahash(p):return subprocess.run([ff,'-v','error','-i',str(p),'-map','0:a:0','-c:a','copy','-f','hash','-hash','sha256','-'],check=True,capture_output=True,text=True).stdout.strip()
-     if ahash(files[0])!=ahash(stage):raise ValueError('O áudio copiado não corresponde ao original.')
-    stage.replace(target)
-   finally:stage.unlink(missing_ok=True)
-  report.update(video=target.name,decodificacao_integral=True,audio_sem_recompressao=copy_audio)
-  if track_record:
-   report['trilha']=track_record
-   c['trilha']=saved_selection(track_record)
-  if len(files)>1:
-   preview=root/'material/narracao-unificada.m4a';c['audio_previa']=preview.relative_to(root).as_posix()
-  if track_record or len(files)>1:write(root/'projeto.json',c)
+  ff=binary('ffmpeg',a.ffmpeg)
+  target=root/('video.mp4' if fmt=='16:9' else 'video-'+fmt.replace(':','x')+'.mp4')
+  export(root,target,fmt,files,infos,total,ff,ffprobe,music,report,c,
+         ['-f','concat','-safe','0','-i',str(out/'concat.ffconcat')],a.threads,('-tune','stillimage'))
  write(out/'sincronizacao.json',report);print(f'{len(rows)} slides; {total:.6f}s medidos; formato {fmt}.')
 if __name__=='__main__':
  try:main()

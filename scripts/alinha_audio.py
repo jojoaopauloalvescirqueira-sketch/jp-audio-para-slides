@@ -40,9 +40,9 @@ def check_external_speech(material, matcher, expected, heard, paragraphs, starts
         raise ValueError(f'{len(differences)} divergências na fala reconhecida. Confira material/divergencias_asr.json antes de alinhar.')
 
 
-def main():
- ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,required=True);ap.add_argument('--transcricao',type=Path);a=ap.parse_args();root=a.root.resolve();c,ps,scenes,_=load(root)
- material=root/'material';tr_path=a.transcricao or material/'transcricao_asr.json';tr=read(tr_path)
+def word_alignment(root,c,ps,transcript=None):
+ """Mapeia cada token canônico ao timestamp reconhecido, quando há correspondência."""
+ material=root/'material';tr_path=transcript or material/'transcricao_asr.json';tr=read(tr_path)
  if not isinstance(tr,dict) or tr.get('audio_identidade')!=audio_identity(root,c,ps):raise ValueError('Transcrição sem identidade válida para os áudios atuais.')
  duration=float(tr['duracao_s']);heard=[]
  if not math.isfinite(duration) or duration<=0:raise ValueError('Duração da transcrição inválida.')
@@ -63,6 +63,13 @@ def main():
   for k in range(block.size):match[block.a+k]=block.b+k
  keys=sorted(match)
  if not keys:raise ValueError('Alinhamento insuficiente: não há correspondências com o roteiro.')
+ return duration,heard,expected,starts,match,tr['audio_identidade']
+
+
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,required=True);ap.add_argument('--transcricao',type=Path);a=ap.parse_args();root=a.root.resolve();c,ps,scenes,_=load(root)
+ duration, heard, expected, starts, match, identity = word_alignment(root,c,ps,a.transcricao)
+ keys=sorted(match);aa=[norm(t) for t in expected]
  def stamp(i):
   if i in match:return heard[match[i]]['start'],'reconhecido',0,0.
   k=bisect.bisect_left(keys,i);lo=keys[k-1] if k else None;hi=keys[k] if k<len(keys) else None
@@ -93,7 +100,7 @@ def main():
  for i,m in enumerate(marks):
   end=marks[i+1]['inicio_s'] if i+1<len(marks) else duration;m['fim_s']=end
   if m['inicio_s'] is None or end is None or not 0<=m['inicio_s']<end<=duration:reviews.append(m['slide_id']);m['motivos_revisao'].append('limites temporais inválidos')
- write(root/'material/marcacoes_audio.json',{'audio_identidade':tr['audio_identidade'],'plano_sha256':sha(root/'material/slides.json'),'roteiro_sha256':sha(root/'material/paragrafos.json'),'duracao_s':duration,'cobertura_global':global_coverage,'trechos_extensos_nao_reconhecidos':long_gaps,'slides':marks,'revisao':{'pendencias':list(dict.fromkeys(reviews)),'conferidos':[]}})
+ write(root/'material/marcacoes_audio.json',{'audio_identidade':identity,'plano_sha256':sha(root/'material/slides.json'),'roteiro_sha256':sha(root/'material/paragrafos.json'),'duracao_s':duration,'cobertura_global':global_coverage,'trechos_extensos_nao_reconhecidos':long_gaps,'slides':marks,'revisao':{'pendencias':list(dict.fromkeys(reviews)),'conferidos':[]}})
  print(f'{len(marks)} entradas; cobertura textual {global_coverage:.1%}; {len(set(reviews))} pontos para conferir. Correspondência textual não é precisão acústica.')
 if __name__=='__main__':
  try:main()

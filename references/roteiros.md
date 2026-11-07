@@ -2,7 +2,7 @@
 
 ## Pacote editorial
 
-Criar no mesmo projeto `material/roteiro_limpo.txt`, `roteiro_studio.txt`, `guia_producao.md`, `mapa_didatico.md` e `fidelidade.md`. Conservar o artigo original e seu hash. Produzir os arquivos editoriais pelo trabalho de leitura e escrita do agente; `fluxo.py` organiza e verifica insumos, não resume nem comprova fidelidade sozinho.
+Criar no mesmo projeto `material/roteiro_limpo.txt`, `roteiro_studio.txt`, `guia_producao.md`, `mapa_didatico.md` e `fidelidade.md`. Conservar a fonte original e seu hash. Para transcrição, conversa ou anotações, manter a fonte em `material/` e indicar o arquivo e o hash na conferência de fidelidade. Produzir os arquivos editoriais pelo trabalho de leitura e escrita do agente; `fluxo.py` organiza e verifica insumos, não resume nem comprova fidelidade sozinho.
 
 A versão limpa contém apenas a fala, com uma linha em branco entre parágrafos. Studio conserva exatamente as mesmas palavras e fronteiras de parágrafo, adicionando somente controles identificados. IDs P001…PNNN ficam em `paragrafos.json`, guia e mapa; não são narrados. Conteúdo literal como `[1]`, `[nota do autor]` ou citações deve permanecer nas duas versões. Declare `--literal-tag thoughtful` se o texto usar literalmente uma palavra também reconhecida como controle.
 
@@ -10,7 +10,7 @@ No percurso por artigo, registrar a [direção narrativa](direcao_narrativa.md) 
 
 O mapa relaciona cada P a bloco didático, passagem/seção do artigo, conceito, função, exemplo, figura e frase-gatilho exata do slide. Identificar blocos reconstruídos quando não houver plano fornecido. Criar o plano visual `slides.json` conforme o contrato existente. Não substituir créditos ou fontes por tags vocais.
 
-A conferência de fidelidade relaciona afirmações, qualificações, objeções, omissões justificadas e adaptações orais ao artigo. Separar exemplos hipotéticos de evidências. Revisar integralmente a versão limpa: precisão, autonomia da aula, números, unidades e limites. Ausência de artigo impede afirmar que essa conferência foi concluída.
+A conferência de fidelidade relaciona afirmações, qualificações, objeções, omissões justificadas e adaptações orais à fonte fornecida. Separar exemplos hipotéticos de evidências. Revisar integralmente a versão limpa: precisão, autonomia da aula, números, unidades e limites. Indicar o tipo de fonte e as lacunas que limitam a conferência.
 
 ## Comandos
 

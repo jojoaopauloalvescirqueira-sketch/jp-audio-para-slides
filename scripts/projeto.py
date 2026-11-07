@@ -46,6 +46,8 @@ def config(root):
  c=read(Path(root)/'projeto.json')
  if not c.get('titulo','').strip():raise ValueError('Título do projeto ausente.')
  c.setdefault('autor','');c.setdefault('subtitulo','');c.setdefault('marca','');c.setdefault('cta_rotulo','');c.setdefault('cta_url','');c.setdefault('capa','');c.setdefault('formato','16:9');c.setdefault('idioma','pt');c.setdefault('fps',30)
+ if c.get('estilo_video') in {'editorial_jp','legado'}:
+  c['perfil_visual']=c['estilo_video']
  c.setdefault('perfil_visual','legado')
  if c['perfil_visual'] not in {'legado',PROFILE}:raise ValueError('Perfil visual desconhecido.')
  if c['formato'] not in FORMATS:raise ValueError('Formato desconhecido.')
@@ -61,6 +63,8 @@ def audio_identity(root,c,ps):
 
 def load(root,require_audio=True):
  root=Path(root);c=config(root);ps=read(root/'material/paragrafos.json');scenes=read(root/'material/slides.json');sources=read(root/'material/fontes_figuras.json')
+ if c.get('estilo_video')=='pictograma':
+  raise ValueError('Para este projeto, use scripts/pictograma.py.')
  if c.get('roteiro_sha256'):
   from fala import paragraphs,normalize
   canonical=root/'material/roteiro_limpo.txt'

@@ -1,7 +1,8 @@
 """Preparação e retomada sem síntese de voz ou dependência de outra skill."""
-import argparse,shutil,sys
+import argparse,json,shutil,sys
 from pathlib import Path
 import direcao
+import estado_projetos
 import plano_tags
 from editorial import initialize, PROFILE
 from fala import BRACKET, KNOWN, clean_paragraphs, compare_speech, normalize, paragraphs
@@ -17,7 +18,7 @@ def iniciar(root,titulo,artigo=None,autor='',perfil_visual=PROFILE):
  mat=root/'material';mat.mkdir(parents=True,exist_ok=True)
  visual=initialize(root) if perfil_visual==PROFILE else {'perfil_visual':'legado'}
  visual['trilha_obrigatoria']=True
- c={**visual,'titulo':titulo,'autor':autor,'subtitulo':'','audio':None,'formato':'16:9','fps':30,'idioma':'pt','estado':'roteirizacao'}
+ c={**visual,'titulo':titulo,'autor':autor,'subtitulo':'','audio':None,'formato':'16:9','estilo_video':None,'fps':30,'idioma':'pt','estado':'roteirizacao'}
  if artigo:
   artigo=Path(artigo);dest=mat/('artigo'+artigo.suffix);shutil.copy2(artigo,dest)
   c['artigo']={'arquivo':dest.relative_to(root).as_posix(),'sha256':sha(dest)}
@@ -133,7 +134,13 @@ def main():
  a=sub.add_parser('registrar_roteiro');a.add_argument('--root',required=True,type=Path);a.add_argument('--limpo',required=True,type=Path);a.add_argument('--studio',type=Path);a.add_argument('--model',default='eleven_v4');a.add_argument('--audio-tag',action='append',default=[]);a.add_argument('--literal-tag',action='append',default=[])
  a=sub.add_parser('aplicar_tags');a.add_argument('--root',required=True,type=Path);a.add_argument('--plano',required=True,type=Path)
  a=sub.add_parser('anexar_audio');a.add_argument('--root',required=True,type=Path);a.add_argument('--audio',required=True,type=Path);a.add_argument('--ffprobe')
+ a=sub.add_parser('estado',help='Consultar projetos locais sem modificar arquivos.')
+ a.add_argument('--root',action='append',type=Path,default=[],metavar='PASTA',
+                help='Pasta ou projeto.json adicional. Pode ser repetido.')
  a=p.parse_args()
+ if a.acao=='estado':
+  print(json.dumps(estado_projetos.scan([Path.cwd(),*a.root]),ensure_ascii=False,indent=2))
+  return
  if a.acao=='iniciar':iniciar(a.root,a.titulo,a.artigo,a.autor,a.perfil_visual)
  elif a.acao=='direcao':direcao.record(a.root,a)
  elif a.acao=='registrar_roteiro':registrar(a.root,a.limpo,a.studio,a.model,a.audio_tag,a.literal_tag)

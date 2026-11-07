@@ -1,7 +1,7 @@
 interface:
   display_name: "JP Roteirização e Slides"
-  short_description: "Do artigo ao roteiro, slides e vídeo sincronizado"
-  default_prompt: "Use $jp-roteirizacao-e-slides com os materiais fornecidos: produza o roteiro a partir do artigo ou preserve o roteiro pronto; com áudio, gere slides e vídeo no padrão visual aprovado."
+  short_description: "Menu para roteiros, slides e vídeos sincronizados"
+  default_prompt: "Use $jp-roteirizacao-e-slides para me apresentar suas funções ou encaminhar diretamente meu pedido quando eu indicar a função e fornecer os materiais."
 
 policy:
   allow_implicit_invocation: true

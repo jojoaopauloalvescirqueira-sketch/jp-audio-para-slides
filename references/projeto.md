@@ -16,7 +16,7 @@ Entradas sem áudio e retomada usam [fluxo de roteiros](roteiros.md). Os contrat
 
 ## Arquivos
 
-`projeto.json`: `titulo`, `subtitulo`, `autor`, `marca`, `cta_rotulo`, `cta_url`, `capa` (caminho relativo opcional), `audio` (arquivo ou pasta relativa; null antes da entrega do áudio), `formato` (16:9 padrão), `idioma` (pt padrão), `fps` (30). Campos de autoria, capa e CTA vazios são válidos; não os preencher com dados de outro projeto. `audio_previa` é usado quando o sincronizador unifica uma pasta de áudios.
+`projeto.json`: `titulo`, `subtitulo`, `autor`, `marca`, `cta_rotulo`, `cta_url`, `capa` (caminho relativo opcional), `audio` (arquivo ou pasta relativa; null antes da entrega do áudio), `formato` (16:9 padrão), `idioma` (pt padrão), `fps` (30). O campo `estilo_video` guarda `editorial_jp`, `pictograma` ou `legado` após a escolha. Projetos novos começam com null para indicar escolha pendente. Ausência do campo preserva o perfil implícito em projetos anteriores. `direcao_visual` registra, por escolha, `valor`, `origem` e `data` para o [Pictograma](pictograma.md). Campos de autoria, capa e CTA vazios são válidos; não os preencher com dados de outro projeto. `audio_previa` é usado quando o sincronizador unifica uma pasta de áudios.
 
 `material/paragrafos.json`: lista de objetos `{"id":"P001","texto":"fala integral"}`. Preservar a segmentação do roteiro original. Se a fala estiver em MD ou contiver metadados, separar editorialmente fala e instruções antes de numerar; não presumir que todo título ou tabela de produção é falado.
 

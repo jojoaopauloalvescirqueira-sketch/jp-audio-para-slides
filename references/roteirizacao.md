@@ -2,6 +2,8 @@
 
 ## Fidelidade e recorte
 
+Para transcrição, conversa ou anotações, aplique os mesmos critérios à fonte recebida e identifique trechos ausentes ou incompletos. Se o texto já contiver a fala final, siga a preparação de roteiro pronto.
+
 Leia o artigo integral e construa uma síntese explicativa do seu conteúdo central. Separe o que o autor afirma, supõe, relata e apresenta como limite. Não converta analogia em mecanismo demonstrado, associação em causa ou resultado inconclusivo em confirmação. Uma objeção central não pode desaparecer por conveniência narrativa.
 
 O padrão é uma aula autossuficiente sobre o conjunto das ideias centrais, não o menor recorte capaz de anunciar o artigo. Resumir significa selecionar o essencial, reorganizar para aprender e retirar redundâncias; conservar conceitos, relações e qualificações que sustentam a conclusão. Cortes estreitos e teasers dependem de pedido explícito.
