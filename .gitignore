@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.env
+.env.*
+!.env.example
+.work/
+work/
+.cache/
+*.log
+.audio-normalizada-*/
+.render-*.mp4
