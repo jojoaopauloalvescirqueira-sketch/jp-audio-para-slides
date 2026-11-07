@@ -1,6 +1,7 @@
 """Preparação e retomada sem síntese de voz ou dependência de outra skill."""
 import argparse,shutil,sys
 from pathlib import Path
+import direcao
 from editorial import initialize, PROFILE
 from fala import clean_paragraphs,compare_speech
 from projeto import read,write,sha,audio_files,binary,probe,config
@@ -26,12 +27,19 @@ def registrar(root,limpo,studio=None,model='eleven_v4',audio_tags=(),literal_tag
  root=Path(root);c=config(root);mat=root/'material';limpo=Path(limpo)
  if not limpo.is_file() or (studio and not Path(studio).is_file()):raise ValueError('Roteiro ausente.')
  text=limpo.read_text(encoding='utf-8-sig');marked=Path(studio).read_text(encoding='utf-8-sig') if studio else text
- report=validate(marked,model,text,audio_tags=audio_tags,literal_tags=literal_tags)
+ direction=c.get('direcao_narrativa')
+ report=validate(marked,model,text,audio_tags=audio_tags,literal_tags=literal_tags,direction=direction)
  if report['errors']:raise ValueError('Roteiro incompatível: '+'; '.join(report['errors']))
  paras=clean_paragraphs(text,(),literal_tags)
  if not paras or not compare_speech(marked,text,audio_tags,literal_tags):raise ValueError('Fala ou parágrafos divergentes.')
  canonical='\n\n'.join(paras)+'\n';dest=mat/'roteiro_limpo.txt'
  if dest.exists() and dest.read_text()!=canonical:raise ValueError('Fala canônica existente difere; crie nova revisão do projeto antes de substituir.')
+ if direction:
+  direcao.update_guide(root,direction)
+ else:
+  warning='Direção narrativa ausente. O registro da fala pode prosseguir.'
+  report['warnings'].append(warning);report['status']='apto_com_avisos'
+  print('Aviso: '+warning,file=sys.stderr)
  dest.write_text(canonical,encoding='utf-8');(mat/'roteiro_studio.txt').write_text(marked,encoding='utf-8')
  write(mat/'paragrafos.json',[{'id':f'P{i:03}','texto':p} for i,p in enumerate(paras,1)])
  write(mat/'validacao_roteiro.json',report)
@@ -62,10 +70,12 @@ def anexar(root,source,ffprobe=None):
 def main():
  p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='acao',required=True)
  a=sub.add_parser('iniciar');a.add_argument('--root',required=True,type=Path);a.add_argument('--titulo',required=True);a.add_argument('--autor',default='');a.add_argument('--artigo',type=Path);a.add_argument('--perfil-visual',choices=[PROFILE,'legado'],default=PROFILE)
+ a=sub.add_parser('direcao');a.add_argument('--root',required=True,type=Path);direcao.arguments(a)
  a=sub.add_parser('registrar_roteiro');a.add_argument('--root',required=True,type=Path);a.add_argument('--limpo',required=True,type=Path);a.add_argument('--studio',type=Path);a.add_argument('--model',default='eleven_v4');a.add_argument('--audio-tag',action='append',default=[]);a.add_argument('--literal-tag',action='append',default=[])
  a=sub.add_parser('anexar_audio');a.add_argument('--root',required=True,type=Path);a.add_argument('--audio',required=True,type=Path);a.add_argument('--ffprobe')
  a=p.parse_args()
  if a.acao=='iniciar':iniciar(a.root,a.titulo,a.artigo,a.autor,a.perfil_visual)
+ elif a.acao=='direcao':direcao.record(a.root,a)
  elif a.acao=='registrar_roteiro':registrar(a.root,a.limpo,a.studio,a.model,a.audio_tag,a.literal_tag)
  else:anexar(a.root,a.audio,a.ffprobe)
  print('Etapa concluída. Consulte projeto.json; sincronização exige áudio e marcações verificadas.')

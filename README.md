@@ -1,8 +1,8 @@
-# JP Roteirização e Slides · 1.2.3
+# JP Roteirização e Slides · 1.3.0
 
 Skill `$jp-roteirizacao-e-slides`: artigo autoral → roteiro → áudio fornecido pelo usuário → slides e vídeo sincronizado. Independente de outras skills. Não gera voz nem acessa serviços pagos.
 
-- Artigo: roteiros limpo/Studio, guia, mapa didático e conferência de fidelidade.
+- Artigo: [direção narrativa](references/direcao_narrativa.md) acordada antes da escrita, roteiros limpo/Studio, guia, mapa didático e conferência de fidelidade. `fluxo.py direcao` registra escolhas e origem, e o validador oferece avisos heurísticos.
 - Roteiro sem áudio: preservação da fala e planejamento visual; áudio fica pendente.
 - Áudio e roteiro: fluxo direto de slides, HTML e vídeo, compatível com projetos 1.0.
 

@@ -7,9 +7,11 @@ import math
 import re
 import sys
 import unicodedata
+from collections import Counter
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from fala import KNOWN, strip_voice, compare_speech, paragraphs as spoken_paragraphs
+from projeto import config
 
 MODELS = {
     'eleven_v4': {'audio_tags': True, 'reference_limit': 10000},
@@ -22,6 +24,10 @@ TAG = re.compile(r'\[([^\[\]\n]+)\]')
 XML_TAG = re.compile(r'<[^>]+>')
 WORDS = re.compile(r"[^\W_]+(?:[-’'][^\W_]+)*", re.UNICODE)
 VISUAL = re.compile(r'^(?:zoom\b|c[âa]mera\b|corte\b|cena\b|trilha\b|m[úu]sica\b|fade\b|[PC]\d+$)', re.I)
+QUOTES = re.compile(r'“[^”]*”|«[^»]*»|"[^"]*"|‘[^’]*’|^\s*—[^\n]*', re.M)
+FIRST_PERSON = re.compile(r'\b(?:eu|me|mim|comigo|meus?|minhas?)\b', re.I)
+COLLOQUIAL = re.compile(r'\b(?:pra|tá|a\s+gente)\b', re.I)
+FILLERS = re.compile(r'(?:^|[.!?]\s*)\s*(repare|guarde)\b|(?:^|[.!?]\s*)\s*(agora),', re.I | re.M)
 
 
 def normalize(text):
@@ -33,7 +39,42 @@ def strip_controls(text):
     return normalize(strip_voice(text))
 
 
-def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), literal_tags=()):
+def direction_warnings(text, direction, seconds, word_count):
+    def choice(field):
+        return direction.get(field, {}).get('valor')
+
+    warnings = []
+    narrator_text = QUOTES.sub(' ', text)
+    has_personal_block = any(
+        block.get('perspectiva', {}).get('valor') == 'personagem'
+        for block in direction.get('blocos', {}).values()
+    )
+    if choice('perspectiva') == 'externa' and not has_personal_block:
+        count = len(FIRST_PERSON.findall(narrator_text))
+        if count:
+            warnings.append(f'Direção narrativa (heurística): {count} marcas explícitas de primeira pessoa singular fora de citações.')
+    register = choice('registro')
+    if register == 'culto':
+        count = len(COLLOQUIAL.findall(narrator_text))
+        if count:
+            warnings.append(f'Direção narrativa (heurística): {count} ocorrências de “pra”, “tá” ou “a gente” fora de citações em registro culto.')
+    if register == 'falado':
+        punctuation = re.sub(r'https?://\S+|(?<=\d):(?=\d)', '', narrator_text)
+        colons = punctuation.count(':')
+        if colons >= 3 and colons * 100 >= 3 * word_count:
+            warnings.append(f'Direção narrativa (heurística): {colons} dois-pontos fora de citações em registro falado.')
+        fillers = Counter((first or second).casefold() for first, second in FILLERS.findall(narrator_text))
+        for word, count in fillers.items():
+            if count >= 2:
+                warnings.append(f'Direção narrativa (heurística): “{word}” inicia {count} frases ou linhas em registro falado.')
+    target = choice('duracao_alvo')
+    if isinstance(target, (int, float)) and target > 0:
+        if seconds[0] > target * 1.2 or seconds[1] < target * 0.8:
+            warnings.append(f'Direção narrativa (heurística): estimativa de {seconds[0]:g} a {seconds[1]:g} s fora da margem de 20% da meta de {target:g} s.')
+    return warnings
+
+
+def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), literal_tags=(), direction=None):
     if model not in MODELS:
         raise ValueError('Modelo não coberto: consultar a documentação antes de validar.')
     if not all(math.isfinite(n) and n > 0 for n in (wpm_min, wpm_max)) or wpm_min > wpm_max:
@@ -79,7 +120,8 @@ def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), l
     if '<' in without_markup or '>' in without_markup:
         errors.append('Sinal angular ou markup incompleto: escrever a expressão para fala.')
 
-    spoken = normalize(strip_voice(text,audio_tags,literal_tags))
+    unmarked = strip_voice(text,audio_tags,literal_tags)
+    spoken = normalize(unmarked)
     word_count = len(WORDS.findall(spoken))
     if not word_count:
         errors.append('Não há fala no roteiro.')
@@ -112,6 +154,13 @@ def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), l
     qualitative = sum('pause' in t.lower() for t in tags)
     if qualitative:
         warnings.append('Pausas qualitativas sem duração medida; a estimativa não lhes atribui segundos.')
+    seconds = [round(word_count / rate * 60 + requested_breaks, 1)
+               for rate in (wpm_max, wpm_min)]
+    limitations = ['Verificação textual, não auditoria factual ou de fidelidade autoral.',
+                   'Sem geração/escuta de áudio, teste de identidade vocal ou sincronização.']
+    if direction:
+        warnings.extend(direction_warnings(unmarked, direction, seconds, word_count))
+        limitations.append('Os avisos de direção são heurísticas textuais e não avaliam qualidade narrativa.')
     return {
         'status': 'erro' if errors else ('apto_com_avisos' if warnings else 'apto_textual'),
         'model_target': model,
@@ -124,7 +173,7 @@ def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), l
         'spoken_text_equal_to_clean': equal,
         'duration_estimate': {
             'wpm_assumption': [wpm_min, wpm_max],
-            'seconds_without_unmeasured_tag_pauses': [round(word_count/wpm_max*60+requested_breaks, 1), round(word_count/wpm_min*60+requested_breaks, 1)],
+            'seconds_without_unmeasured_tag_pauses': seconds,
             'requested_ssml_pause_seconds': round(requested_breaks, 3),
             'qualitative_pause_tags': qualitative,
             'audio_measured': False,
@@ -132,8 +181,7 @@ def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), l
         'reference_limits_checked_on': '2026-11-06',
         'errors': errors,
         'warnings': warnings,
-        'limitations': ['Verificação textual, não auditoria factual ou de fidelidade autoral.',
-                        'Sem geração/escuta de áudio, teste de identidade vocal ou sincronização.'],
+        'limitations': limitations,
     }
 
 
@@ -142,15 +190,17 @@ def main(argv=None):
     parser.add_argument('script', type=Path)
     parser.add_argument('--model', required=True, choices=sorted(MODELS))
     parser.add_argument('--clean', type=Path)
+    parser.add_argument('--root', type=Path, help='Projeto com direção narrativa opcional.')
     parser.add_argument('--audio-tag',action='append',default=[])
     parser.add_argument('--literal-tag',action='append',default=[])
     parser.add_argument('--wpm-min', type=float, default=125)
     parser.add_argument('--wpm-max', type=float, default=160)
     args = parser.parse_args(argv)
     try:
+        direction = config(args.root).get('direcao_narrativa') if args.root else None
         result = validate(args.script.read_text(encoding='utf-8'), args.model,
                           args.clean.read_text(encoding='utf-8') if args.clean else None,
-                          args.wpm_min, args.wpm_max, args.audio_tag, args.literal_tag)
+                          args.wpm_min, args.wpm_max, args.audio_tag, args.literal_tag, direction)
     except (OSError, UnicodeError, ValueError) as exc:
         print(json.dumps({'status': 'erro_entrada', 'error': str(exc)}, ensure_ascii=False))
         return 2

@@ -6,7 +6,7 @@ Criar no mesmo projeto `material/roteiro_limpo.txt`, `roteiro_studio.txt`, `guia
 
 A versão limpa contém apenas a fala, com uma linha em branco entre parágrafos. Studio conserva exatamente as mesmas palavras e fronteiras de parágrafo, adicionando somente controles identificados. IDs P001…PNNN ficam em `paragrafos.json`, guia e mapa; não são narrados. Conteúdo literal como `[1]`, `[nota do autor]` ou citações deve permanecer nas duas versões. Declare `--literal-tag thoughtful` se o texto usar literalmente uma palavra também reconhecida como controle.
 
-O guia registra: objetivos de compreensão, voz/modelo recomendados e não confirmados, intenção e ritmo por parágrafo, pronúncias a testar, direção relativa de pausas, pontos críticos de números e unidades, instruções para geração externa e estado **áudio pendente**. Não prescrever configurações universais da voz nem dar segundos a pausas qualitativas.
+No percurso por artigo, registrar a [direção narrativa](direcao_narrativa.md) antes de produzir a fala. Preservar a seção **Direção narrativa** no guia. Completar o guia com objetivos de compreensão, voz e modelo recomendados, intenção e ritmo por parágrafo, pronúncias a testar, pausas relativas, números e unidades críticos, instruções para geração externa e estado **áudio pendente**. Pausas qualitativas têm duração a conferir na gravação.
 
 O mapa relaciona cada P a bloco didático, passagem/seção do artigo, conceito, função, exemplo, figura e frase-gatilho exata do slide. Identificar blocos reconstruídos quando não houver plano fornecido. Criar o plano visual `slides.json` conforme o contrato existente. Não substituir créditos ou fontes por tags vocais.
 
@@ -18,9 +18,11 @@ Execute a partir da pasta da skill; `PROJETO` é uma pasta externa de produção
 
 ```sh
 python3 scripts/fluxo.py iniciar --root PROJETO --titulo 'Título confirmado' --artigo artigo.pdf
+# Registre as escolhas acordadas antes de escrever a fala. Repita --assumir por campo delegado.
+python3 scripts/fluxo.py direcao --root PROJETO --perspectiva externa --estilo professor-didatico --registro intermediario --formato 16:9 --assumir formato
 # Produza os cinco materiais editoriais; depois registre as duas versões:
 python3 scripts/fluxo.py registrar_roteiro --root PROJETO --limpo limpo.txt --studio studio.txt --model eleven_v4
-python3 scripts/validar_roteiro.py studio.txt --clean limpo.txt --model eleven_v4
+python3 scripts/validar_roteiro.py studio.txt --clean limpo.txt --model eleven_v4 --root PROJETO
 # Prepare fontes, mapa e slides; prévia sem áudio não contém tempos medidos:
 python3 scripts/gerar_slides.py --root PROJETO --html-only
 # Quando o usuário fornecer o áudio:
@@ -28,6 +30,8 @@ python3 scripts/fluxo.py anexar_audio --root PROJETO --audio narracao.mp3
 ```
 
 Para roteiro pronto sem artigo, omita `--artigo` em `iniciar`. `registrar_roteiro --limpo` aceita a versão canônica sem controles; `--studio` é opcional. Para um roteiro marcado, preparar primeiro a cópia limpa com o mesmo conjunto de controles e conferir igualdade. Controles experimentais precisam de `--audio-tag 'tag nova'` em registro e validação; citações desconhecidas são preservadas. Repetir opções para vários controles. Não remover todo conteúdo entre colchetes.
+
+Ao retomar, consulte `projeto.json.direcao_narrativa` antes de pedir alguma escolha. `direcao` atualiza apenas as escolhas fornecidas e sincroniza o guia. O aviso de direção ausente em `registrar_roteiro` permite registrar roteiros prontos e projetos antigos.
 
 Para áudio e roteiro já prontos, continua válido:
 

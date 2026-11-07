@@ -28,7 +28,7 @@ Usar conforme o tema, sem transformar em ordem obrigatória:
 - Retomadas que mostrem como a informação nova muda o exemplo inicial.
 - Síntese final com conceitos, relações e limites; quando útil, pequena pergunta de aplicação com resposta ou caminho de raciocínio explicado.
 
-O mapa de cobertura deve localizar as ideias centrais do artigo na aula. Justificar o que foi omitido; um argumento indispensável omitido exige replanejar. Se houver controvérsia não resolvida, ensiná-la como controvérsia em vez de encenar uma solução definitiva.
+O mapa de cobertura deve localizar as ideias centrais do artigo na aula. Respeitar a cobertura acordada na [direção narrativa](direcao_narrativa.md) e documentar cortes autorizados. Um argumento indispensável omitido exige replanejar. Se houver controvérsia em aberto, ensiná-la como tal.
 
 ## Recursos discursivos dostoievskianos
 
@@ -61,6 +61,6 @@ Não crie lembranças, falas de alunos, confissões ou credenciais. Primeira pes
 
 ## Conferência
 
-Vincular afirmações centrais de cada bloco a uma seção/passagem identificável do artigo. Registrar cobertura do conjunto, adaptações orais, omissões e exemplos acrescentados. A aula não precisa ler todas as referências, mas as notas devem permitir rastreabilidade.
+Vincular afirmações centrais de cada bloco a uma seção ou passagem identificável do artigo. Na cobertura integral, conservar as referências na fala com atribuição oral e registrar os dados bibliográficos nas notas. Registrar cobertura do conjunto, adaptações orais, omissões autorizadas e exemplos acrescentados.
 
 Ler a versão limpa integralmente: os objetivos têm explicação suficiente? O público acompanha conceitos, mecanismos e exemplos? A objeção recebeu uma resposta honesta? A síntese preserva limites? O recurso literário ajudou a compreender? A aula permanece útil e completa sem o CTA? Corrigir antes de indicar pronta para gerar. Aparência acadêmica, expressão intensa e duração longa não comprovam qualidade pedagógica.
