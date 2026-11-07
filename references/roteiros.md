@@ -43,6 +43,18 @@ Registro repetido idêntico e anexação do mesmo áudio são idempotentes. Fala
 
 Não produzir timeline, marcações ou vídeo na etapa pendente. Manifest visual a 140 palavras/minuto continua sendo **estimativa**; a estimativa do validador textual de 125–160 palavras/minuto também não representa duração medida. `projeto.json.estado` distingue `roteirizacao`, `aguardando_audio` e `audio_disponivel`; este último significa arquivo medido, não alinhamento aprovado. Os relatórios da sincronização documentam suas etapas posteriores.
 
+## Tags de voz
+
+Em projeto sem áudio, registre o modo com `fluxo.py direcao --root PROJETO --tags skill|elevenlabs|nenhuma` escolhendo um valor. Para `skill`, registre também `--idioma-tags pt`, `--densidade-tags leve` e repita `--categorias-tags` para cada categoria autorizada. Use `--assumir` para os campos delegados, inclusive `tags`, `idioma_tags`, `densidade_tags` e `categorias_tags`.
+
+Após registrar a fala canônica, o diretor devolve o plano. Salve-o em `material/plano_tags.json` e execute:
+
+```sh
+python3 scripts/fluxo.py aplicar_tags --root PROJETO --plano PROJETO/material/plano_tags.json
+```
+
+Nas opções `elevenlabs` e `nenhuma`, registre a versão limpa. O Studio sai idêntico a ela. Para sugestões no site, siga [ElevenLabs Studio](elevenlabs.md#sugestões-no-site). Se o alinhador encontrar diferenças, consulte `material/divergencias_asr.json` e ouça os trechos. Se forem do reconhecimento, registre em `material/revisao_fala_asr.json` os mesmos `transcricao_sha256` e `roteiro_sha256` do relatório, `resultado` igual a `variacao_asr` e uma `justificativa` com a revisão realizada. Execute o alinhamento novamente. Diferença confirmada no áudio exige correção do áudio ou nova revisão explícita do roteiro.
+
 ## Entrega e retomada
 
 Antes do áudio, entregar artigo, roteiros, guia, mapa, fidelidade, fontes e planejamento/preview disponíveis; declarar o que depende do áudio. Após recebê-lo, usar a mesma pasta, preservar P e fala, medir, alinhar e entregar também PNG/HTML, manifest, timeline, MP4 e scripts. Empacotar todos os materiais necessários à reprodução, sem caches, modelos ou segredos. Não gerar voz nem abrir conta ElevenLabs automaticamente.

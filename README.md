@@ -1,10 +1,12 @@
-# JP Roteirização e Slides · 1.3.0
+# JP Roteirização e Slides · 1.4.0
 
 Skill `$jp-roteirizacao-e-slides`: artigo autoral → roteiro → áudio fornecido pelo usuário → slides e vídeo sincronizado. Independente de outras skills. Não gera voz nem acessa serviços pagos.
 
 - Artigo: [direção narrativa](references/direcao_narrativa.md) acordada antes da escrita, roteiros limpo/Studio, guia, mapa didático e conferência de fidelidade. `fluxo.py direcao` registra escolhas e origem, e o validador oferece avisos heurísticos.
 - Roteiro sem áudio: preservação da fala e planejamento visual; áudio fica pendente.
 - Áudio e roteiro: fluxo direto de slides, HTML e vídeo, compatível com projetos 1.0.
+
+Antes da gravação, escolha se o diretor vocal propõe as tags, se o ElevenLabs as sugere no site ou se a gravação será feita sem tags. Consulte [direção vocal](references/direcao_vocal.md) e [comandos de registro](references/roteiros.md). Para habilitar o papel personalizado, instale também `agents/diretor-vocal.toml` em `~/.codex/agents/`.
 
 Padrão 16:9, 1920×1080 e perfil Editorial JP para projetos novos. O perfil acrescenta mapa visual integral, comparações e diagramas, marca JP Wealth e movimento pontual ligado à fala. Projetos existentes sem perfil mantêm o legado. Alternativas 21:9 e 9:16 configuráveis. Sem PowerPoint por padrão. Projetos novos incluem música de fundo. Use uma faixa própria ou a seleção editorial da [biblioteca local de Mozart](references/trilhas.md). A biblioteca inclui dez faixas e monta sequências para leituras longas.
 

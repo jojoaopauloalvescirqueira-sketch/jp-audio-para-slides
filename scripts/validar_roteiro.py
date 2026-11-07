@@ -12,14 +12,13 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 from fala import KNOWN, strip_voice, compare_speech, paragraphs as spoken_paragraphs
 from projeto import config
+from tags_voz import CATALOG, DENSITIES, allowed_categories, preference, tag_key
 
 MODELS = {
     'eleven_v4': {'audio_tags': True, 'reference_limit': 10000},
     'eleven_v3': {'audio_tags': True, 'reference_limit': 5000},
     'eleven_multilingual_v2': {'audio_tags': False, 'reference_limit': 10000},
 }
-DOCUMENTED = {'curious', 'thoughtful', 'surprised', 'whispers', 'sighs',
-              'short pause', 'long pause'}
 TAG = re.compile(r'\[([^\[\]\n]+)\]')
 XML_TAG = re.compile(r'<[^>]+>')
 WORDS = re.compile(r"[^\W_]+(?:[-’'][^\W_]+)*", re.UNICODE)
@@ -74,6 +73,48 @@ def direction_warnings(text, direction, seconds, word_count):
     return warnings
 
 
+def vocal_warnings(text, controls, direction, word_count):
+    warnings = []
+    languages = set()
+    unauthorized = set()
+    count = 0
+    adjacent = trailing = repeated = 0
+    allowed = allowed_categories(direction)
+    for paragraph in spoken_paragraphs(text):
+        tags = [m for m in TAG.finditer(paragraph) if tag_key(m[1]) in controls]
+        previous = None
+        for match in tags:
+            key = tag_key(match[1])
+            meta = CATALOG.get(key, {})
+            category = meta.get('categoria')
+            if meta:
+                languages.add(meta['idioma'])
+                if category not in allowed:
+                    unauthorized.add(category)
+            if previous:
+                adjacent += not paragraph[previous.end():match.start()].strip()
+                repeated += category == 'emocao' and key == tag_key(previous[1])
+            previous = match
+        if previous and not WORDS.search(paragraph[previous.end():]):
+            trailing += 1
+        count += len(tags)
+
+    limit = DENSITIES.get(preference(direction, 'densidade_tags'))
+    if limit and count * limit > word_count:
+        warnings.append(f'Densidade de tags acima da escolhida: {count} para {word_count} palavras.')
+    if adjacent:
+        warnings.append(f'Tags vizinhas sem fala entre elas: {adjacent}.')
+    if trailing:
+        warnings.append(f'Tag no fim de parágrafo sem fala posterior: {trailing}.')
+    if len(languages) > 1:
+        warnings.append('Mistura de idiomas entre tags do catálogo.')
+    if unauthorized:
+        warnings.append('Categoria de tag sem autorização: ' + ', '.join(sorted(unauthorized)) + '.')
+    if repeated:
+        warnings.append(f'Mesma tag de emoção repetida em sequência: {repeated}.')
+    return warnings
+
+
 def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), literal_tags=(), direction=None):
     if model not in MODELS:
         raise ValueError('Modelo não coberto: consultar a documentação antes de validar.')
@@ -81,22 +122,22 @@ def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), l
         raise ValueError('A faixa de palavras/minuto deve ser positiva e ordenada.')
     profile = MODELS[model]
     errors, warnings = [], []
-    literals={t.casefold().strip() for t in literal_tags}
-    controls=(KNOWN|{t.casefold().strip() for t in audio_tags})-literals
+    literals={tag_key(t) for t in literal_tags}
+    controls=(KNOWN|{tag_key(t) for t in audio_tags})-literals
     brackets=TAG.findall(text)
-    tags=[t for t in brackets if t.casefold().strip() in controls]
+    tags=[t for t in brackets if tag_key(t) in controls]
     if '[]' in text or re.search(r'\[(?:'+ '|'.join(re.escape(t) for t in controls)+r')\b[^\]\n]*(?:$|\n)',text,re.I):
         errors.append('Colchetes de controle vazios ou incompletos: conferir marcações.')
     for tag in brackets:
         if VISUAL.search(tag.strip()):errors.append('Direção de edição/ID no texto de voz: ['+tag+'].')
-        elif tag.casefold().strip() not in controls|literals and re.fullmatch(r'[A-Za-z -]+',tag):
+        elif tag_key(tag) not in controls|literals and re.fullmatch(r'[^\W\d_]+(?:[ -][^\W\d_]+)*',tag.strip()):
             warnings.append('Colchete não removido: se for direção auditiva experimental, declarar --audio-tag '+tag+'.')
     if tags and not profile['audio_tags']:
         errors.append('Tags expressivas em colchetes não pertencem ao perfil Multilingual v2.')
     for tag in tags:
         if VISUAL.search(tag.strip()):
             errors.append('Direção de edição/ID no texto de voz: [' + tag + '].')
-        elif profile['audio_tags'] and tag.strip().lower() not in DOCUMENTED:
+        elif profile['audio_tags'] and tag_key(tag) not in CATALOG:
             warnings.append('Tag fora dos exemplos documentados desta skill; registrar como experimental: [' + tag + '].')
 
     requested_breaks = 0.0
@@ -139,25 +180,26 @@ def validate(text, model, clean=None, wpm_min=125, wpm_max=160, audio_tags=(), l
         errors.append('Blocos acima do limite de referência por geração: ' + ', '.join(map(str, oversized)) + '.')
     if len(text) > limit and not oversized:
         warnings.append('Arquivo acima do limite por geração; usar os blocos separados do Studio e reconferir o limite vigente.')
-    controls_only = [i for i, p in enumerate(paragraphs, 1) if not WORDS.search(strip_controls(p))]
+    controls_only = [i for i, p in enumerate(paragraphs, 1) if not WORDS.search(strip_voice(p,audio_tags,literal_tags))]
     if controls_only:
         warnings.append('Parágrafo só de controles; conferir contexto no Studio: ' + ', '.join(map(str, controls_only)) + '.')
 
     equal = None
     if clean is not None:
-        if any(t.casefold().strip() in controls for t in TAG.findall(clean)) or re.search(r'<break\b',clean):
+        if any(tag_key(t) in controls for t in TAG.findall(clean)) or re.search(r'<break\b',clean):
             errors.append('A versão limpa ainda contém controles.')
         equal = compare_speech(text, clean, audio_tags, literal_tags)
         if not equal:
             errors.append('A fala da versão limpa difere da versão marcada após retirar controles.')
 
-    qualitative = sum('pause' in t.lower() for t in tags)
+    qualitative = sum(CATALOG.get(tag_key(t), {}).get('pausa_qualitativa', 'pause' in tag_key(t)) for t in tags)
     if qualitative:
         warnings.append('Pausas qualitativas sem duração medida; a estimativa não lhes atribui segundos.')
     seconds = [round(word_count / rate * 60 + requested_breaks, 1)
                for rate in (wpm_max, wpm_min)]
     limitations = ['Verificação textual, não auditoria factual ou de fidelidade autoral.',
                    'Sem geração/escuta de áudio, teste de identidade vocal ou sincronização.']
+    warnings.extend(vocal_warnings(text, controls, direction, word_count))
     if direction:
         warnings.extend(direction_warnings(unmarked, direction, seconds, word_count))
         limitations.append('Os avisos de direção são heurísticas textuais e não avaliam qualidade narrativa.')

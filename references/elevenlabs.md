@@ -1,6 +1,6 @@
 # ElevenLabs Studio — perfil de produção
 
-Consulta: **6 de novembro de 2026**. Antes de recomendar recurso/modelo novo, ou quando a interface divergir, confira a documentação oficial específica. Estas notas não comprovam a configuração da conta.
+Consulta: **7 de novembro de 2026**. Antes de recomendar recurso/modelo novo, ou quando a interface divergir, confira a documentação oficial específica. Estas notas não comprovam a configuração da conta.
 
 ## Modelo e controles
 
@@ -29,6 +29,17 @@ Blocos terminam ideias e preservam contexto. Identificá-los como P01, P02 etc. 
 Para interpretação difícil, propor Actor Mode com gravação do próprio autor. Preparar regras de pronúncia no editor, confirmando suporte por modelo e testando nomes/siglas. Usar painel de legendas e timeline para alinhar ao áudio aprovado. Ajustar uma pausa da voz não deve ser confundido com pausar música/vídeo. [Studio](https://elevenlabs.io/docs/eleven-creative/products/studio).
 
 Quando houver áudio autorizado, conferir identidade, pronúncia, pausas, omissões/inserções e transições. Só depois medir duração e sincronizar legendas. Sem áudio: **texto validado; interpretação e sincronização não testadas**.
+
+## Sugestões no site
+
+Na documentação do Studio, **AI Tools → Enhance text** refina a locução a partir do texto. A página não lista os modelos que exibem esse controle nem especifica se ele só insere tags. Confira a opção no painel da narração com a voz e o modelo pretendidos. A documentação confirma que Eleven v4 e v3 aceitam tags. A geração automática **v4 Enhance** é documentada no Text to Speech com Eleven v4. O prompt publicado pede a preservação das palavras e permite pontuação ou caixa de ênfase. [Studio](https://elevenlabs.io/docs/eleven-creative/products/studio) · [v4 Enhance](https://elevenlabs.io/blog/how-to-add-pauses-in-ai-voiceover) · [Boas práticas](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices) · [Suporte por modelo](https://elevenlabs.io/docs/help-center/product/core-capabilities/text-to-speech/how-do-audio-tags-work-with-eleven-v3-and-v4)
+
+1. Abra uma cópia do Studio entregue pela skill, com a fala limpa, e confira voz e modelo.
+2. Selecione a narração e procure **AI Tools → Enhance text** no painel. Se a opção estiver indisponível, use **v4 Enhance** no Text to Speech com Eleven v4 e leve as tags revisadas ao Studio.
+3. Compare o resultado com a fala canônica e restaure palavras, pontuação, caixa e parágrafos antes de gerar. Preserve apenas as tags desejadas.
+4. Ao receber o áudio, a skill verifica as divergências do reconhecimento antes de alinhar.
+
+O catálogo local inclui exemplos da interface em português fornecidos pelo usuário, equivalentes editoriais e controles ingleses documentados ou já usados. Faça teste de escuta para confirmar o efeito na voz escolhida.
 
 ## Limites e estimativas
 

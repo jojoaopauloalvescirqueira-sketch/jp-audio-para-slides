@@ -1,0 +1,509 @@
+{
+  "versao": 1,
+  "tags": {
+    "voz sonolenta": {
+      "idioma": "pt",
+      "categoria": "voz",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "sleepy voice": {
+      "idioma": "en",
+      "categoria": "voz",
+      "origem": "equivalente_editorial"
+    },
+    "voz de bruxa": {
+      "idioma": "pt",
+      "categoria": "voz",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "witch voice": {
+      "idioma": "en",
+      "categoria": "voz",
+      "origem": "equivalente_editorial"
+    },
+    "voz embriagada": {
+      "idioma": "pt",
+      "categoria": "voz",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "drunk voice": {
+      "idioma": "en",
+      "categoria": "voz",
+      "origem": "equivalente_editorial"
+    },
+    "digitação no teclado": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "keyboard typing": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "eco": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "echo": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "batidas na porta": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "knocking on the door": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "sino tocando": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "bell ringing": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "telefone tocando": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "phone ringing": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "cachorro latindo": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "dog barking": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "multidão comemorando": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "crowd cheering": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "aplausos": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "applause": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "chuva caindo": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "rain falling": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "rufar de tambores": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "drum roll": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "batimentos cardíacos": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "heartbeat": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "motor dando partida": {
+      "idioma": "pt",
+      "categoria": "efeitos-sonoros",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "engine starting": {
+      "idioma": "en",
+      "categoria": "efeitos-sonoros",
+      "origem": "equivalente_editorial"
+    },
+    "pigarreando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "clears throat": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "tossindo": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "coughing": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "rindo baixinho": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "chuckles": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "suspirando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "sighs": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "fungando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "sniffling": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "bocejando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "yawning": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "rindo": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "laughing": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "soltando o ar com força": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "exhales sharply": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "bufando com desdém": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "scoffs": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "cantarolando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "humming": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "ofegando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "panting": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "arquejando": {
+      "idioma": "pt",
+      "categoria": "vocalizacoes",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "gasping": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "equivalente_editorial"
+    },
+    "sussurrando": {
+      "idioma": "pt",
+      "categoria": "entrega",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "whispers": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs"
+    },
+    "cantando": {
+      "idioma": "pt",
+      "categoria": "entrega",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "singing": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs"
+    },
+    "devagar": {
+      "idioma": "pt",
+      "categoria": "entrega",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "slowly": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "equivalente_editorial"
+    },
+    "suavemente": {
+      "idioma": "pt",
+      "categoria": "entrega",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "softly": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "equivalente_editorial"
+    },
+    "pausa": {
+      "idioma": "pt",
+      "categoria": "entrega",
+      "origem": "interface_pt_relatada_pelo_usuario",
+      "pausa_qualitativa": true
+    },
+    "pause": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs",
+      "pausa_qualitativa": true
+    },
+    "com a voz embargada": {
+      "idioma": "pt",
+      "categoria": "entrega",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "voice breaking": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "equivalente_editorial"
+    },
+    "com voz fraca": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "weakly": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "equivalente_editorial"
+    },
+    "com raiva": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "angry": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "com tédio": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "bored": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "equivalente_editorial"
+    },
+    "em tom ameaçador": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "threateningly": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "equivalente_editorial"
+    },
+    "em tom brincalhão": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "playfully": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "equivalente_editorial"
+    },
+    "com voz cansada": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "wearily": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "equivalente_editorial"
+    },
+    "com empolgação": {
+      "idioma": "pt",
+      "categoria": "emocao",
+      "origem": "interface_pt_relatada_pelo_usuario"
+    },
+    "excited": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "annoyed": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "appalled": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "calm": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "compatibilidade_legada"
+    },
+    "confident": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "compatibilidade_legada"
+    },
+    "curious": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "dramatic": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "compatibilidade_legada"
+    },
+    "happy": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "inhales deeply": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "laughs": {
+      "idioma": "en",
+      "categoria": "vocalizacoes",
+      "origem": "documentacao_elevenlabs"
+    },
+    "long pause": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs",
+      "pausa_qualitativa": true
+    },
+    "sad": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "serious": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "compatibilidade_legada"
+    },
+    "short pause": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs",
+      "pausa_qualitativa": true
+    },
+    "shouting": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs"
+    },
+    "skeptical": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "compatibilidade_legada"
+    },
+    "surprised": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "thoughtful": {
+      "idioma": "en",
+      "categoria": "emocao",
+      "origem": "documentacao_elevenlabs"
+    },
+    "warm": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "compatibilidade_legada"
+    },
+    "whisper": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs"
+    },
+    "whispering": {
+      "idioma": "en",
+      "categoria": "entrega",
+      "origem": "documentacao_elevenlabs"
+    }
+  }
+}

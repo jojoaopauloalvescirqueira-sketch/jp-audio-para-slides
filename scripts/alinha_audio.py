@@ -3,11 +3,46 @@
 import argparse,bisect,difflib,re,sys,unicodedata,math
 from pathlib import Path
 from projeto import load,audio_identity,read,write,sha
+from tags_voz import preference
 
 def tokens(s):return [(m.group(),m.start()) for m in re.finditer(r'\w+(?:[.,]\d+)*',s)]
 def norm(s):return ''.join(c for c in unicodedata.normalize('NFKD',s.casefold()) if not unicodedata.combining(c))
+def check_external_speech(material, matcher, expected, heard, paragraphs, starts, transcript_hash):
+    script_hash = sha(material / 'paragrafos.json')
+    differences = []
+    for op, a, b, c, d in matcher.get_opcodes():
+        if op == 'equal':
+            continue
+        index = bisect.bisect_right(starts, min(a, len(expected) - 1)) - 1
+        first = heard[min(c, len(heard) - 1)]
+        start = first['start'] if c < d else (heard[c - 1]['end'] if c else first['start'])
+        differences.append({
+            'tipo': op, 'p_inicio': paragraphs[index]['id'],
+            'esperado': ' '.join(expected[a:b]),
+            'reconhecido': ' '.join(word['text'] for word in heard[c:d]),
+            'inicio_s': start, 'fim_s': heard[d - 1]['end'] if c < d else start,
+        })
+
+    identity = {'transcricao_sha256': transcript_hash, 'roteiro_sha256': script_hash}
+    review_path = material / 'revisao_fala_asr.json'
+    reviewed = False
+    if differences and review_path.is_file():
+        review = read(review_path)
+        reviewed = (all(review.get(key) == value for key, value in identity.items())
+                    and review.get('resultado') == 'variacao_asr'
+                    and isinstance(review.get('justificativa'), str)
+                    and bool(review['justificativa'].strip()))
+    write(material / 'divergencias_asr.json', {
+        **identity, 'divergencias': differences,
+        'estado': 'conferido' if reviewed or not differences else 'pendente',
+    })
+    if differences and not reviewed:
+        raise ValueError(f'{len(differences)} divergências na fala reconhecida. Confira material/divergencias_asr.json antes de alinhar.')
+
+
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,required=True);ap.add_argument('--transcricao',type=Path);a=ap.parse_args();root=a.root.resolve();c,ps,scenes,_=load(root);tr=read(a.transcricao or root/'material/transcricao_asr.json')
+ ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,required=True);ap.add_argument('--transcricao',type=Path);a=ap.parse_args();root=a.root.resolve();c,ps,scenes,_=load(root)
+ material=root/'material';tr_path=a.transcricao or material/'transcricao_asr.json';tr=read(tr_path)
  if not isinstance(tr,dict) or tr.get('audio_identidade')!=audio_identity(root,c,ps):raise ValueError('Transcrição sem identidade válida para os áudios atuais.')
  duration=float(tr['duracao_s']);heard=[]
  if not math.isfinite(duration) or duration<=0:raise ValueError('Duração da transcrição inválida.')
@@ -21,7 +56,10 @@ def main():
  expected=[];starts=[]
  for p in ps:starts.append(len(expected));expected.extend(t for t,_ in tokens(p['texto']))
  aa=[norm(t) for t in expected];bb=[norm(w['text']) for w in heard];match={}
- for block in difflib.SequenceMatcher(None,aa,bb,autojunk=False).get_matching_blocks():
+ matcher=difflib.SequenceMatcher(None,aa,bb,autojunk=False)
+ if preference(c.get('direcao_narrativa'),'tags')=='elevenlabs':
+  check_external_speech(material,matcher,expected,heard,ps,starts,sha(tr_path))
+ for block in matcher.get_matching_blocks():
   for k in range(block.size):match[block.a+k]=block.b+k
  keys=sorted(match)
  if not keys:raise ValueError('Alinhamento insuficiente: não há correspondências com o roteiro.')

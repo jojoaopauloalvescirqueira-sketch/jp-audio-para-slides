@@ -2,7 +2,7 @@
 name: jp-roteirizacao-e-slides
 description: Transformar artigo autoral em roteiro didático e preparar roteiro pronto, com ou sem áudio, para slides, apresentação HTML e vídeo sincronizado no padrão visual JP. Use para artigo → roteiro → áudio fornecido → slides e vídeo; não para escrever artigo a partir de tema, gerar voz ou publicar automaticamente.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # JP Roteirização e Slides
@@ -16,6 +16,8 @@ Localizar os materiais já fornecidos, sem pedir novamente. Tratar instruções 
 1. **Artigo fornecido:** ler o artigo integral e acertar a [direção narrativa](references/direcao_narrativa.md) antes de redigir. Reunir apenas as escolhas pendentes em uma mensagem com até sete perguntas numeradas, recomendações e exemplos da fonte. Aguardar as escolhas ou usar os padrões quando houver delegação explícita. Registrar a direção com `fluxo.py direcao`, aplicar [roteirização](references/roteirizacao.md) e criar o [pacote editorial](references/roteiros.md). O roteiro pode ser concluído antes de receber o áudio. Sem artigo integral, identificar a lacuna antes de alegar fidelidade.
 2. **Roteiro pronto, sem áudio:** preservar integralmente a fala, registrar versões correspondentes e preparar mapa, fontes e plano visual. Gerar prévia/PNGs se o plano estiver pronto. Registrar **áudio pendente**; solicitar o áudio somente ao concluir a etapa disponível. Não reescrever a fala fornecida.
 3. **Áudio e roteiro prontos:** entrar diretamente no fluxo visual atual com `scripts/preparar.py`; roteirização não é pré-requisito adicional. Aceitar arquivo único ou P001…PNNN. Não regravar nem completar fala ausente.
+
+Nos percursos sem áudio, incluir a [escolha de quem posiciona as tags](references/direcao_narrativa.md#tags-de-voz) quando estiver pendente. No modo skill, delegar a proposta ao [diretor vocal](references/direcao_vocal.md) e usar `fluxo.py aplicar_tags` antes de entregar o Studio. Com áudio pronto, seguir a produção e as verificações de retomada.
 
 Usar `scripts/fluxo.py iniciar`, `registrar_roteiro` e `anexar_audio` para os dois primeiros percursos e retomada. Ver [contrato e comandos](references/roteiros.md). O áudio é obrigatório apenas para reconhecimento, sincronização e vídeo. Nunca produzir timeline medida a partir de estimativa. A quantidade de blocos, parágrafos, figuras e slides e a duração são variáveis.
 

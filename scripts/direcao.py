@@ -5,9 +5,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from projeto import FORMATS, config, write
+from tags_voz import CATEGORIES, DENSITIES, REQUIRES_PERMISSION, TAG_FIELDS, preference
 
 
 OPTIONS = {
+    'tags': {
+        'skill': 'O diretor vocal propõe as tags e a skill valida e aplica o plano.',
+        'elevenlabs': 'O Studio parte da fala limpa para receber sugestões no site.',
+        'nenhuma': 'O Studio parte da fala limpa para gravação direta.',
+    },
+    'idioma_tags': {'pt': 'Usar controles em português.', 'en': 'Usar controles em inglês.'},
+    'densidade_tags': {name: f'Até uma tag por {words} palavras.' for name, words in DENSITIES.items()},
     'perspectiva': {
         'externa': 'Narração em terceira pessoa com atribuição explícita.',
         'personagem': 'Primeira pessoa ancorada em posição ou vivência identificável.',
@@ -44,6 +52,8 @@ LABELS = {
     'voz': 'Voz', 'destino': 'Destino', 'vivencia': 'Base da primeira pessoa',
     'cobertura': 'Cobertura', 'duracao_alvo': 'Duração-alvo', 'formato': 'Formato',
     'falas_terceiros': 'Falas de terceiros', 'sensiveis': 'Trechos sensíveis',
+    'tags': 'Quem posiciona as tags', 'idioma_tags': 'Idioma das tags',
+    'densidade_tags': 'Densidade das tags', 'categorias_tags': 'Categorias das tags',
 }
 
 TEXT_EFFECTS = {
@@ -53,7 +63,6 @@ TEXT_EFFECTS = {
 }
 
 HEADING = '## Direção narrativa'
-SECTION = re.compile(r'^## Direção narrativa[ \t]*(?:\n|\Z).*?(?=^#{1,2}[ \t]|\Z)', re.M | re.S)
 
 
 def duration(value):
@@ -83,6 +92,8 @@ def block(value):
 def arguments(parser):
     for field in LABELS:
         kwargs = {'choices': OPTIONS[field]} if field in OPTIONS else {}
+        if field == 'categorias_tags':
+            kwargs = {'action': 'append', 'choices': CATEGORIES}
         parser.add_argument('--' + field.replace('_', '-'), **kwargs)
     parser.add_argument('--bloco', action='append', default=[], metavar='ID:PERSPECTIVA:ESTILO')
     parser.add_argument('--assumir', action='append', default=[], choices=[*LABELS, 'blocos'],
@@ -116,6 +127,16 @@ def record(root, args):
     assumed = set(args.assumir)
     if not supplied or assumed - supplied:
         raise ValueError('Informe escolhas e use --assumir somente para campos fornecidos.')
+    if 'categorias_tags' in fields:
+        fields['categorias_tags'] = list(dict.fromkeys(fields['categorias_tags']))
+        if 'categorias_tags' in assumed and REQUIRES_PERMISSION.intersection(fields['categorias_tags']):
+            raise ValueError('Voz e efeitos sonoros exigem autorização explícita.')
+    mode = fields.get('tags', preference(direction, 'tags'))
+    if mode != 'skill':
+        if fields.keys() & set(TAG_FIELDS):
+            raise ValueError('Idioma, densidade e categorias exigem o modo skill.')
+        for key in TAG_FIELDS:
+            direction.pop(key, None)
     stamp = datetime.now(timezone.utc).isoformat(timespec='seconds')
     for key, value in fields.items():
         direction[key] = _entry(direction.get(key), value, key in assumed, stamp)
@@ -138,6 +159,9 @@ def record(root, args):
 def _item(field, entry):
     value = entry['valor']
     effect = OPTIONS[field][value] if field in OPTIONS else TEXT_EFFECTS.get(field)
+    if field == 'categorias_tags':
+        value = ', '.join(value)
+        effect = 'Limitar a proposta às categorias autorizadas.'
     if field == 'duracao_alvo':
         if value == 'livre':
             effect = 'Deixar o tempo decorrer da cobertura e da explicação necessária.'
@@ -153,13 +177,25 @@ def update_guide(root, direction):
     for name, choices in direction.get('blocos', {}).items():
         lines.append(f'- **Bloco {name}**')
         lines.extend('  ' + _item(field, entry) for field, entry in choices.items())
-    section = HEADING + '\n\n' + '\n'.join(lines) + '\n'
+    if preference(direction, 'tags') == 'elevenlabs':
+        lines.extend(['', '1. Abra uma cópia da fala limpa no Studio e confira voz e modelo.',
+                      '2. Selecione a narração e procure **AI Tools → Enhance text**. Se o recurso não estiver disponível no Studio, use **v4 Enhance** no Text to Speech com Eleven v4.',
+                      '3. Compare as sugestões com a fala limpa. Retenha apenas as tags desejadas e restaure palavras, pontuação e parágrafos antes de gerar.',
+                      '4. Ao receber o áudio, confira as diferenças que o reconhecimento indicar antes de alinhar.'])
+    update_section(path, HEADING, '\n'.join(lines))
+
+
+def update_section(path, heading, content):
+    """Atualiza somente a seção gerada do guia."""
     text = path.read_text(encoding='utf-8') if path.exists() else '# Guia de produção\n'
-    if SECTION.search(text):
-        # Replace only the generated section and preserve headings and content around it.
-        updated = SECTION.sub(lambda match: section + ('\n' if match.end() < len(text) else ''), text, count=1)
-    else:
+    section = re.compile(r'^' + re.escape(heading) + r'[ \t]*(?:\n|\Z).*?(?=^#{1,2}[ \t]|\Z)', re.M | re.S)
+    replacement = heading + '\n\n' + content + '\n' if content else ''
+    if section.search(text):
+        updated = section.sub(lambda match: replacement + ('\n' if replacement and match.end() < len(text) else ''), text, count=1)
+    elif replacement:
         separator = '\n' if text.endswith('\n') else '\n\n'
-        updated = text + separator + section if text else section
+        updated = text + separator + replacement if text else replacement
+    else:
+        return
     if updated != text:
         path.write_text(updated, encoding='utf-8')

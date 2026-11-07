@@ -15,6 +15,18 @@ Quando o usuário disser “decide você” ou delegar escolhas específicas, co
 5. **Falas de terceiros**, quando presentes. Recomende discurso indireto, que conserva termos relevantes com atribuição e sem aspas. Citação literal preserva palavras verificáveis, com aspas e crédito. Paráfrase adapta a formulação ao público e mantém a ideia atribuída. Distinga a voz de quem narra da voz citada.
 6. **Trechos sensíveis**, quando presentes. Recomende manter a formulação e o contexto da fonte. A opção de oferecer alternativa apresenta as duas formulações e seus efeitos antes da troca. Preserve a posição atribuída até o usuário decidir.
 
+7. **Quem posiciona as tags de voz?** Inclua este item em todo artigo ou roteiro pronto sem áudio quando a escolha estiver pendente. Use apenas este item para roteiro pronto. Consulte as opções abaixo.
+
+## Tags de voz
+
+Mostre a mesma passagem nas três opções. Para artigo, use um exemplo derivado da fonte. Para roteiro pronto, cite a fala literalmente. Aproveite as escolhas explícitas, inclusive “deixe o ElevenLabs gerar” ou “sem tags”. Se a skill for escolhida e faltarem detalhes, concentre-os no mesmo item.
+
+- **A skill posiciona as tags — Recomendado.** Mostre uma tag antes da frase e o efeito pretendido. Peça idioma, densidade e categorias que ainda estiverem pendentes.
+- **ElevenLabs sugere as tags no site.** Mostre a passagem limpa que será entregue para o recurso de sugestões.
+- **Sem tags.** Mostre a mesma passagem limpa para gravar com a própria pontuação e cadência.
+
+Ofereça português da interface ou inglês. Ofereça densidade leve, até uma tag por 60 palavras, moderada, uma por 35 a 60, e expressiva, uma por 20 a 35. As categorias são Entrega, Emoção, Vocalizações, Voz e Efeitos sonoros. Em delegação, registre `skill`, `pt`, `leve`, `entrega`, `emocao` e `vocalizacoes` como padrão assumido. Voz e Efeitos sonoros só entram com autorização explícita. Use a [direção vocal](direcao_vocal.md) para o plano. Com áudio pronto, siga para a produção e use as escolhas registradas nas verificações de retomada.
+
 ## Demonstrar no material real
 
 Escolha uma passagem curta que represente a dificuldade do roteiro. Conserve os fatos e a atribuição nas quatro versões, com as mesmas ressalvas relevantes. Para demonstrar primeira pessoa sem vivência confirmada, rotule a amostra como hipótese e use uma ação de leitura, como “ao olhar a imagem”. Use os exemplos fixos abaixo para explicar as opções enquanto a fonte estiver pendente. Volte ao material real para decidir a direção da fala.

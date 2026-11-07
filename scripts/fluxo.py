@@ -2,10 +2,12 @@
 import argparse,shutil,sys
 from pathlib import Path
 import direcao
+import plano_tags
 from editorial import initialize, PROFILE
-from fala import clean_paragraphs,compare_speech
+from fala import BRACKET, KNOWN, clean_paragraphs, compare_speech, normalize, paragraphs
 from projeto import read,write,sha,audio_files,binary,probe,config
 from validar_roteiro import validate
+from tags_voz import preference, tag_key
 
 def iniciar(root,titulo,artigo=None,autor='',perfil_visual=PROFILE):
  root=Path(root)
@@ -24,27 +26,84 @@ def iniciar(root,titulo,artigo=None,autor='',perfil_visual=PROFILE):
  return c
 
 def registrar(root,limpo,studio=None,model='eleven_v4',audio_tags=(),literal_tags=()):
- root=Path(root);c=config(root);mat=root/'material';limpo=Path(limpo)
+ root=Path(root);limpo=Path(limpo)
  if not limpo.is_file() or (studio and not Path(studio).is_file()):raise ValueError('Roteiro ausente.')
  text=limpo.read_text(encoding='utf-8-sig');marked=Path(studio).read_text(encoding='utf-8-sig') if studio else text
- direction=c.get('direcao_narrativa')
- report=validate(marked,model,text,audio_tags=audio_tags,literal_tags=literal_tags,direction=direction)
- if report['errors']:raise ValueError('Roteiro incompatível: '+'; '.join(report['errors']))
- paras=clean_paragraphs(text,(),literal_tags)
- if not paras or not compare_speech(marked,text,audio_tags,literal_tags):raise ValueError('Fala ou parágrafos divergentes.')
- canonical='\n\n'.join(paras)+'\n';dest=mat/'roteiro_limpo.txt'
- if dest.exists() and dest.read_text()!=canonical:raise ValueError('Fala canônica existente difere; crie nova revisão do projeto antes de substituir.')
- if direction:
-  direcao.update_guide(root,direction)
- else:
-  warning='Direção narrativa ausente. O registro da fala pode prosseguir.'
-  report['warnings'].append(warning);report['status']='apto_com_avisos'
-  print('Aviso: '+warning,file=sys.stderr)
- dest.write_text(canonical,encoding='utf-8');(mat/'roteiro_studio.txt').write_text(marked,encoding='utf-8')
- write(mat/'paragrafos.json',[{'id':f'P{i:03}','texto':p} for i,p in enumerate(paras,1)])
- write(mat/'validacao_roteiro.json',report)
- c.update(estado='audio_disponivel' if c.get('audio') else 'aguardando_audio',roteiro_sha256=sha(dest),modelo_recomendado=model,controles_vocais=list(audio_tags),colchetes_literais=list(literal_tags))
- write(root/'projeto.json',c);return report
+ return registrar_textos(root,config(root),text,marked,model,audio_tags,literal_tags)
+
+
+def canonical_state(root, project, literal_tags=()):
+    dest = root / 'material/roteiro_limpo.txt'
+    literals = {tag_key(tag) for tag in (*project.get('colchetes_literais', []), *literal_tags)}
+    if not dest.is_file():
+        if project.get('roteiro_sha256'):
+            raise ValueError('Fala canônica registrada está ausente.')
+        return None, sorted(literals)
+    if project.get('roteiro_sha256') and sha(dest) != project['roteiro_sha256']:
+        raise ValueError('A fala canônica existente foi alterada.')
+    existing = dest.read_bytes().decode('utf-8')
+    # A fala já registrada é autoridade sobre colchetes que passaram a integrar o catálogo.
+    literals.update(tag_key(match[1]) for match in BRACKET.finditer(existing) if tag_key(match[1]) in KNOWN)
+    return existing, sorted(literals)
+
+
+def registrar_textos(root, project, clean, studio, model, audio_tags, literal_tags, tag_guide=''):
+    mat = root / 'material'
+    dest = mat / 'roteiro_limpo.txt'
+    existing, literals = canonical_state(root, project, literal_tags)
+    paras = clean_paragraphs(clean, (), literals)
+    if existing is not None:
+        if [normalize(p) for p in paragraphs(existing)] != [normalize(p) for p in paragraphs(clean)]:
+            raise ValueError('Fala canônica existente difere; crie nova revisão do projeto antes de substituir.')
+        canonical = existing
+    else:
+        canonical = '\n\n'.join(paras) + '\n'
+    direction = project.get('direcao_narrativa')
+    mode = preference(direction, 'tags')
+    if mode in ('elevenlabs', 'nenhuma'):
+        studio, audio_tags = canonical, ()
+    report = validate(studio, model, clean if existing is None else canonical, audio_tags=audio_tags, literal_tags=literals, direction=direction)
+    if report['errors']:
+        raise ValueError('Roteiro incompatível: ' + '; '.join(report['errors']))
+    if not paras or not compare_speech(studio, canonical, audio_tags, literals):
+        raise ValueError('Fala ou parágrafos divergentes.')
+
+    par_path = mat / 'paragrafos.json'
+    if existing is not None and par_path.is_file():
+        stored = read(par_path)
+        expected = [(f'P{i:03}', normalize(p)) for i, p in enumerate(paragraphs(existing), 1)]
+        if [(p['id'], normalize(p['texto'])) for p in stored] != expected:
+            raise ValueError('Parágrafos existentes incompatíveis com a fala canônica.')
+    if direction:
+        direcao.update_guide(root, direction)
+    else:
+        warning = 'Direção narrativa ausente. O registro da fala pode prosseguir.'
+        report['warnings'].append(warning)
+        report['status'] = 'apto_com_avisos'
+        print('Aviso: ' + warning, file=sys.stderr)
+    if existing is None:
+        dest.write_text(canonical, encoding='utf-8')
+    if existing is None or not par_path.exists():
+        write(par_path, [{'id': f'P{i:03}', 'texto': p} for i, p in enumerate(paragraphs(canonical), 1)])
+    (mat / 'roteiro_studio.txt').write_text(studio, encoding='utf-8')
+    write(mat / 'validacao_roteiro.json', report)
+    direcao.update_section(mat / 'guia_producao.md', plano_tags.HEADING, tag_guide)
+    project.update(estado='audio_disponivel' if project.get('audio') else 'aguardando_audio',
+                   roteiro_sha256=sha(dest), modelo_recomendado=model,
+                   controles_vocais=list(audio_tags), colchetes_literais=literals)
+    write(root / 'projeto.json', project)
+    return report
+
+
+def aplicar_tags(root, path):
+    root = Path(root)
+    project = config(root)
+    canonical, literals = canonical_state(root, project)
+    if canonical is None:
+        raise ValueError('Registre a fala canônica antes de aplicar tags.')
+    studio, controls, tag_guide = plano_tags.render(canonical, read(path), project.get('direcao_narrativa'), literals)
+    model = project.get('modelo_recomendado', 'eleven_v4')
+    return registrar_textos(root, project, canonical, studio, model, controls, literals, tag_guide)
 
 def anexar(root,source,ffprobe=None):
  root=Path(root);c=config(root);mat=root/'material';ps=read(mat/'paragrafos.json')
@@ -72,11 +131,13 @@ def main():
  a=sub.add_parser('iniciar');a.add_argument('--root',required=True,type=Path);a.add_argument('--titulo',required=True);a.add_argument('--autor',default='');a.add_argument('--artigo',type=Path);a.add_argument('--perfil-visual',choices=[PROFILE,'legado'],default=PROFILE)
  a=sub.add_parser('direcao');a.add_argument('--root',required=True,type=Path);direcao.arguments(a)
  a=sub.add_parser('registrar_roteiro');a.add_argument('--root',required=True,type=Path);a.add_argument('--limpo',required=True,type=Path);a.add_argument('--studio',type=Path);a.add_argument('--model',default='eleven_v4');a.add_argument('--audio-tag',action='append',default=[]);a.add_argument('--literal-tag',action='append',default=[])
+ a=sub.add_parser('aplicar_tags');a.add_argument('--root',required=True,type=Path);a.add_argument('--plano',required=True,type=Path)
  a=sub.add_parser('anexar_audio');a.add_argument('--root',required=True,type=Path);a.add_argument('--audio',required=True,type=Path);a.add_argument('--ffprobe')
  a=p.parse_args()
  if a.acao=='iniciar':iniciar(a.root,a.titulo,a.artigo,a.autor,a.perfil_visual)
  elif a.acao=='direcao':direcao.record(a.root,a)
  elif a.acao=='registrar_roteiro':registrar(a.root,a.limpo,a.studio,a.model,a.audio_tag,a.literal_tag)
+ elif a.acao=='aplicar_tags':aplicar_tags(a.root,a.plano)
  else:anexar(a.root,a.audio,a.ffprobe)
  print('Etapa concluída. Consulte projeto.json; sincronização exige áudio e marcações verificadas.')
 if __name__=='__main__':
