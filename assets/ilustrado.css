@@ -1,0 +1,4 @@
+/* Layout for illustrated preview notes and artwork credits. */
+[data-estilo="ilustrado"] #palco { background: var(--fundo-ilustracao, #142220); }
+[data-estilo="ilustrado"] #estado-previa { color: #b5d8ca; font-weight: 650; }
+[data-estilo="ilustrado"] .credito-ilustracao { color: #adc0b8; font-size: .9rem; }

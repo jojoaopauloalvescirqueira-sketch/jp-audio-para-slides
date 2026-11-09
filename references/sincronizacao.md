@@ -1,5 +1,7 @@
 # Sincronização verificável
 
+A narração vem exclusivamente de arquivo fornecido pelo usuário. Sem ele, o Pictograma oferece storyboard e prévia identificada como estimada. O MP4 exige a narração e seus tempos medidos. Cliques e tons são exclusivos dos testes técnicos.
+
 ## Áudio único
 
 ```sh
@@ -45,6 +47,12 @@ Sem trilha, AAC compatível pode ser copiado e outros codecs são convertidos pa
 Usar arquivo temporário exclusivo e substituição atômica. Verificar resolução, 30 fps, número de quadros, duração e decodificação integral antes de concluir. Não inferir integridade apenas dos metadados.
 
 
+## Vídeos animados
+
+Em [Pictograma](pictograma.md) e [Ilustrado](ilustrado.md), o plano identifica as entradas das cenas e ações por trechos literais. `fluxo.py cenas` deriva as entradas de alinhamento em `material/slides.json`. Forneça áudio e uma transcrição com tempos por palavra e hash compatível (`transcrever.py --local-only` ou transcrição verificada).
+
+`sincronizar.py --root PROJETO --renderizar` mede os intervalos, captura o palco quadro a quadro e usa a mesma exportação com trilha e verificação de integridade. Confira o relatório `material/marcacoes_acoes.json` e associe a revisão ao áudio, roteiro e transcrição atuais antes de exportar. Sem áudio, gere uma prévia estimada com `fluxo.py cenas --estimar`. No Ilustrado, aprove também os PNGs na folha de contato.
+
 ## Trilha e mixagem
 
 A escolha do usuário vale por vídeo ou como padrão reutilizável. A ordem é `--trilha`, faixa registrada no projeto, arquivo local indicado por `JP_TRILHA_PADRAO` e [biblioteca da skill](trilhas.md). Use `--atmosfera` e `--motivo-trilha` para a seleção editorial da biblioteca. Exportação direta de projeto novo sem classificação usa a reserva reflexiva. Projetos antigos podem optar pela biblioteca com `--atmosfera`.
@@ -56,3 +64,11 @@ python3 "$SKILL/scripts/sincronizar.py" --root "$PROJETO" --renderizar --trilha 
 O nível inicial da música é de 20 a 24 dB abaixo do nível médio medido da voz conforme o catálogo, com ganho limitado e limitador de pico. Ajuste o nível relativo com `--nivel-trilha-db -25` para uma trilha mais discreta. A biblioteca prioriza uma faixa compatível com a duração. Para leituras mais longas, encadeia peças do mesmo perfil com sobreposição gradual de 1,5 s, inclusive na fronteira do ciclo quando ele é repetido. A música acompanha o fim do vídeo e recebe entrada e saída suaves. Uma faixa avulsa indicada pelo usuário pode ser repetida conforme a duração.
 
 O MP4 carrega a mixagem. A transcrição, o alinhamento e a escuta de entrada da prévia HTML usam a narração. O projeto conserva a faixa usada em `material/trilhas/` com sua identidade SHA-256 e registra a escolha para novas exportações. O relatório de sincronização indica a faixa ou sequência, origens, nível, ganho, repetição e fades. Em uma sequência, as fontes locais são registradas em ordem e o ciclo derivado é temporário. A duração e os quadros do vídeo continuam definidos pela narração.
+
+## Localizar um trecho no Pictograma
+
+Com a narração completa e o roteiro canônico no projeto, use `fluxo.py sincronia --root PROJETO --trecho P007-P008`. As opções `--de` e `--ate` selecionam trechos literais quando a entrada ou a saída está dentro do parágrafo. A saída inclui `material/marcacoes_frases.json`, SRT relativo ao recorte e `material/trecho_narracao.wav` para uma gravação de origem em arquivo único. A narração completa permanece como entrada do projeto.
+
+Importe marcações com `--fonte` e declare `--origem elevenlabs` quando vierem do serviço. SRT e VTT comuns ficam identificados como fornecidos pelo usuário. Sem uma fonte externa, o Pictograma usa reconhecimento disponível localmente ou analisa pausas do áudio. O localizador usa janelas de 10 ms, silêncios a partir de 120 ms e ritmo estimado por sílabas. As fronteiras internas de palavras recebem a classificação da evidência acústica. Quando o encaixe do trecho for ambíguo, confira as divergências e forneça marcações, um recorte manual ou autorização para Whisper.
+
+Execute `fluxo.py sincronia --root PROJETO` para localizar a fala do projeto inteiro e registrar o efeito das tags quando houver roteiro Studio. Com `--trecho`, o JSON e o guia registram os efeitos no intervalo escolhido, usando as frases comparáveis do restante da gravação como referência. Para revisar só um trecho estimado, use a prévia estimada do Pictograma.

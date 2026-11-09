@@ -1,21 +1,6 @@
 # Pictograma
 
-## Escolher o estilo antes de produzir
-
-Ao planejar visuais para vídeo, gerar ou retomar um vídeo, resolva o estilo primeiro. Use o estilo explícito no pedido, `projeto.json.estilo_video`, o perfil implícito dos projetos anteriores ou `JP_ESTILO_VIDEO_PADRAO`, nessa ordem. Se houver estilo resolvido, informe-o em uma linha. Se faltar a escolha, apresente estas opções antes de produzir:
-
-- **Editorial JP** — cartões de texto, figuras, fundo claro e movimento breve.
-- **Pictograma** — personagens e símbolos em fundo escuro, com ações ligadas a palavras. Tem mais cenas para revisar e renderização mais demorada.
-- **Legado** — composição antiga, sem marca d’água.
-
-Pergunte “Qual estilo você quer usar?”. Integre este item ao questionário que já estiver aberto quando souber que o pedido inclui vídeo ou plano visual. O menu geral continua sendo a escolha de função. Depois da primeira escolha manual, pergunte uma única vez se quer torná-la padrão. Mostre, por exemplo, `export JP_ESTILO_VIDEO_PADRAO=pictograma`, com o ID escolhido. A escolha e o formato podem ser registrados no projeto pelo comando abaixo. O próprio usuário define seu ambiente.
-
-```sh
-python3 scripts/pictograma.py estilo --root PROJETO
-python3 scripts/pictograma.py estilo --root PROJETO --estilo pictograma --salvar
-```
-
-Com Pictograma, siga [as perguntas do diretor](diretor_animacao.md) antes de pedir cenas. Use os fluxos existentes para preparar a fala, receber áudio, medir e transcrever localmente. O Pictograma usa o mesmo alinhamento de palavras e a mesma exportação H.264 com mixagem da biblioteca de Mozart ou faixa indicada.
+Siga [as perguntas do diretor de animação](diretor_animacao.md) antes de propor cenas. Use os fluxos existentes para preparar a fala, receber áudio, medir e transcrever localmente. A exportação usa H.264 e a biblioteca de Mozart ou faixa indicada.
 
 ## Identidade e biblioteca
 
@@ -54,9 +39,46 @@ Cada ação usa `alvo`, `acao`, `em` e, conforme o tipo, `valor`. `andar` recebe
 ```sh
 python3 scripts/pictograma.py storyboard --root PROJETO --plano storyboard.json
 python3 scripts/pictograma.py aprovar-storyboard --root PROJETO --confirmado
-python3 scripts/pictograma.py previa --root PROJETO --plano cenas.json
+python3 scripts/fluxo.py cenas --root PROJETO --plano cenas_pictograma.json
 python3 scripts/transcrever.py --root PROJETO --local-only
-python3 scripts/pictograma.py video --root PROJETO
+python3 scripts/sincronizar.py --root PROJETO --renderizar
 ```
 
-Rode a aprovação somente após o usuário confirmar os quadros. Se a fala, o storyboard, o formato ou a direção mudarem, faça nova aprovação. O plano aprovado para aplicação fica em `material/cenas_pictograma.json`. Para direção direta, siga para a prévia depois de registrar as escolhas e validar o plano. A prévia HTML tem reprodução, pausa, reinício, barra de tempo e atalhos. `quadros --tempo SEGUNDOS` captura amostras da prévia e pode ser repetido. `video` captura PNGs a 30 fps e exporta o MP4 com o encoder compartilhado. O diretório `pictograma-9x16/` ou `pictograma-16x9/` reúne as saídas. Confira `timeline_previa.json` para os tempos da prévia e `timeline_pictograma.json` para os tempos e metadados do vídeo exportado.
+Rode a aprovação somente após o usuário confirmar os quadros. Se a fala, o storyboard, o formato ou a direção mudarem, faça nova aprovação. O plano aprovado para aplicação fica em `material/cenas_pictograma.json`. Para direção direta, siga para a prévia depois de registrar as escolhas e validar o plano. A prévia HTML tem reprodução, pausa, reinício, barra de tempo e atalhos. `quadros --tempo SEGUNDOS` captura amostras da prévia e pode ser repetido. `sincronizar.py --renderizar` captura PNGs a 30 fps e exporta o MP4 com o encoder compartilhado. O diretório `pictograma-9x16/` ou `pictograma-16x9/` reúne as saídas. Confira `timeline_previa.json` para os tempos da prévia e `timeline_pictograma.json` para os tempos e metadados do vídeo exportado.
+
+## Conferência para exportar
+
+A exportação exige a auditoria integral e o parecer visual da prévia correspondente. Use `pictograma.py auditar --root PROJETO --integral` para conferir todos os quadros antecipadamente. A prévia pode ser amostrada e o relatório indica o modo. Os IDs internos aparecem nos controles da apresentação e ficam fora do palco.
+
+## Composição coreografada
+
+O modelo opcional `coreografia.modelo: virada_banco_ajuda_v1` encena uma virada tipográfica, a ação no banco e a ajuda seguida de comparação. Ele usa três cenas com corte casado e gestos próprios. As chaves `negacao`, `conceito`, `virada`, `sentar`, `esperar`, `levantar`, `ajudar`, `receber` e `fazer` em `coreografia.ancoras` seguem a mesma sintaxe literal de `entrada`. O validador confere ordem, cena e espaço temporal para a atuação. Outros roteiros podem usar o vocabulário declarativo da biblioteca.
+
+O parecer do modelo registra oito notas, com mínimo de 4 em cada critério. A exportação vincula a revisão ao plano e ao manifesto dos quadros. A comparação de luminância exclui a faixa de legendas e mede o trecho ativo e a cauda nos PNGs e no MP4.
+
+Na exportação do Pictograma, a trilha fica 13,5 dB abaixo da voz em média nos intervalos de fala. Para ajustar, use `--nivel-trilha-db` entre −15 e −12. Pausas de pelo menos 0,6 s permitem duas rampas de 0,3 s. O MP4 é medido após a codificação AAC, com alvo de −14 LUFS integrados e teto de −1 dBTP.
+
+A composição `virada_banco_ajuda_v2` usa a [bíblia visual](biblia_visual_pictograma.md), com folhas de modelo e auditoria de juntas, contorno e luz. O plano registra `enquadramento` com a altura de figura e a linha do chão, e `storyboard` com uma nota, leitura sem som e âncora literal por batida.
+
+Para testar outro renderizador, leia [Godot no piloto do Pictograma](godot.md). Valide o caminho e a assinatura do aplicativo antes da primeira execução.
+
+
+A composição de piloto `virada_banco_ajuda_v3` usa o rig anatômico de seis cabeças. Confira as duas folhas com `pictograma.py folhas --root PROJETO` e registre a aprovação com `pictograma.py aprovar-folhas --root PROJETO --confirmado`. A identidade inclui o rig, as ferramentas e os arquivos das folhas. O diagnóstico só aparece na prévia quando ativado. O ensaio de pixels desse piloto usa `medir_palco_anatomico.mjs` e `auditar_mp4_anatomico.py` (NumPy do runtime disponível) para conferir solas e sobreposição no MP4 vertical decodificado, além da auditoria de SVG. A medição distingue o contato mão com mão da interpenetração fora da região autorizada.
+
+## Liberação do vídeo declarativo
+
+Use o mesmo plano e a mesma seleção de trilha nas três etapas. A narração deve ser fornecida e ter marcações verificadas. Sem áudio, use `compor` para a prévia estimada.
+
+```sh
+python3 scripts/pictograma.py auditar --root PROJETO --direcao PROJETO/material/direcao_pictograma.json
+python3 scripts/pictograma.py parecer --root PROJETO --direcao PROJETO/material/direcao_pictograma.json --parecer parecer.json --rodada 1
+python3 scripts/pictograma.py video --root PROJETO --direcao PROJETO/material/direcao_pictograma.json
+```
+
+O `parecer.json` tem `resultado` (`aprovado` ou `corrigir`), `ocorrencias`, as oito `notas` descritas na revisão artística, `modos` (`com_som`, `sem_som` e `celular`) e `evidencias`. Cada evidência indica `cena`, `quadros` em ordem e `observacao`. Abra as tiras da auditoria, reproduza a sequência com e sem som e anote onde o peso, o gesto, o texto e a passagem ficam legíveis. Cite entrada, pose-chave, contato e soltura quando houver. A skill corrige e repete a revisão em até três rodadas. Consulte o usuário quando o sentido da fala ou uma escolha reservada continuar em dúvida.
+
+A matriz `material/salvaguardas.json` registra `aprovada`, `reprovada`, `nao_aplicavel` com motivo ou `sem_evidencia`. Regras obrigatórias exigem medição da etapa correspondente. As checagens especializadas de outros percursos continuam indicadas no catálogo. A geometria do navegador sustenta as checagens de encenação. A decodificação confronta todos os quadros com o render, verifica a faixa da legenda e mede sola e assento nos quadros em que o plano os exige.
+
+Para substituições parciais, `video --direcao PLANO --candidato MONTAGEM.mp4` valida a montagem inteira e a faixa AAC contra o render e a mixagem do plano autorizado. Conserve a montagem anterior até a promoção. Inserções históricas sem render compatível precisam da evidência do percurso em que foram aprovadas. Guarde o arquivo aprovado por SHA-256 e mantenha seus resultados separados dos do banco de provas.
+
+Antes de corrigir um defeito novo, registre a cena e o quadro, o contraexemplo, a regra de decisão e a checagem proposta. Só marque o erro como resolvido depois de a mutação falhar, a correção passar e a checagem estar ligada à etapa em que precisa atuar.

@@ -127,7 +127,44 @@ def anexar(root,source,ffprobe=None):
  write(mat/'entradas.json',measures);c.update(audio=dest.relative_to(root).as_posix(),estado='audio_disponivel');write(root/'projeto.json',c)
  return measures
 
+def visual_command(a):
+ from estilo_video import choose
+ if a.acao=='estilo':
+  return choose(a.root,a.estilo,a.salvar,a.formato,a.confirmar_troca)
+ root=a.root.resolve()
+ if a.acao=='sincronia':
+  from pictograma_sincronia import import_timing
+  return import_timing(root,a)
+ if a.acao=='marca_dagua':
+  from editorial import set_watermark
+  return set_watermark(root,a.estado=='ligada')
+ if a.acao=='cenas':
+  from animado import prepare
+  return prepare(root,a)
+ if a.acao=='direcao_ilustrado':
+  from ilustrado_direcao import record
+  if not a.respostas and not a.assumir:
+   raise ValueError('Informe as respostas ou a delegação do usuário.')
+  return record(root,read(a.respostas) if a.respostas else {},a.assumir)
+ if a.acao=='dados_ilustrado':
+  from ilustrado import apply_design
+  return apply_design(root,read(a.proposta))
+ from ilustrado_imagens import approve,import_images,prompts
+ if a.acao=='aprovar_ilustrado':
+  if not a.confirmado:
+   raise ValueError('Registre a decisão somente após confirmação explícita do usuário.')
+  if (a.asset or a.refazer) and a.etapa!='imagens':
+   raise ValueError('Seleção por asset e refação valem para a etapa imagens.')
+  return approve(root,a.etapa,a.asset,a.refazer)
+ if a.acao=='prompts_imagens':
+  return prompts(root)
+ return import_images(root,a.pasta)
+
+
 def main():
+ import os
+ from estilo_video import STYLES
+ from projeto import FORMATS
  p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='acao',required=True)
  a=sub.add_parser('iniciar');a.add_argument('--root',required=True,type=Path);a.add_argument('--titulo',required=True);a.add_argument('--autor',default='');a.add_argument('--artigo',type=Path);a.add_argument('--perfil-visual',choices=[PROFILE,'legado'],default=PROFILE)
  a=sub.add_parser('direcao');a.add_argument('--root',required=True,type=Path);direcao.arguments(a)
@@ -137,7 +174,58 @@ def main():
  a=sub.add_parser('estado',help='Consultar projetos locais sem modificar arquivos.')
  a.add_argument('--root',action='append',type=Path,default=[],metavar='PASTA',
                 help='Pasta ou projeto.json adicional. Pode ser repetido.')
+ style=sub.add_parser('estilo',help='Consultar ou registrar o estilo de vídeo.')
+ style.add_argument('--root',type=Path)
+ style.add_argument('--estilo',choices=STYLES)
+ style.add_argument('--salvar',action='store_true')
+ style.add_argument('--formato',choices=FORMATS)
+ style.add_argument('--confirmar-troca',action='store_true')
+ visual={
+  'sincronia':sub.add_parser('sincronia',help='Importar tempos de palavras ou revisão por quadro.'),
+  'marca_dagua':sub.add_parser('marca_dagua',help='Ligar ou desligar a marca do Editorial JP.'),
+  'cenas':sub.add_parser('cenas',help='Preparar a prévia ou o plano de cenas animadas.'),
+  'direcao_ilustrado':sub.add_parser('direcao_ilustrado',help='Registrar a direção de arte.'),
+  'dados_ilustrado':sub.add_parser('dados_ilustrado',help='Validar e registrar bíblia, elenco e cenários.'),
+  'aprovar_ilustrado':sub.add_parser('aprovar_ilustrado',help='Registrar a revisão de uma etapa do Ilustrado.'),
+  'prompts_imagens':sub.add_parser('prompts_imagens',help='Preparar prompts após aprovação do storyboard.'),
+  'importar_imagens':sub.add_parser('importar_imagens',help='Importar PNGs fornecidos pelo usuário.'),
+ }
+ for command in visual.values():
+  command.add_argument('--root',required=True,type=Path)
+ visual['marca_dagua'].add_argument('--estado',required=True,choices=('ligada','desligada'))
+ v=visual['cenas']
+ v.add_argument('--plano',type=Path)
+ v.add_argument('--formato',choices=('9:16','16:9'))
+ v.add_argument('--estimar',action='store_true')
+ v.add_argument('--node',default=os.environ.get('NODE','node'))
+ v.add_argument('--ffmpeg',default=os.environ.get('FFMPEG'))
+ v.add_argument('--ffprobe',default=os.environ.get('FFPROBE'))
+ v=visual['sincronia']
+ v.add_argument('--ffprobe',default=os.environ.get('FFPROBE'))
+ v.add_argument('--ffmpeg',default=os.environ.get('FFMPEG'))
+ inputs=v.add_mutually_exclusive_group()
+ inputs.add_argument('--fonte',type=Path)
+ inputs.add_argument('--importar',type=Path)
+ v.add_argument('--trecho',help='Parágrafo ou intervalo, por exemplo P007-P008.')
+ v.add_argument('--de',help='Trecho literal da primeira palavra do recorte.')
+ v.add_argument('--ate',help='Trecho literal que termina na última palavra do recorte.')
+ v.add_argument('--origem',choices=('elevenlabs','srt_usuario','usuario'))
+ v=visual['direcao_ilustrado']
+ v.add_argument('--respostas',type=Path)
+ v.add_argument('--assumir',action='store_true')
+ visual['dados_ilustrado'].add_argument('--proposta',required=True,type=Path)
+ v=visual['aprovar_ilustrado']
+ v.add_argument('--etapa',required=True,choices=('biblia','storyboard','imagens'))
+ v.add_argument('--confirmado',action='store_true')
+ v.add_argument('--asset',action='append',default=[])
+ v.add_argument('--refazer',action='store_true')
+ visual['importar_imagens'].add_argument('--pasta',required=True,type=Path)
  a=p.parse_args()
+ if a.acao=='estilo' or a.acao in visual:
+  result=visual_command(a)
+  if result is not None:
+   print(json.dumps(result,ensure_ascii=False,indent=2,default=str))
+  return
  if a.acao=='estado':
   print(json.dumps(estado_projetos.scan([Path.cwd(),*a.root]),ensure_ascii=False,indent=2))
   return
@@ -149,4 +237,4 @@ def main():
  print('Etapa concluída. Consulte projeto.json; sincronização exige áudio e marcações verificadas.')
 if __name__=='__main__':
  try:main()
- except (ValueError,FileNotFoundError) as e:sys.exit(str(e))
+ except (ValueError,FileNotFoundError,KeyError,TypeError) as e:sys.exit(str(e))

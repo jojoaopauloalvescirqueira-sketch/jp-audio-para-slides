@@ -1,0 +1,18 @@
+{
+  "altura": 6,
+  "angulo_neutro_tornozelo": 15,
+  "ossos": {
+    "lombar": 0.70, "toracica": 0.81, "cervical": 0.40, "cabeca": 0.65,
+    "clavicula": 0.68, "braco": 0.98, "antebraco": 0.85, "mao": 0.39,
+    "coxa": 1.49, "canela": 1.30, "calcanhar_planta": 0.65, "planta_ponta": 0.27
+  },
+  "limites": {
+    "joelho": [0, 150], "cotovelo": [0, 150], "quadril": [-20, 120],
+    "tornozelo": [-20, 45], "lombar": [-28, 34], "toracica": [-23, 28],
+    "cervical": [-18, 22]
+  },
+  "massas": {"pelve": 0.16, "torax": 0.34, "cabeca": 0.08, "coxa": 0.105, "canela": 0.045, "pe": 0.015, "braco": 0.023, "antebraco": 0.014, "mao": 0.008},
+  "ajuda": {"pega": 14, "tracao": 24, "pouso": 49, "fim": 59},
+  "marcha": {"quadros_por_passo": 16, "passo": 1.24, "oscilacao": 0.14},
+  "apoio": {"pix_por_cabeca": 129.3333333333, "deriva_px": 2, "avanço_minimo": 0.70}
+}

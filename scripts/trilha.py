@@ -177,7 +177,7 @@ def assemble(root, tracks, total, ffmpeg, ffprobe, scratch):
     return path, duration
 
 
-def prepare(root, selection, narration, total, ffmpeg, ffprobe, voice_hashes, scratch):
+def prepare(root, selection, narration, total, ffmpeg, ffprobe, voice_hashes, scratch, narration_duration=None):
     voice_db = mean_level(ffmpeg, narration)
     tracks = [stage_track(root, track, voice_db, ffmpeg, voice_hashes) for track in selection]
     if len(tracks)==1:
@@ -192,8 +192,10 @@ def prepare(root, selection, narration, total, ffmpeg, ffprobe, voice_hashes, sc
                   'faixas':tracks, 'duracao_ciclo_s':duration, 'transicao_s':CROSSFADE,
                   'ciclos':math.ceil(total/duration)}
     fade_in, fade_out = min(1., total/4), min(1.5, total/4)
+    padding = '' if narration_duration is None or narration_duration >= total else (
+        f',asetpts=PTS-STARTPTS,apad=whole_dur={total:.6f}')
     graph = (
-        '[1:a:0]aresample=48000,aformat=channel_layouts=stereo[voz];'
+        f'[1:a:0]aresample=48000,aformat=channel_layouts=stereo{padding}[voz];'
         '[2:a:0]aresample=48000,aformat=channel_layouts=stereo,'
         f'atrim=duration={total:.6f},asetpts=PTS-STARTPTS,volume={gain:.3f}dB,'
         f'afade=t=in:st=0:d={fade_in:.6f},'

@@ -1,0 +1,1925 @@
+[
+  {
+    "id": "EC-001",
+    "titulo": "Pés abaixo do chão",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · simulação medida",
+    "exemplo": "references/erros/EC-001.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 190",
+    "regra": "Medir a borda pintada da sola; ela não atravessa o piso. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_proporcoes.js:contorno_atravessa_chao",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "contorno_atravessa_chao"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-002",
+    "titulo": "Canela atravessa o assento",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · folha de problemas",
+    "exemplo": "references/erros/EC-002.png",
+    "origem_exemplo": "folha de problemas, célula 4",
+    "regra": "A canela deve ficar fora da área pintada do assento. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:segmento_atravessa",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "segmento_atravessa"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-003",
+    "titulo": "Figura em pé dentro do banco",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · folha de problemas",
+    "exemplo": "references/erros/EC-003.png",
+    "origem_exemplo": "folha de problemas, célula 3",
+    "regra": "Enquanto estiver em pé, a figura não cruza o banco. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-004",
+    "titulo": "Quadril sem apoio",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · folha de problemas",
+    "exemplo": "references/erros/EC-004.png",
+    "origem_exemplo": "folha de problemas, célula 5",
+    "regra": "Na pose sentada, o quadril encosta no apoio visível. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:quadril_sem_apoio",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "quadril_sem_apoio"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-005",
+    "titulo": "Tronco estica ao sentar",
+    "categoria": "proporcao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-005.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 165",
+    "regra": "A altura sentada respeita a faixa da bíblia. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_proporcoes.js:pose_fora_da_altura",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "pose_fora_da_altura"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-006",
+    "titulo": "Cabeça e pernas fora do cânone",
+    "categoria": "proporcao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-006.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 302",
+    "regra": "Cabeças por altura e comprimento das pernas respeitam a bíblia. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_proporcoes.js:altura_em_cabecas",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "altura_em_cabecas",
+        "razao_corpo"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-007",
+    "titulo": "Escala muda sem câmera",
+    "categoria": "proporcao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-007.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 300",
+    "regra": "Preservar a escala do personagem entre cenas; o zoom deve ser explícito. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_proporcoes.js:escala_sem_camera",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "escala_sem_camera"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-008",
+    "titulo": "Corpo palito ou pernas em dente",
+    "categoria": "proporcao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-008.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 302",
+    "regra": "Usar o corpo preenchido e os membros afunilados do cânone. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-009",
+    "titulo": "Pés em forma de chinelo",
+    "categoria": "proporcao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-009.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 165",
+    "regra": "Respeitar a largura, espessura e direção do pé do cânone. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-010",
+    "titulo": "Membros sobrepostos",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-010.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 227",
+    "regra": "Os membros devem ter silhuetas legíveis nas poses de chão. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-011",
+    "titulo": "Braços abertos no repouso",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-011.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 336",
+    "regra": "Braços em repouso ficam próximos do tronco. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-012",
+    "titulo": "Ombreiras e emendas",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-012.png",
+    "origem_exemplo": "piloto anterior do navegador, quadro 165",
+    "regra": "Cabeça, pescoço, ombros e membros devem formar um contorno preenchido, com ombros arredondados e cintura afunilada. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:juncoes",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-013",
+    "titulo": "Palmas soltas",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-013.png",
+    "origem_exemplo": "piloto anterior do navegador, quadro 336",
+    "regra": "Palmas ligadas aos antebraços, juntas e voltadas para cima no peito; o coração pousa nelas. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:palmas",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-014",
+    "titulo": "Subida antes da mão",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-014.png",
+    "origem_exemplo": "folha de problemas, célula 6",
+    "regra": "O outro só começa a subir após contato e tração. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:subida_precoce",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "subida_precoce"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-015",
+    "titulo": "Barra saindo da barriga",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-015.png",
+    "origem_exemplo": "folha de problemas, célula 7",
+    "regra": "Mostrar ombro, cotovelo e mão, com intenção visível de segurar. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-016",
+    "titulo": "Mão toca o ombro",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-016.png",
+    "origem_exemplo": "folha de problemas, célula 7",
+    "regra": "O ajudante segura a mão do outro, sem contato no ombro ou nas costas. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:maos_sem_contato",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "maos_sem_contato"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-017",
+    "titulo": "Nota não corresponde ao quadro",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-017.png",
+    "origem_exemplo": "folha de problemas, célula 7",
+    "regra": "Conferir cada afirmação de contato ou posição em geometria do quadro correspondente. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:afirmacoes",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-018",
+    "titulo": "Troca abrupta de lado ou cor",
+    "categoria": "movimento",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-018.png",
+    "origem_exemplo": "folha de problemas, célula 8",
+    "regra": "Manter identidade, lado e cor entre quadros, inclusive nas trocas de cena. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:salto_entre_quadros",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "salto_entre_quadros",
+        "cor_abrupta"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-019",
+    "titulo": "Fusão sobrepõe cenas",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-019.png",
+    "origem_exemplo": "folha de problemas, célula 2",
+    "regra": "Não sobrepor elementos incompatíveis ao trocar de cena. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:texto",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-020",
+    "titulo": "Brilho no receptor",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-020.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 253",
+    "regra": "O brilho de impulso acompanha o ator que age. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-021",
+    "titulo": "Figura surge sobre os pés da outra",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-021.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 215",
+    "regra": "A entrada da segunda figura preserva distância visível. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-022",
+    "titulo": "Mãos vazias ou metáforas concorrentes",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-022.png",
+    "origem_exemplo": "folha de problemas, célula 9",
+    "regra": "O coração já chega às mãos abertas em recebe; usar uma só metáfora. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-023",
+    "titulo": "Halo fino em círculo",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-023.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 253",
+    "regra": "O impulso usa luz difusa sem aro visível. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:inspect",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-024",
+    "titulo": "Negação perdida",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-024.png",
+    "origem_exemplo": "folha de problemas, célula 1",
+    "regra": "Nunca formar visualmente DEUS É AMOR durante a transformação. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:negacao_perdida",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "negacao_perdida"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-025",
+    "titulo": "NÃO cai sobre as palavras",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-025.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 93",
+    "regra": "O NÃO riscado sai por um corredor sem cruzar os outros glifos. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:texto",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-026",
+    "titulo": "Título duplica legenda",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-026.png",
+    "origem_exemplo": "folha de problemas, célula 9",
+    "regra": "Não repetir simultaneamente a mesma frase no título e na legenda. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_coreografia.js:texto_duplicado",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "texto_duplicado"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-027",
+    "titulo": "Rótulos colados aos pés",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-027.png",
+    "origem_exemplo": "folha de problemas, célula 9",
+    "regra": "Separar rótulos dos pés e do chão. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:texto",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-028",
+    "titulo": "ID ou barra de progresso no palco",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-028.png",
+    "origem_exemplo": "folha de problemas, célula 1",
+    "regra": "Controles e IDs internos ficam fora do SVG visível. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:texto",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-029",
+    "titulo": "Traços decorativos sem função",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-029.png",
+    "origem_exemplo": "folha de problemas, célula 2",
+    "regra": "Todo elemento no palco deve ter função narrativa. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:texto",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-030",
+    "titulo": "Título digita a fala inteira",
+    "categoria": "texto",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-030.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 175",
+    "regra": "Reservar a fala completa à legenda; usar conceitos no palco. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:texto",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-031",
+    "titulo": "Densidade medida no código",
+    "categoria": "movimento",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-031.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Medir mudança visível nos pixels dos PNGs e do MP4 decodificado. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "pictograma_pixels.py:check",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "densidade_pixels_mp4",
+        "densidade_pixels_png"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_pixels_estaticos_reprovam_mesmo_com_dom_ativo",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-032",
+    "titulo": "Ação sem duração",
+    "categoria": "movimento",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-032.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Distribuir as poses principais por mais de um quadro. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:shortEvent",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "movimento_curto"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_acao_com_duracao_zero",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-033",
+    "titulo": "Auditoria final amostrada",
+    "categoria": "movimento",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-033.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "A exportação confere cada quadro, inclusive a cauda. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "pictograma_auditoria.py:prepare_export",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_amostra_nao_autoriza_exportacao",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-034",
+    "titulo": "Checagem de juntas por constantes",
+    "categoria": "pose",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-034.png",
+    "origem_exemplo": "reprodução deliberada no navegador, quadro 300",
+    "regra": "Medir as juntas e o contorno efetivamente desenhados. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_proporcoes.js:membro_muda_comprimento",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "membro_muda_comprimento"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-035",
+    "titulo": "Entrada em um quadro",
+    "categoria": "movimento",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-035.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Distribuir entradas e saídas em vários quadros quando não houver corte intencional. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:changeOpacity",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "opacidade"
+      ]
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_opacidade_instantanea",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-036",
+    "titulo": "Voz e trilha baixas",
+    "categoria": "som",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-036.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Validar −14 LUFS, teto de −1 dBTP e diferença de 12–15 dB. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "pictograma_mix.py:verify",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mixagem_antiga_bloqueada",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-037",
+    "titulo": "Estimativa apesar das pausas do áudio",
+    "categoria": "sincronia",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-037.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Sem marcas de palavra ou Whisper local, medir as pausas e declarar incerteza. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "pausas_audio.py:speech_blocks",
+      "bloqueia_mp4": true
+    },
+    "teste": "test_pausas_audio.PauseAlignmentTest.test_measured_noise_blocks",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-038",
+    "titulo": "Pausa sem efeito e sem aviso",
+    "categoria": "som",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-038.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Comparar a pausa marcada a pausas comparáveis e sinalizar ausência de efeito. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "efeito_tags.py:measure",
+      "bloqueia_mp4": false
+    },
+    "teste": "test_efeito_tags.TagEffectTest.test_comparable_pause_or_inconclusive",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-039",
+    "titulo": "Godot dentro do iCloud",
+    "categoria": "ambiente",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-039.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Recusar o caminho real do Godot em Mobile Documents. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "pictograma_godot.py:local_path",
+      "bloqueia_mp4": true
+    },
+    "teste": "test_pictograma_godot.GodotLocationTests.test_refuses_executable_under_mobile_documents",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-040",
+    "titulo": "Narração sintética em demonstração",
+    "categoria": "som",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-040.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Exigir áudio fornecido; cliques e tons servem apenas a testes técnicos. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "pictograma.py:animate",
+      "bloqueia_mp4": true
+    },
+    "teste": "test_regra_audio.AudioInputTest.test_no_recording_blocks_export_and_allows_estimated_preview",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-041",
+    "titulo": "Pontuação e ordem de pose do Ilustrado",
+    "categoria": "ambiente",
+    "encontrado_em": "2026-11-08 · consolidação das revisões da 1.7",
+    "exemplo": "references/erros/EC-041.png",
+    "origem_exemplo": "ficha de reprodução, sem quadro histórico identificado",
+    "regra": "Manter o Ilustrado congelado nesta versão. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": null,
+    "teste": null,
+    "estado": "fora_de_escopo"
+  },
+  {
+    "id": "EC-042",
+    "titulo": "Braço ou seta invade o lado da outra figura",
+    "categoria": "encenacao",
+    "encontrado_em": "2026-11-08 · revisão do piloto em 13,6 s",
+    "exemplo": "references/erros/EC-042.png",
+    "origem_exemplo": "recorte do piloto anterior, quadro 408, com a seta sobre o antebraço creme",
+    "regra": "Na comparação, o contorno de cada braço fica no próprio lado da divisória. As setas ficam no lado de origem e não cruzam o antebraço receptor. O coração pode atravessar por um trajeto livre e só pousa nas duas palmas juntas e voltadas para cima, na altura do peito. [Bíblia visual](biblia_visual_pictograma.md) · [Critérios](diretor_animacao.md).",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:comparacao",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_no_palco",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-043",
+    "titulo": "Pé de apoio desliza contra o avanço",
+    "categoria": "movimento",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-043.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 4.23 s",
+    "regra": "Durante a marcha, a sola apoiada mantém o contato fixo, inclusive quando o corpo avança no sentido oposto ao desvio. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-044",
+    "titulo": "Pé de apoio muda de lugar",
+    "categoria": "movimento",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-044.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 3.97 s",
+    "regra": "Cada ponto de apoio deriva no máximo 2 px durante todo o contato, sem contar a câmera. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-045",
+    "titulo": "Pés deslizam ao sentar",
+    "categoria": "pose",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-045.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 5.20 s",
+    "regra": "Os apoios dos dois pés permanecem fixos enquanto o quadril desce. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-046",
+    "titulo": "Sola afunda ou flutua",
+    "categoria": "pose",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-046.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 4.17 s",
+    "regra": "O ponto de apoio pintado fica a até 2 px do chão durante contato. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-047",
+    "titulo": "Marcha sem avanço",
+    "categoria": "movimento",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-047.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 8.60 s",
+    "regra": "O avanço real atinge 70% do percurso previsto pelos passos. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-048",
+    "titulo": "Subida sem impulso",
+    "categoria": "movimento",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-048.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 9.70 s",
+    "regra": "O ajudado sobe em 0,6–1,0 s com aceleração e desaceleração, após preparação, pega e tração. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-049",
+    "titulo": "Ajudante sem contrapeso",
+    "categoria": "encenacao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-049.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 9.30 s",
+    "regra": "Durante a tração, o ajudante abre a base, flexiona os joelhos e inclina o tronco para trás. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-050",
+    "titulo": "Coluna dobra num ponto",
+    "categoria": "pose",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-050.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 8.80 s",
+    "regra": "Distribua a flexão pelos segmentos lombar, torácico e cervical. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-051",
+    "titulo": "Corpos se atravessam",
+    "categoria": "encenacao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-051.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 9.97 s",
+    "regra": "Separe as silhuetas dos personagens e restrinja a sobreposição ao contato declarado. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-052",
+    "titulo": "Tronco em pera",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-052.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 5.20 s",
+    "regra": "Diferencie caixa torácica, cintura mais estreita e pelve. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-053",
+    "titulo": "Ombros caídos",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-053.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 10.05 s",
+    "regra": "As clavículas sustentam a inserção dos braços no topo do tórax. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-054",
+    "titulo": "Pescoço invisível",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-054.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 10.05 s",
+    "regra": "Mostre um pescoço curto e contínuo entre cabeça e tórax. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-055",
+    "titulo": "Pernas em tubo",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-055.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 8.60 s",
+    "regra": "O contorno distingue coxa, joelho, panturrilha e tornozelo. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-056",
+    "titulo": "Mãos em forma de bola",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-056.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 9.30 s",
+    "regra": "Cada mão tem palma, com polegar legível quando a pose permite. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-057",
+    "titulo": "Pé sem calcanhar, arco e ponta",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-057.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 4.20 s",
+    "regra": "Use dois segmentos com calcanhar e ponta distintos e rolamento em apoio. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-058",
+    "titulo": "Braços abertos sem intenção",
+    "categoria": "pose",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-058.png",
+    "origem_exemplo": "MP4 de diagnóstico da 1.7.0, recorte em 8.60 s",
+    "regra": "Em repouso e na marcha, aproxime os braços do tronco. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-059",
+    "titulo": "Articulação fora do limite",
+    "categoria": "pose",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-059.png",
+    "origem_exemplo": "diagrama esquemático de falha injetada, sem quadro histórico correspondente",
+    "regra": "Bloqueie hiperextensão e flexão fora dos intervalos definidos na bíblia. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-060",
+    "titulo": "Comprimento de osso varia",
+    "categoria": "proporcao",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-060.png",
+    "origem_exemplo": "diagrama esquemático de falha injetada, sem quadro histórico correspondente",
+    "regra": "O comprimento 3D de cada osso fica dentro de 1% da medida canônica. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-061",
+    "titulo": "Equilíbrio fora do apoio",
+    "categoria": "movimento",
+    "encontrado_em": "briefing de anatomia e movimento 1.8.0",
+    "exemplo": "references/erros/EC-061.png",
+    "origem_exemplo": "diagrama esquemático de falha injetada, sem quadro histórico correspondente",
+    "regra": "Em repouso use a projeção do centro de massa. Em movimento avalie a margem dinâmica e a transferência de apoio. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-062",
+    "titulo": "Coxa menor que canela",
+    "categoria": "proporcao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-062.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "A coxa deve medir cerca de 115% da canela e o joelho ficar a 25–28% da altura em repouso. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-063",
+    "titulo": "Pelve parece uma peça separada",
+    "categoria": "proporcao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-063.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "Una pelve, tronco e raízes das coxas no mesmo preenchimento, sem linha de corte no quadril. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-064",
+    "titulo": "Cintura estreita demais",
+    "categoria": "proporcao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-064.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "Alvo de 75% da largura torácica, com faixa de revisão de 72–75%. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-065",
+    "titulo": "Pé frontal ilegível",
+    "categoria": "proporcao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-065.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "A projeção frontal mostra uma cunha apoiada, com largura mínima de 0,32 cabeça. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-066",
+    "titulo": "Três quartos sem profundidade",
+    "categoria": "proporcao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-066.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "Projete em perspectiva: ombros e pelve encurtam e o lado próximo fica maior que o distante. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-067",
+    "titulo": "Tronco inclinado na marcha",
+    "categoria": "pose",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-067.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "O eixo pelve–tórax fica a até 5° da vertical durante toda a marcha. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-068",
+    "titulo": "Cabeça oscila ou perde horizonte",
+    "categoria": "pose",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-068.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "A amplitude da orientação da cabeça na marcha é de até 3° e o olhar permanece no horizonte. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-069",
+    "titulo": "Braço sem oposição na marcha",
+    "categoria": "movimento",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-069.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "Cada mão passa à frente e atrás da pelve em oposição à perna correspondente. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-070",
+    "titulo": "Silhuetas se fundem na pega",
+    "categoria": "encenacao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-070.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "Os corpos mantêm um corredor livre. O encontro de mãos é o contato permitido durante a pega. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-071",
+    "titulo": "Pega escondida ou curta",
+    "categoria": "encenacao",
+    "encontrado_em": "revisão das primeiras folhas da 1.8.0",
+    "exemplo": "references/erros/EC-071.png",
+    "origem_exemplo": "recorte da folha anterior à revisão",
+    "regra": "As mãos visíveis se encontram entre os corpos e ficam firmes oito quadros antes da tração; o ensaio dura 1,5–2,5 s. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-072",
+    "titulo": "Joelhos fletidos em pé e parado",
+    "categoria": "pose",
+    "encontrado_em": "aprovação condicionada das folhas 1.8.0",
+    "exemplo": "references/erros/EC-072.png",
+    "origem_exemplo": "recorte do perfil da revisão anterior",
+    "regra": "Em pé e parado, o joelho de cada lado tem 0–5° de flexão no esqueleto, válido para todas as vistas. [Bíblia visual](biblia_visual_pictograma.md).",
+    "checagem": {
+      "funcao": "auditoria_anatomica.js:avaliar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_anatomicas",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-073",
+    "titulo": "Negação riscada permanece no palco",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-073.png",
+    "origem_exemplo": "quadro do piloto anterior",
+    "regra": "Retire completamente o NÃO em até 15 quadros após concluir o risco. Ele só começa a cair depois que o A está legível.",
+    "checagem": {
+      "funcao": "auditar_efeitos.mjs:inspecionar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-074",
+    "titulo": "Efeito fora do momento previsto",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-074.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Vincule o efeito à cena, palavra e ação autorizadas. Em trechos sensíveis, use luz contida.",
+    "checagem": {
+      "funcao": "pictograma_efeitos.py:compile_effects",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-075",
+    "titulo": "Efeito sem justificativa",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-075.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Explique em uma frase o que o efeito ajuda a entender.",
+    "checagem": {
+      "funcao": "pictograma_efeitos.py:compile_effects",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-076",
+    "titulo": "Efeito cobrindo ação ou legenda",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-076.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Pinte efeitos de luz atrás dos personagens e preserve a faixa da legenda. Texto cinético afeta apenas o próprio texto.",
+    "checagem": {
+      "funcao": "auditar_efeitos.mjs:inspecionar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-077",
+    "titulo": "Orçamento de destaques excedido",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-077.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Respeite a distância mínima por projeto e o teto de dois destaques contando a atuação.",
+    "checagem": {
+      "funcao": "pictograma_efeitos.py:compile_effects",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-078",
+    "titulo": "Flash ou mudança brusca em área grande",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-078.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Meça flashes gerais e vermelhos em janela móvel e bloqueie mudanças bruscas de brilho em área grande.",
+    "checagem": {
+      "funcao": "pictograma_efeitos_pixels.py:flash_report",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-079",
+    "titulo": "Sombra no lado errado",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-079.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Aplique a sombra própria abaixo e à direita da luz de cima e à esquerda.",
+    "checagem": {
+      "funcao": "auditar_efeitos.mjs:inspecionar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-080",
+    "titulo": "Sombra própria sem diferença visível",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-080.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Meça nos pixels redução de 8–12% de luminância relativa.",
+    "checagem": {
+      "funcao": "pictograma_efeitos_pixels.py:measure_samples",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-081",
+    "titulo": "Apoio sem sombra de contato",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-081.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Mostre sombra de contato mensurável junto ao chão em cada apoio visível.",
+    "checagem": {
+      "funcao": "pictograma_efeitos_pixels.py:measure_samples",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-082",
+    "titulo": "Efeito com cor fora da paleta",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-082.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Use apenas tokens da paleta do projeto para o destaque.",
+    "checagem": {
+      "funcao": "pictograma_efeitos.py:compile_effects",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-083",
+    "titulo": "Contraste insuficiente com luz e efeitos",
+    "categoria": "efeitos",
+    "encontrado_em": "revisão de efeitos e luz da 1.8.0",
+    "exemplo": "references/erros/EC-083.png",
+    "origem_exemplo": "ficha de reprodução; não indica falha observada no piloto aprovado",
+    "regra": "Preserve 4,5:1 entre figura e fundo e 7:1 entre texto legível e fundo.",
+    "checagem": {
+      "funcao": "pictograma_efeitos_pixels.py:measure_samples",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-084",
+    "titulo": "Objeto some e reaparece em outro lugar",
+    "categoria": "efeitos",
+    "encontrado_em": "Revisão da entrega em P007–P008",
+    "exemplo": "references/erros/EC-084.png",
+    "origem_exemplo": "Quadro da entrega anterior após o primeiro coração desaparecer",
+    "regra": "Mantenha a identidade e a continuidade dos objetos. O primeiro coração permanece nas mãos creme enquanto outro nasce na mão verde e percorre o trajeto.",
+    "checagem": {
+      "funcao": "auditar_efeitos.mjs:inspecionar",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.CatalogoTests.test_mutacoes_efeitos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-085",
+    "titulo": "Tempo absoluto usado na mixagem do recorte",
+    "categoria": "consistencia",
+    "encontrado_em": "Banco de provas da 1.8.0",
+    "exemplo": "references/erros/EC-085.png",
+    "origem_exemplo": "Ficha de reprodução da falha inicial em três recortes",
+    "regra": "Normalize áudio e palavras na mesma origem; preserve os segundos absolutos só na proveniência.",
+    "checagem": {
+      "funcao": "pictograma_banco.py:stamps",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_pictograma_banco.BancoTests.test_local_excerpt_clock",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-086",
+    "titulo": "Sola acima da tolerância no MP4",
+    "categoria": "consistencia",
+    "encontrado_em": "Banco de provas da 1.8.0",
+    "exemplo": "references/erros/EC-086.png",
+    "origem_exemplo": "Quadro 247 do MP4 aprovado e medido na mesma auditoria da migração; a correção do rig foi validada em candidata separada, aguardando aprovação da referência",
+    "regra": "Meça a borda da sola pela cor de apoio no MP4 decodificado e bloqueie desvio acima de 2 px ou sola sem evidência.",
+    "checagem": {
+      "funcao": "pictograma_verificacao.py:foot_height",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_pictograma_salvaguardas.SafeguardTest.test_sole_is_measured_in_pixels",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-087",
+    "titulo": "Figura quase imóvel",
+    "categoria": "encenacao",
+    "encontrado_em": "Segunda rodada do banco de provas",
+    "exemplo": "references/erros/EC-087.png",
+    "origem_exemplo": "Montagem comparativa fornecida no briefing",
+    "regra": "Exija mudança de mais de 3 graus em pelo menos 30% dos quadros de ator.",
+    "checagem": {
+      "funcao": "pictograma_encenacao.py:pose_changes",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_pose",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-088",
+    "titulo": "Batidas sem ação",
+    "categoria": "encenacao",
+    "encontrado_em": "Segunda rodada do banco de provas",
+    "exemplo": "references/erros/EC-088.png",
+    "origem_exemplo": "Montagem comparativa fornecida no briefing",
+    "regra": "Exija ação em 80% das batidas não pausadas e uma pausa justificada de até 1,5 s a cada quatro batidas.",
+    "checagem": {
+      "funcao": "pictograma_encenacao.py:beat_coverage",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_beat",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-089",
+    "titulo": "Mesmo molde em três batidas",
+    "categoria": "encenacao",
+    "encontrado_em": "Segunda rodada do banco de provas",
+    "exemplo": "references/erros/EC-089.png",
+    "origem_exemplo": "Montagem comparativa fornecida no briefing",
+    "regra": "Compare as posições da figura, do título e do objeto no palco com câmera compensada.",
+    "checagem": {
+      "funcao": "pictograma_encenacao.py:layout_and_objects",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_layout",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-090",
+    "titulo": "Ícone solto ou pequeno",
+    "categoria": "encenacao",
+    "encontrado_em": "Segunda rodada do banco de provas",
+    "exemplo": "references/erros/EC-090.png",
+    "origem_exemplo": "Montagem comparativa fornecida no briefing",
+    "regra": "Exija objeto de pelo menos uma cabeça, com ator e relação declarados. Admita um dado abstrato por trecho.",
+    "checagem": {
+      "funcao": "pictograma_encenacao.py:layout_and_objects",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_object",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-091",
+    "titulo": "Mudança de pixel sem ação",
+    "categoria": "encenacao",
+    "encontrado_em": "Segunda rodada do banco de provas",
+    "exemplo": "references/erros/EC-091.png",
+    "origem_exemplo": "Montagem comparativa fornecida no briefing",
+    "regra": "Meça mudanças nos atores e objetos no MP4 com compensação da câmera e descarte respiração de repouso.",
+    "checagem": {
+      "funcao": "pictograma_encenacao.py:motion_pixels",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_pixels",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-092",
+    "titulo": "Nome privado visível no palco",
+    "categoria": "encenacao",
+    "encontrado_em": "Segunda rodada do banco de provas",
+    "exemplo": "references/erros/EC-092.png",
+    "origem_exemplo": "Ficha sintética com nome de teste",
+    "regra": "Bloqueie o nome privado em títulos, rótulos ou legendas. Legendas só aceitam substituição declarada.",
+    "checagem": {
+      "funcao": "auditar_animacao.mjs:lexical",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_private_browser",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-093",
+    "titulo": "Sola atravessa o pé do banco",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão visual de P006, quadros 282 e 350",
+    "exemplo": "references/erros/EC-093.png",
+    "origem_exemplo": "Quadro 282 da versão anterior de P006",
+    "regra": "Bloqueie a interseção entre a silhueta da sola e a perna do banco. O contato permitido é o quadril no assento.",
+    "checagem": {
+      "funcao": "auditar_mp4_anatomico.py:bench_issue",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "sola_cruza_banco"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_bench_crossing",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-094",
+    "titulo": "Banco invisível ou perna confundida com sola",
+    "categoria": "encenacao",
+    "encontrado_em": "Rodada 3 do banco de provas",
+    "exemplo": "references/erros/EC-094.png",
+    "origem_exemplo": "Recorte do diagnóstico visual do banco",
+    "regra": "Exija assento visível quando a encenação pedir banco. Rejeite cruzamento de perna do banco com a sola na prévia e confira o assento no MP4.",
+    "checagem": {
+      "funcao": "pictograma_verificacao.py:bench_visible",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_pictograma_salvaguardas.SafeguardTest.test_bench_missing_or_confused_with_sole",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-095",
+    "titulo": "Braço em movimento com corpo parado",
+    "categoria": "encenacao",
+    "encontrado_em": "Rodada 3 do banco de provas",
+    "exemplo": "references/erros/EC-095.png",
+    "origem_exemplo": "Recorte do diagnóstico visual do banco",
+    "regra": "Exija pelo menos 25% dos quadros com ação de corpo, excluindo braços.",
+    "checagem": {
+      "funcao": "pictograma_encenacao.py:pose_changes",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_body_ignores_elbow_and_counts_knee",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-096",
+    "titulo": "Rótulo encoberto",
+    "categoria": "encenacao",
+    "encontrado_em": "Rodada 3 do banco de provas",
+    "exemplo": "references/erros/EC-096.png",
+    "origem_exemplo": "Recorte do diagnóstico visual do banco",
+    "regra": "Bloqueie rótulos encobertos pela figura, deslocados para fora da área segura ou título esperado ausente.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:rotuloVisivel",
+      "bloqueia_mp4": true,
+      "codigos": []
+    },
+    "teste": "test_pictograma_salvaguardas.SafeguardTest.test_label_occluded_or_outside_safe_area",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-097",
+    "titulo": "Verbo da fala com ação disponível e não usada",
+    "categoria": "encenacao",
+    "encontrado_em": "Rodada 4, Parte A",
+    "exemplo": "references/erros/EC-097.png",
+    "origem_exemplo": "Quadro de P009 na edição anterior, antes de aplicar o verbo-chave",
+    "regra": "Vincule a batida a uma ação da biblioteca correspondente ao verbo central. Uma tentativa negada deve começar e voltar ao apoio.",
+    "checagem": {
+      "funcao": "pictograma_verbos.py:apply_cue",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-097"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_verbo_da_fala_e_tentativa_negada",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-098",
+    "titulo": "Ação negada, hipotética ou rejeitada encenada como afirmativa",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão da Parte A",
+    "exemplo": "references/erros/EC-098.png",
+    "origem_exemplo": "Quadro em que o protagonista dá o passo da alternativa que a fala rejeita",
+    "regra": "A modalidade da fala acompanha a ação. Encene recusa, condição ou tentativa interrompida e encaminhe a batida para opções.",
+    "checagem": {
+      "funcao": "pictograma_verbos.py:apply_cue",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-098"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_verbo_hipotetico_nao_vira_afirmacao",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-099",
+    "titulo": "Gesto de braço sem intenção ou alvo",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão do vídeo v7 completo",
+    "exemplo": "references/erros/EC-099.png",
+    "origem_exemplo": "Quadro da primeira montagem, gesto de carregar numa fala abstrata",
+    "regra": "Cada mão só se move para realizar a ação declarada. Quem escuta mantém os braços em repouso. Apoio, alcance e contato devem corresponder ao alvo.",
+    "checagem": {
+      "funcao": "pictograma_gestos.py:auditar_gestos",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-099"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_gesto_sem_alvo_e_contato_perdido",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-100",
+    "titulo": "Enumeração falada sem as figuras citadas",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de P004 do vídeo v7",
+    "exemplo": "references/erros/EC-100.png",
+    "origem_exemplo": "Quadro de 49,90 s em que a legenda cita a pessoa idosa e só o protagonista aparece",
+    "regra": "Revele cada figura declarada na palavra correspondente. Mantenha as anteriores no quadro até a saída em conjunto.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:enumeracao",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-100"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_enumeracao_antecipada_ou_incompleta",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-101",
+    "titulo": "Mão de presença sem distância ou atuação sustentada",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de P003 do vídeo v7",
+    "exemplo": "references/erros/EC-101.png",
+    "origem_exemplo": "Quadro de 38,80 s com a mão imóvel no alto depois de o personagem baixar o braço",
+    "regra": "Apresente a palma, sustente a aproximação sem contato e conclua a saída durante a batida. Conserve espaço visível entre as mãos.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:presenca",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-101"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_mao_presente_sem_contato_e_com_sustentacao",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-102",
+    "titulo": "Conversa com o mesmo gesto repetido",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de gestos, livro, luz e entrada do vídeo v7",
+    "exemplo": "references/erros/EC-102.png",
+    "origem_exemplo": "Conversa com a amiga, 17,5 s",
+    "regra": "Vincule gestos distintos a palavras da conversa e reserve reações discretas de cabeça para quem escuta.",
+    "checagem": {
+      "funcao": "pictograma_composicao.py:compile_direction",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-102"
+      ]
+    },
+    "teste": "test_pictograma_banco.BancoTests.test_acentos_conversa_alinhados_e_distintos",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-103",
+    "titulo": "Livro genérico que flutua ou vira sem apoio",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de gestos, livro, luz e entrada do vídeo v7",
+    "exemplo": "references/erros/EC-103.png",
+    "origem_exemplo": "Leitura do Salmo, 30,5 s",
+    "regra": "Mantenha a base apoiada durante a leitura e prenda a página animada à lombada.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:livroApoiado",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-103"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_livro_e_luz_com_apoio_e_sincronia",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-104",
+    "titulo": "Holofote que salta ou permanece depois da mão",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de gestos, livro, luz e entrada do vídeo v7",
+    "exemplo": "references/erros/EC-104.png",
+    "origem_exemplo": "Mão presente, 38,5 s, sem luz ligada à entrada",
+    "regra": "Faça a luz acompanhar a entrada e o recuo da mão e preserve a faixa de legendas.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:luzDaPresenca",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-104"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_livro_e_luz_com_apoio_e_sincronia",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-105",
+    "titulo": "Cartela de virada aparece de uma vez na transição",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de gestos, livro, luz e entrada do vídeo v7",
+    "exemplo": "references/erros/EC-105.png",
+    "origem_exemplo": "Entrada da virada, 85,93 s",
+    "regra": "Em segmentos raster protegidos, faça a luz e a tipografia da abertura entrarem gradualmente e confira a luminância quadro a quadro.",
+    "checagem": {
+      "funcao": "pictograma_pixels.py:validar_ponte_titulo",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-105"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_ponte_tipografica_rejeita_salto",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-106",
+    "titulo": "Páginas do livro voltadas para o público",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-106.png",
+    "origem_exemplo": "Leitura do Salmo em 30,4 s",
+    "regra": "Projete o plano do livro com a normal das páginas voltada para o leitor e visível de viés para a câmera.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:livroOrientado",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-106"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_livro_e_oracao_orientados",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-107",
+    "titulo": "Oração sem as palmas juntas",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-107.png",
+    "origem_exemplo": "Pai Nosso em 27,3 s",
+    "regra": "Durante a oração, mantenha as palmas juntas no peito e os dedos voltados para cima.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:oracaoVisivel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-107"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_livro_e_oracao_orientados",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-108",
+    "titulo": "Interlocutores sem reação à maldade narrada",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-108.png",
+    "origem_exemplo": "Fala da maldade em 46,8 s",
+    "regra": "Ancore a mudança de expressão corporal na palavra e mantenha as mãos de quem escuta em repouso.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:sombraVisivel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-108"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_atmosferas_e_luz_transferida",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-109",
+    "titulo": "Alma sem aura perceptível",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-109.png",
+    "origem_exemplo": "Aviva a alma em 69,5 s",
+    "regra": "Ancore a aura no verbo e centralize a luz atrás da figura correspondente.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:atmosferaVisivel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-109"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_atmosferas_e_luz_transferida",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-110",
+    "titulo": "Espera com chuva e luz incompatíveis",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-110.png",
+    "origem_exemplo": "Espera em 80,6 s",
+    "regra": "Desenhe chuva cinzenta no espaço da espera, atrás da figura e acima da legenda.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:atmosferaVisivel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-110"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_atmosferas_e_luz_transferida",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-111",
+    "titulo": "Amor ativo sem contraste de atmosfera",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-111.png",
+    "origem_exemplo": "Serviço em 146,2 s",
+    "regra": "Revele a claridade quente no momento da ação declarada e deixe a legenda livre.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:atmosferaVisivel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-111"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_atmosferas_e_luz_transferida",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-112",
+    "titulo": "Luz da entrega não acompanha a posse",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de leitura, oração e atmosfera do Pictograma v7",
+    "exemplo": "references/erros/EC-112.png",
+    "origem_exemplo": "Entrega em 138,4 s",
+    "regra": "A luz sai do doador no contato com o coração, ganha força no recebedor e acompanha a posse na continuidade.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:partilhaVisivel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-112"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_atmosferas_e_luz_transferida",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-113",
+    "titulo": "Reposição brusca ou retorno ao banco depois de ajudar",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de continuidade do Pictograma v7",
+    "exemplo": "references/erros/EC-113.png",
+    "origem_exemplo": "Travessia em 128,3 s e retorno à pose sentada em 144,8 s",
+    "regra": "Conserve o elenco em pé e os apoios depois de soltar a pega. Use a última pose estabilizada como início da continuação.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:elencoEstavel",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-113"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_apoio_e_passagem_apos_ajuda",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-114",
+    "titulo": "O personagem levanta e não pratica",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de continuidade do Pictograma v7",
+    "exemplo": "references/erros/EC-114.png",
+    "origem_exemplo": "Encerramento em 218,4 s",
+    "regra": "Quando uma segunda âncora pedir um passo, termine a subida, plante o apoio e faça o deslocamento até o repouso final.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:passoPlantado",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-114"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_apoio_e_passagem_apos_ajuda",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-115",
+    "titulo": "A entrega não gera resposta do recebedor",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de continuidade do Pictograma v7",
+    "exemplo": "references/erros/EC-115.png",
+    "origem_exemplo": "Biblioteca em 205,1 s",
+    "regra": "Quando o plano pedir uma reação após a entrega, mova a mão livre na âncora e sustente o coração na outra.",
+    "checagem": {
+      "funcao": "auditoria_catalogo.js:cuidadoAposEntrega",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-115"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_apoio_e_passagem_apos_ajuda",
+    "estado": "resolvido"
+  },
+  {
+    "id": "EC-116",
+    "titulo": "Segunda figura entra de uma vez no piloto",
+    "categoria": "encenacao",
+    "encontrado_em": "Revisão de continuidade do Pictograma v7",
+    "exemplo": "references/erros/EC-116.png",
+    "origem_exemplo": "Entrada em 94,2 s",
+    "regra": "Na montagem aprovada, revele apenas a segunda figura antes da aproximação e preserve o contato posterior.",
+    "checagem": {
+      "funcao": "pictograma_pixels.py:validar_revelacao_figura",
+      "bloqueia_mp4": true,
+      "codigos": [
+        "EC-116"
+      ]
+    },
+    "teste": "test_catalogo_erros.EncenacaoTests.test_revelacao_da_figura_sem_salto",
+    "estado": "resolvido"
+  }
+]

@@ -1,0 +1,700 @@
+{
+  "paleta": {
+    "fundo": "#0B0F0D",
+    "osso": "#ECE6D8",
+    "acento": "#9CC6A6",
+    "suave": "#89978F",
+    "linha": "#2C3631"
+  },
+  "cenas": [
+    {
+      "id": "S01",
+      "entrada": {
+        "p": 7,
+        "trecho": "Deus não é"
+      },
+      "palavra": 0,
+      "elementos": [
+        {
+          "id": "palco_base",
+          "tipo": "linha",
+          "x": 80,
+          "y": 1250,
+          "w": 770,
+          "h": 10
+        }
+      ],
+      "acoes": [],
+      "enquadramento": {},
+      "saida": "corte",
+      "justificativa_ritmo": "",
+      "fim_palavra": 7,
+      "fala": "Deus não é amor. Deus é amar.",
+      "inicio": 0,
+      "fim": 3.6
+    },
+    {
+      "id": "S02",
+      "entrada": {
+        "p": 8,
+        "trecho": "Se Deus for amor"
+      },
+      "palavra": 7,
+      "elementos": [
+        {
+          "id": "palco_base",
+          "tipo": "linha",
+          "x": 80,
+          "y": 1250,
+          "w": 770,
+          "h": 10
+        }
+      ],
+      "acoes": [],
+      "enquadramento": {},
+      "saida": "corte",
+      "justificativa_ritmo": "",
+      "fim_palavra": 24,
+      "fala": "Se Deus for amor, eu sento e espero. Se Deus for amar, eu me levanto e pratico.",
+      "inicio": 3.6,
+      "fim": 9.966666666666667
+    },
+    {
+      "id": "S03",
+      "entrada": {
+        "p": 8,
+        "trecho": "Amor, a gente recebe"
+      },
+      "palavra": 24,
+      "elementos": [
+        {
+          "id": "palco_base",
+          "tipo": "linha",
+          "x": 80,
+          "y": 1250,
+          "w": 770,
+          "h": 10
+        }
+      ],
+      "acoes": [],
+      "enquadramento": {},
+      "saida": "corte",
+      "justificativa_ritmo": "",
+      "fim_palavra": 32,
+      "fala": "Amor, a gente recebe. Amar, a gente faz.",
+      "inicio": 9.966666666666667,
+      "fim": 14.4
+    }
+  ],
+  "duracao": 14.4,
+  "palavras": [
+    {
+      "texto": "Deus",
+      "inicio_s": 0.25,
+      "fim_s": 0.575,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 0.25,
+      "ajuste_s": 0.0,
+      "palavra": 0,
+      "quadro": 8,
+      "fim_quadro": 18
+    },
+    {
+      "texto": "não",
+      "inicio_s": 0.575,
+      "fim_s": 0.89,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 0.5719,
+      "ajuste_s": 0.0031,
+      "palavra": 1,
+      "quadro": 18,
+      "fim_quadro": 27
+    },
+    {
+      "texto": "é",
+      "inicio_s": 0.89,
+      "fim_s": 1.0,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 0.8721,
+      "ajuste_s": 0.0179,
+      "palavra": 2,
+      "quadro": 27,
+      "fim_quadro": 30
+    },
+    {
+      "texto": "amor.",
+      "inicio_s": 1.0,
+      "fim_s": 1.385,
+      "metodo": "estimativa_energia_baixa",
+      "motivos_revisao": [],
+      "inicio_original_s": 0.9976,
+      "ajuste_s": 0.0024,
+      "palavra": 3,
+      "quadro": 30,
+      "fim_quadro": 42
+    },
+    {
+      "texto": "Deus",
+      "inicio_s": 1.835,
+      "fim_s": 2.315,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 1.835,
+      "ajuste_s": 0.0,
+      "palavra": 4,
+      "quadro": 56,
+      "fim_quadro": 70
+    },
+    {
+      "texto": "é",
+      "inicio_s": 2.315,
+      "fim_s": 2.415,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 2.29,
+      "ajuste_s": 0.025,
+      "palavra": 5,
+      "quadro": 70,
+      "fim_quadro": 73
+    },
+    {
+      "texto": "amar.",
+      "inicio_s": 2.415,
+      "fim_s": 3.015,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 2.4674,
+      "ajuste_s": -0.0524,
+      "palavra": 6,
+      "quadro": 73,
+      "fim_quadro": 91
+    },
+    {
+      "texto": "Se",
+      "inicio_s": 3.595,
+      "fim_s": 3.805,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 3.595,
+      "ajuste_s": 0.0,
+      "palavra": 7,
+      "quadro": 108,
+      "fim_quadro": 115
+    },
+    {
+      "texto": "Deus",
+      "inicio_s": 3.805,
+      "fim_s": 4.1,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 3.7256,
+      "ajuste_s": 0.0794,
+      "palavra": 8,
+      "quadro": 115,
+      "fim_quadro": 123
+    },
+    {
+      "texto": "for",
+      "inicio_s": 4.1,
+      "fim_s": 4.29,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 4.0221,
+      "ajuste_s": 0.0779,
+      "palavra": 9,
+      "quadro": 123,
+      "fim_quadro": 129
+    },
+    {
+      "texto": "amor,",
+      "inicio_s": 4.29,
+      "fim_s": 4.615,
+      "metodo": "estimativa_energia_baixa",
+      "motivos_revisao": [],
+      "inicio_original_s": 4.2583,
+      "ajuste_s": 0.0317,
+      "palavra": 10,
+      "quadro": 129,
+      "fim_quadro": 139
+    },
+    {
+      "texto": "eu",
+      "inicio_s": 4.795,
+      "fim_s": 4.915,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 4.795,
+      "ajuste_s": 0.0,
+      "palavra": 11,
+      "quadro": 144,
+      "fim_quadro": 148
+    },
+    {
+      "texto": "sento",
+      "inicio_s": 4.915,
+      "fim_s": 5.37,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 5.0007,
+      "ajuste_s": -0.0857,
+      "palavra": 12,
+      "quadro": 148,
+      "fim_quadro": 162
+    },
+    {
+      "texto": "e",
+      "inicio_s": 5.37,
+      "fim_s": 5.575,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 5.462,
+      "ajuste_s": -0.092,
+      "palavra": 13,
+      "quadro": 162,
+      "fim_quadro": 168
+    },
+    {
+      "texto": "espero.",
+      "inicio_s": 5.575,
+      "fim_s": 6.185,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 5.6053,
+      "ajuste_s": -0.0303,
+      "palavra": 14,
+      "quadro": 168,
+      "fim_quadro": 186
+    },
+    {
+      "texto": "Se",
+      "inicio_s": 6.555,
+      "fim_s": 6.765,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 6.555,
+      "ajuste_s": 0.0,
+      "palavra": 15,
+      "quadro": 197,
+      "fim_quadro": 203
+    },
+    {
+      "texto": "Deus",
+      "inicio_s": 6.765,
+      "fim_s": 7.05,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 6.6856,
+      "ajuste_s": 0.0794,
+      "palavra": 16,
+      "quadro": 203,
+      "fim_quadro": 212
+    },
+    {
+      "texto": "for",
+      "inicio_s": 7.05,
+      "fim_s": 7.24,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 6.9821,
+      "ajuste_s": 0.0679,
+      "palavra": 17,
+      "quadro": 212,
+      "fim_quadro": 218
+    },
+    {
+      "texto": "amar,",
+      "inicio_s": 7.24,
+      "fim_s": 7.575,
+      "metodo": "estimativa_energia_baixa",
+      "motivos_revisao": [],
+      "inicio_original_s": 7.2183,
+      "ajuste_s": 0.0217,
+      "palavra": 18,
+      "quadro": 218,
+      "fim_quadro": 228
+    },
+    {
+      "texto": "eu",
+      "inicio_s": 7.825,
+      "fim_s": 7.975,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 7.825,
+      "ajuste_s": 0.0,
+      "palavra": 19,
+      "quadro": 235,
+      "fim_quadro": 240
+    },
+    {
+      "texto": "me",
+      "inicio_s": 7.975,
+      "fim_s": 8.18,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 8.0093,
+      "ajuste_s": -0.0343,
+      "palavra": 20,
+      "quadro": 240,
+      "fim_quadro": 246
+    },
+    {
+      "texto": "levanto",
+      "inicio_s": 8.18,
+      "fim_s": 8.715,
+      "metodo": "estimativa_energia_baixa",
+      "motivos_revisao": [],
+      "inicio_original_s": 8.1629,
+      "ajuste_s": 0.0171,
+      "palavra": 21,
+      "quadro": 246,
+      "fim_quadro": 262
+    },
+    {
+      "texto": "e",
+      "inicio_s": 8.715,
+      "fim_s": 8.84,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 8.7102,
+      "ajuste_s": 0.0048,
+      "palavra": 22,
+      "quadro": 262,
+      "fim_quadro": 266
+    },
+    {
+      "texto": "pratico.",
+      "inicio_s": 8.84,
+      "fim_s": 9.425,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 8.8386,
+      "ajuste_s": 0.0014,
+      "palavra": 23,
+      "quadro": 266,
+      "fim_quadro": 283
+    },
+    {
+      "texto": "Amor,",
+      "inicio_s": 9.935,
+      "fim_s": 10.32,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 9.935,
+      "ajuste_s": 0.0,
+      "palavra": 24,
+      "quadro": 299,
+      "fim_quadro": 310
+    },
+    {
+      "texto": "a",
+      "inicio_s": 10.32,
+      "fim_s": 10.43,
+      "metodo": "estimativa_energia_baixa",
+      "motivos_revisao": [],
+      "inicio_original_s": 10.3153,
+      "ajuste_s": 0.0047,
+      "palavra": 25,
+      "quadro": 310,
+      "fim_quadro": 313
+    },
+    {
+      "texto": "gente",
+      "inicio_s": 10.43,
+      "fim_s": 10.75,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 10.4331,
+      "ajuste_s": -0.0031,
+      "palavra": 26,
+      "quadro": 313,
+      "fim_quadro": 323
+    },
+    {
+      "texto": "recebe.",
+      "inicio_s": 10.75,
+      "fim_s": 11.365,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 10.8134,
+      "ajuste_s": -0.0634,
+      "palavra": 27,
+      "quadro": 323,
+      "fim_quadro": 341
+    },
+    {
+      "texto": "Amar,",
+      "inicio_s": 11.675,
+      "fim_s": 12.125,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 11.675,
+      "ajuste_s": 0.0,
+      "palavra": 28,
+      "quadro": 351,
+      "fim_quadro": 364
+    },
+    {
+      "texto": "a",
+      "inicio_s": 12.295,
+      "fim_s": 12.39,
+      "metodo": "ancora_frase_srt",
+      "motivos_revisao": [],
+      "inicio_original_s": 12.295,
+      "ajuste_s": 0.0,
+      "palavra": 29,
+      "quadro": 369,
+      "fim_quadro": 372
+    },
+    {
+      "texto": "gente",
+      "inicio_s": 12.39,
+      "fim_s": 12.775,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 12.4179,
+      "ajuste_s": -0.0279,
+      "palavra": 30,
+      "quadro": 372,
+      "fim_quadro": 384
+    },
+    {
+      "texto": "faz.",
+      "inicio_s": 12.775,
+      "fim_s": 13.175,
+      "metodo": "estimativa_energia",
+      "motivos_revisao": [],
+      "inicio_original_s": 12.8146,
+      "ajuste_s": -0.0396,
+      "palavra": 31,
+      "quadro": 384,
+      "fim_quadro": 396
+    }
+  ],
+  "repouso": 13.175,
+  "coreografia": {
+    "cues": {
+      "negacao": {
+        "frame": 18,
+        "word": 1,
+        "start": 18,
+        "end": 30,
+        "minimum": 5,
+        "scene": "S01"
+      },
+      "conceito": {
+        "frame": 30,
+        "word": 3,
+        "start": 30,
+        "end": 42,
+        "minimum": 5,
+        "scene": "S01"
+      },
+      "virada": {
+        "frame": 73,
+        "word": 6,
+        "start": 56,
+        "end": 83,
+        "minimum": 24,
+        "scene": "S01"
+      },
+      "sentar": {
+        "frame": 148,
+        "word": 12,
+        "start": 132,
+        "end": 160,
+        "minimum": 5,
+        "scene": "S02"
+      },
+      "esperar": {
+        "frame": 168,
+        "word": 14,
+        "start": 168,
+        "end": 181,
+        "minimum": 5,
+        "scene": "S02"
+      },
+      "levantar": {
+        "frame": 246,
+        "word": 21,
+        "start": 233,
+        "end": 259,
+        "minimum": 5,
+        "scene": "S02"
+      },
+      "ajudar": {
+        "frame": 266,
+        "word": 23,
+        "start": 259,
+        "end": 295,
+        "minimum": 5,
+        "scene": "S02"
+      },
+      "receber": {
+        "frame": 323,
+        "word": 27,
+        "start": 323,
+        "end": 340,
+        "minimum": 5,
+        "scene": "S03"
+      },
+      "fazer": {
+        "frame": 384,
+        "word": 31,
+        "start": 384,
+        "end": 401,
+        "minimum": 5,
+        "scene": "S03"
+      }
+    },
+    "corte": 108,
+    "comparacao": 299,
+    "enquadramento": {
+      "altura": 776,
+      "chao": 1246
+    },
+    "camera": {
+      "base_horizontal": 0.7,
+      "respiracao": {
+        "zoom": 0.009,
+        "velocidade": 0.052
+      },
+      "impulsos": [
+        {
+          "inicio": 235,
+          "fim": 268,
+          "delta": 0.017
+        },
+        {
+          "inicio": 254,
+          "fim": 301,
+          "delta": 0.023
+        }
+      ],
+      "abertura": {
+        "inicio": 302,
+        "fim": 336,
+        "delta": -0.016
+      }
+    }
+  },
+  "legendas": [
+    {
+      "linhas": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "inicio": 8,
+      "fim": 48
+    },
+    {
+      "linhas": [
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "inicio": 56,
+      "fim": 97
+    },
+    {
+      "linhas": [
+        [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        [
+          14
+        ]
+      ],
+      "inicio": 108,
+      "fim": 192
+    },
+    {
+      "linhas": [
+        [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        [
+          22,
+          23
+        ]
+      ],
+      "inicio": 197,
+      "fim": 289
+    },
+    {
+      "linhas": [
+        [
+          24,
+          25,
+          26,
+          27
+        ]
+      ],
+      "inicio": 299,
+      "fim": 347
+    },
+    {
+      "linhas": [
+        [
+          28,
+          29,
+          30,
+          31
+        ]
+      ],
+      "inicio": 351,
+      "fim": 402
+    }
+  ],
+  "legenda_a_partir": 108,
+  "afirmacoes_storyboard": [
+    {
+      "quadro": 162,
+      "tipo": "pes_no_chao"
+    },
+    {
+      "quadro": 162,
+      "tipo": "sentado_no_banco"
+    },
+    {
+      "quadro": 276,
+      "tipo": "maos_em_contato"
+    },
+    {
+      "quadro": 276,
+      "tipo": "pes_no_chao"
+    },
+    {
+      "quadro": 347,
+      "tipo": "palmas_no_peito"
+    },
+    {
+      "quadro": 414,
+      "tipo": "palmas_no_peito"
+    },
+    {
+      "quadro": 414,
+      "tipo": "coracao_nas_maos"
+    }
+  ]
+}

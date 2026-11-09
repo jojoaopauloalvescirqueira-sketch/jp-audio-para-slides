@@ -2,12 +2,16 @@
 """Gera HTML, manifest e PNGs a partir de material/. Requer Node + Playwright."""
 import argparse,csv,html,json,re,subprocess,os
 from pathlib import Path
-from projeto import load, outdir, FORMATS, audio_identity, sha, read
-from editorial import PROFILE, WATERMARK, MAP, ASSETS, markup, record_render
+from projeto import config, load, outdir, FORMATS, audio_identity, sha, read
+from editorial import watermark_visible, PROFILE, WATERMARK, MAP, ASSETS, markup, record_render
 
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--formato',choices=['16:9','21:9','9:16']);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--html-only',action='store_true');ap.add_argument('--node',default=os.environ.get('NODE','node'));ap.add_argument('--somente',default='');args=ap.parse_args();root=args.root.resolve();cfg,ps,scenes,sources=load(root,require_audio=False);args.formato=args.formato or cfg['formato']
+ ap=argparse.ArgumentParser();ap.add_argument('--formato',choices=['16:9','21:9','9:16']);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--html-only',action='store_true');ap.add_argument('--node',default=os.environ.get('NODE','node'));ap.add_argument('--somente',default='');args=ap.parse_args();root=args.root.resolve()
+ from estilo_video import ANIMATED
+ if config(root).get('estilo_video') in ANIMATED:
+  ap.error('Para cenas animadas, use fluxo.py cenas.')
+ cfg,ps,scenes,sources=load(root,require_audio=False);args.formato=args.formato or cfg['formato']
  editorial=cfg['perfil_visual']==PROFILE
  vertical=args.formato=='9:16';w,h=FORMATS[args.formato];out=outdir(root,args.formato);(out/'png').mkdir(parents=True,exist_ok=True)
  marks=json.loads((root/'material/marcacoes_audio.json').read_text()) if (root/'material/marcacoes_audio.json').exists() else {'slides':[]}
@@ -58,8 +62,10 @@ def main():
   watermark=''
   if editorial:
    classes+=' editorial-jp'+(' vertical' if vertical else '')
-   watermark='<img class="watermark" src="../'+E(cfg.get('marca_dagua',WATERMARK),quote=True)+'" alt="JP Wealth">'
-  articles.append(f'<article id="{s["id"]}" class="{classes}"><div class="composition">{content}</div>{watermark}</article>')
+   if watermark_visible(cfg):
+    watermark='<img class="watermark" src="../'+E(cfg.get('marca_dagua',WATERMARK),quote=True)+'" alt="JP Wealth">'
+  mark_state=' data-marca-dagua="desligada"' if editorial and not watermark_visible(cfg) else ''
+  articles.append(f'<article{mark_state} id="{s["id"]}" class="{classes}"><div class="composition">{content}</div>{watermark}</article>')
   listen=f'<button onclick="listen({timings[s["id"]]})">Ouvir entrada</button>' if s['id'] in timings and preview else '<button disabled>Entrada ainda sem marcação</button>'
   s['notes_html']=f'<div class="narration">{listen} <strong>{s["id"]} · {s["bloco"]} · Entrada: {E(s["frase_gatilho"])}</strong><p>{E(script).replace(chr(10),"<br>")}</p></div>'
  css='''*{box-sizing:border-box}html,body{margin:0;background:#e4e5e2;color:#202725;font-family:Arial,Helvetica,sans-serif}.slide{width:2520px;height:1080px;position:relative;background:#fafaf7;overflow:hidden}.center{position:absolute;left:9%;right:9%;top:15%;bottom:15%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}h1{font-size:100px;font-weight:600;line-height:1.16;letter-spacing:-3px;max-width:2050px;margin:0;text-wrap:balance}h2{font-size:49px;font-weight:400;color:#626d68;margin:0 0 65px}.definition{font-size:49px;line-height:1.35;max-width:1900px;margin:60px 0 0;color:#58645e;text-wrap:balance}.author{font-size:38px;margin-top:64px;color:#54615a}.url{font-size:65px;color:#52705e;letter-spacing:-1px}.synthesis p{font-size:65px;line-height:1.28;margin:22px 0;max-width:2000px;text-wrap:balance}.synthesis p:first-child{color:#52705e}.calculation p{font-size:76px;line-height:1.3;margin:20px 0;font-variant-numeric:tabular-nums;letter-spacing:-1px}.calculation p:last-child{color:#52705e}.figure-image{position:absolute;top:90px;left:8%;right:8%;height:715px;display:flex;align-items:center;justify-content:center}.chart{display:block;max-width:100%;max-height:100%;object-fit:contain}.figure-parts{width:100%;height:100%;display:flex;gap:65px;align-items:center;justify-content:center}.figure-parts img{max-width:calc(50% - 33px);max-height:100%;object-fit:contain}.caption{position:absolute;top:842px;left:8%;right:8%;font-size:45px;line-height:1.2;text-align:center;letter-spacing:-.6px}.note{position:absolute;top:909px;left:8%;right:8%;font-size:27px;line-height:1.3;text-align:center;color:#626b66}.source{position:absolute;bottom:87px;left:8%;right:8%;font-size:25px;text-align:center;color:#626b66}.cover-copy{position:absolute;left:9%;top:19%;width:53%;height:65%;display:flex;flex-direction:column;justify-content:center}.cover-copy h1{font-size:91px;letter-spacing:-2.5px;line-height:1.12}.subtitle{font-size:35px;line-height:1.4;max-width:1200px;color:#626b66;margin-top:48px}.cover-copy .author{margin-top:42px}.cover-art{position:absolute;left:66%;top:20%;width:26%;height:60%;object-fit:contain}.narration{max-width:1200px;margin:15px auto 65px;font-size:17px;line-height:1.6;white-space:normal}.slide{margin:0 auto;scroll-margin-top:130px}nav{position:sticky;top:0;z-index:20;background:#202725;color:white;padding:14px;display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}nav select{max-width:45vw}nav audio{width:260px}button,select{font:inherit;padding:6px 12px}body.render{background:#fafaf7}body.render nav,body.render .narration{display:none}body.render .slide{display:none;margin:0}body.render .slide.active{display:block}body.preview .slide{zoom:var(--zoom,.4)}.render h1,.render p{orphans:2;widows:2}'''

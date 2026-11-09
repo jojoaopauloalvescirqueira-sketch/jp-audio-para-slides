@@ -1,0 +1,14 @@
+{
+  "texto": {
+    "sujeito":"DEUS", "copula":"É", "negacao":"NÃO",
+    "prefixo":"AM", "sufixo":"R", "antes":"O", "depois":"A",
+    "classe_antes":"substantivo", "classe_depois":"verbo",
+    "espera":"ESPERAR", "acao":"AGIR", "esquerda":"FAZ", "direita":"RECEBE"
+  },
+  "marcas": {
+    "centro_tipo":480, "linha_superior":638, "linha_conceito":865, "linha_classe":959,
+    "divisoria":432, "divisoria_legado":487, "origem_ator":465, "angulo":82,
+    "banco_x":55, "banco_comprimento":166, "marcha":-2.37, "cadeira":-1.73,
+    "foco":442, "relogio_x":699, "relogio_y":778
+  }
+}

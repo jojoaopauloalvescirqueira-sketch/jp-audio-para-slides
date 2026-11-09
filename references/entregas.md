@@ -15,6 +15,10 @@ Fornecer ZIP quando útil. Não incluir caches, bibliotecas, modelos ASR, execut
 
 Antes do áudio, entregar os materiais de [roteirização](roteiros.md), planejamento visual e prévias disponíveis, com estado explícito. Timeline medida e vídeo permanecem pendentes.
 
+## Pacote para vídeos animados
+
+Inclua narração, fala canônica, prévia HTML, plano, storyboard, timeline, MP4, referências e scripts. No Pictograma, inclua o storyboard de quadros-chave e as amostras finais. No Ilustrado, inclua a bíblia, elenco, cenários, prompts, inventário, PNGs aprovados, folha de contato, revisões e `FONTES.md`. Mantenha os caminhos relativos. Exclua do ZIP as sequências de renderização (`.render/quadros/` e `ilustrado/<formato>/quadros/`) e caches. Os PNGs de origem e os quadros-chave para revisão fazem parte da entrega.
+
 ## Conferência
 
 ```sh

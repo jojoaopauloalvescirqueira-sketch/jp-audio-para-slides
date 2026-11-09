@@ -16,6 +16,8 @@ Studio pode iniciar com outro modelo. Conferir voz e modelo no projeto/parágraf
 
 ## Tags e pausas
 
+Na interface em português relatada em 7/11/2026 foram observadas `[pausa]`, `[suavemente]`, `[devagar]`, `[com voz fraca]`, `[suspirando]`, `[com a voz embargada]` e `[rindo baixinho]`. O catálogo compartilhado aceita essas formas diretamente. Para tratar outra marcação como controle de áudio, declare-a com `--audio-tag`. A medição de efeito usa a gravação recebida.
+
 Exemplos documentados: `[curious]`, `[thoughtful]`, `[surprised]`, `[whispers]`, `[sighs]`, `[short pause]`, `[long pause]`. Não são lista fechada nem garantia de obediência. [Tags](https://elevenlabs.io/docs/help-center/product/core-capabilities/text-to-speech/how-do-audio-tags-work-with-eleven-v3-and-v4) e [prompting](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices).
 
 Direção descritiva inédita deve ser rotulada nas notas como **experimental**, não controle certificado. Comece com sugestões documentadas. Se uma tag for falada, ignorada ou afetar identidade, simplifique, confira o modelo e teste o trecho; não aumente tags automaticamente.
