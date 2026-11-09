@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
 """Timeline e MP4 a partir de durações medidas e entradas verificáveis."""
-import argparse,csv,math,subprocess,sys
+import argparse,csv,math,os,subprocess,sys
 from pathlib import Path
 from trilha import select as select_music
 from video_export import export
 from editorial import PROFILE, FRAME_COUNT, check_render, frame_paths
-from projeto import load,audio,audio_files,audio_identity,binary,probe,read,write,sha,outdir,ffquote,FORMATS
+from projeto import config,load,audio,audio_files,audio_identity,binary,probe,read,write,sha,outdir,ffquote,FORMATS
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--root',required=True,type=Path);ap.add_argument('--marcacoes',type=Path);ap.add_argument('--formato',choices=list(FORMATS));ap.add_argument('--ffprobe');ap.add_argument('--ffmpeg');ap.add_argument('--renderizar',action='store_true');ap.add_argument('--trilha',type=Path);ap.add_argument('--nivel-trilha-db',type=float);ap.add_argument('--atmosfera');ap.add_argument('--motivo-trilha');ap.add_argument('--threads',type=int,default=4);a=ap.parse_args();root=a.root.resolve();c,ps,scenes,sources=load(root);fmt=a.formato or c['formato'];out=outdir(root,fmt);ffprobe=binary('ffprobe',a.ffprobe);files=audio_files(audio(root,c),len(ps));infos=[probe(p,ffprobe) for p in files];durations=[float(i['format']['duration']) for i in infos];total=sum(durations);times=[];methods=[]
+ ap=argparse.ArgumentParser();ap.add_argument('--root',required=True,type=Path);ap.add_argument('--marcacoes',type=Path);ap.add_argument('--formato',choices=list(FORMATS));ap.add_argument('--ffprobe');ap.add_argument('--ffmpeg');ap.add_argument('--renderizar',action='store_true');ap.add_argument('--trilha',type=Path);ap.add_argument('--nivel-trilha-db',type=float);ap.add_argument('--atmosfera');ap.add_argument('--motivo-trilha');ap.add_argument('--threads',type=int,default=4);ap.add_argument('--node',default=os.environ.get('NODE','node'));ap.add_argument('--paginas',type=int,default=4)
+ a=ap.parse_args();root=a.root.resolve()
+ from estilo_video import ANIMATED
+ style=config(root).get('estilo_video')
+ if style in ANIMATED:
+  from animado import synchronize
+  result=synchronize(root,a,style)
+  if result:print(result)
+  return
+ c,ps,scenes,sources=load(root);fmt=a.formato or c['formato'];out=outdir(root,fmt);ffprobe=binary('ffprobe',a.ffprobe);files=audio_files(audio(root,c),len(ps));infos=[probe(p,ffprobe) for p in files];durations=[float(i['format']['duration']) for i in infos];total=sum(durations);times=[];methods=[]
  music=select_music(root,c,a.trilha,a.nivel_trilha_db,ffprobe,a.atmosfera,a.motivo_trilha,total) if a.renderizar else None
  editorial=c['perfil_visual']==PROFILE
  if editorial:check_render(root,c,fmt,scenes,sources,out)

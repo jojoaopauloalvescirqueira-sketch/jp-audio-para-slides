@@ -22,6 +22,25 @@ def initialize(root):
     return {'perfil_visual': PROFILE, 'marca_dagua': WATERMARK}
 
 
+def watermark_visible(project):
+    choice=project.get('marca_dagua_visivel',{'valor':True})
+    if not isinstance(choice,dict) or type(choice.get('valor')) is not bool:
+        raise ValueError('marca_dagua_visivel exige valor booleano.')
+    return choice['valor']
+
+
+def set_watermark(root, enabled):
+    from projeto import config, read, write
+    if config(root)['perfil_visual']!=PROFILE:
+        raise ValueError('A opção de marca d’água vale para o perfil Editorial JP.')
+    path=root/'projeto.json'
+    project=read(path)
+    choice={'valor':enabled,'origem':'usuario'}
+    project['marca_dagua_visivel']=choice
+    write(path,project)
+    return choice
+
+
 def project_file(root, relative, label):
     if not isinstance(relative, str) or not relative or Path(relative).is_absolute():
         raise ValueError(f'{label}: use caminho relativo ao projeto.')
@@ -42,7 +61,8 @@ def targets(scene):
 
 def validate(root, config, paragraphs, scenes, sources):
     from projeto import read
-    project_file(root, config.get('marca_dagua', WATERMARK), 'Marca d’água')
+    if watermark_visible(config):
+        project_file(root, config.get('marca_dagua', WATERMARK), 'Marca d’água')
     source_map = {str(s['id']): s for s in sources}
     for scene in scenes:
         kind = scene['tipo']
@@ -157,12 +177,16 @@ def markup(scene, content, source=None):
 def render_inputs(root, cfg, fmt, scenes, sources):
     from projeto import sha
     files = ['material/paragrafos.json', 'material/slides.json',
-             'material/fontes_figuras.json', MAP, cfg.get('marca_dagua', WATERMARK)]
+             'material/fontes_figuras.json', MAP]
+    enabled=watermark_visible(cfg)
+    if enabled:
+        files.append(cfg.get('marca_dagua', WATERMARK))
     used = {str(scene['figura']) for scene in scenes if scene['tipo'] == 'figura'}
     files.extend(source['arquivo'] for source in sources if str(source['id']) in used)
     if cfg['capa']:
         files.append(cfg['capa'])
     return {
+        **({} if enabled else {'marca_dagua_visivel':False}),
         'formato': fmt,
         'perfil': PROFILE,
         'tema_sha256': sha(ASSETS / 'editorial-jp.css'),

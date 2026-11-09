@@ -3,10 +3,17 @@
 import argparse,csv,sys,subprocess
 from pathlib import Path
 from editorial import PROFILE, check_render
-from projeto import load,read,write,outdir,FORMATS,binary,probe
+from projeto import config,load,read,write,outdir,FORMATS,binary,probe
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--root',required=True,type=Path);ap.add_argument('--formato',choices=list(FORMATS));ap.add_argument('--video',action='store_true');ap.add_argument('--ffprobe');ap.add_argument('--ffmpeg');a=ap.parse_args();root=a.root.resolve();c,ps,scenes,sources=load(root,require_audio=a.video);fmt=a.formato or c['formato'];out=outdir(root,fmt)
+ ap=argparse.ArgumentParser();ap.add_argument('--root',required=True,type=Path);ap.add_argument('--formato',choices=list(FORMATS));ap.add_argument('--video',action='store_true');ap.add_argument('--ffprobe');ap.add_argument('--ffmpeg');a=ap.parse_args();root=a.root.resolve()
+ from estilo_video import ANIMATED
+ style=config(root).get('estilo_video')
+ if style in ANIMATED:
+  from animado import validate
+  print(validate(root,a,style))
+  return
+ c,ps,scenes,sources=load(root,require_audio=a.video);fmt=a.formato or c['formato'];out=outdir(root,fmt)
  if c['perfil_visual']==PROFILE:check_render(root,c,fmt,scenes,sources,out)
  from PIL import Image
  report={'paragrafos':len(ps),'slides':len(scenes),'figuras_referenciadas':len({str(s['figura']) for s in scenes if s['figura'] is not None}),'formato':fmt,'resolucao':FORMATS[fmt],'cobertura_roteiro':True}
@@ -34,4 +41,4 @@ def main():
  write(out/'validacao.json',report);print(report)
 if __name__=='__main__':
  try:main()
- except (ValueError,FileNotFoundError,subprocess.CalledProcessError) as e:sys.exit('ERRO: '+str(e))
+ except (ValueError,KeyError,FileNotFoundError,subprocess.CalledProcessError) as e:sys.exit('ERRO: '+str(e))

@@ -32,3 +32,7 @@ Em cada estado, declare no máximo um objeto `movimento`, por exemplo `{"tipo":"
 O PNG final e a prévia HTML mostram o estado estável. A renderização completa gera sete quadros intermediários por efeito. Ao exportar, a timeline substitui os sete primeiros quadros do intervalo pelos intermediários e mantém o PNG final. Intervalos menores que oito quadros usam corte. `render_manifest.json` associa arquivos e hashes às entradas visuais e ao formato. Após alteração de plano ou recurso, gere todos os quadros. `--somente` permite inspeção parcial e exige nova renderização completa antes de exportar.
 
 Indique `conferir_audio: true` em comparações, resultados e ressalvas cuja entrada exija conferência. Use o fluxo de alinhamento e revisão documentada. Para uma exceção de ritmo, acrescente `ritmo_justificativa` ao estado e verifique a ocorrência no relatório de sincronização. Guarde a evidência efetivamente consultada e diferencie reconhecimento local de audição perceptiva.
+
+## Marca d’água por projeto
+
+A marca JP Wealth vem ligada. Use `fluxo.py marca_dagua --root PROJETO --estado desligada` ou `--estado ligada` e rode `gerar_slides.py --root PROJETO` para atualizar os quadros. A configuração grava a escolha do usuário e preserva o caminho do logo. A assinatura visual exige render novo após a troca.

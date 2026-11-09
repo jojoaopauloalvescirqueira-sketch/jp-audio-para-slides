@@ -1,0 +1,237 @@
+{
+  "versao": 1,
+  "corpo": {
+    "cabecas": [
+      6,
+      5.5,
+      7
+    ],
+    "quadril_ao_chao": [
+      0.47,
+      0.45,
+      0.5
+    ],
+    "joelho_ao_chao": [
+      0.27,
+      0.25,
+      0.28
+    ],
+    "ombros": [
+      1.8,
+      1.6,
+      2.0
+    ],
+    "quadris": [
+      1.4,
+      1.3,
+      1.5
+    ],
+    "braco": [
+      2.5,
+      2.3,
+      2.7
+    ],
+    "mao": [
+      0.35,
+      0.3,
+      0.4
+    ],
+    "pe": [
+      0.9,
+      0.8,
+      1.0
+    ]
+  },
+  "crianca": {
+    "altura_relativa": [
+      0.65,
+      0.6,
+      0.7
+    ],
+    "cabecas": [
+      4.5,
+      4,
+      5
+    ]
+  },
+  "poses": {
+    "em_pe": {
+      "inclinacao_quadril": [
+        3,
+        2,
+        4
+      ]
+    },
+    "sentado": {
+      "altura_relativa": [
+        0.756,
+        0.72,
+        0.78
+      ],
+      "inclinacao": 24
+    },
+    "sentado_no_chao": {
+      "altura_relativa": [
+        0.54,
+        0.5,
+        0.55
+      ],
+      "inclinacao": 30
+    },
+    "ajoelhado": {
+      "altura_relativa": [
+        0.73,
+        0.7,
+        0.75
+      ],
+      "inclinacao": 14
+    },
+    "inclinado": {
+      "inclinacao": [
+        31,
+        25,
+        40
+      ]
+    },
+    "andando": {
+      "passada": [
+        0.4,
+        0.35,
+        0.45
+      ]
+    }
+  },
+  "forma": {
+    "oval_cabeca": 0.89,
+    "cintura_sobre_quadris": 0.76,
+    "ombro_insercao_h": 0.038,
+    "encaixe_quadril_h": 0.022,
+    "quadril_hinge_h": 0.034,
+    "pe_espessura_h": 0.043,
+    "altura_tornozelo_h": 0.04,
+    "folga_joelho_h": 0.008,
+    "coxa_diametros_h": [
+      0.11,
+      0.079
+    ],
+    "canela_diametros_h": [
+      0.079,
+      0.048
+    ],
+    "braco_diametros_h": [
+      0.069,
+      0.053
+    ],
+    "antebraco_diametros_h": [
+      0.053,
+      0.04
+    ],
+    "braco_fracao_superior": 0.53,
+    "pescoco_diametro_h": 0.065,
+    "pescoco_altura_h": 0.079,
+    "torso_inicio_cabeca": 1.3,
+    "passo_altura_h": 0.075,
+    "apoio_chao_h": 0.054,
+    "apoio_joelho_h": 0.0395,
+    "quadril_ajoelhado_h": 0.2
+  },
+  "expressao": {
+    "neutro": {
+      "cabeca_graus": 0,
+      "ombros_graus": 0
+    },
+    "cansado": {
+      "cabeca_graus": 11,
+      "ombros_graus": -4
+    },
+    "disposto": {
+      "cabeca_graus": -6,
+      "ombros_graus": 2
+    }
+  },
+  "objetos": {
+    "banco": {
+      "altura_h": [
+        0.253,
+        0.25,
+        0.28
+      ],
+      "profundidade_min_h": 0.2
+    },
+    "mesa": {
+      "altura_h": [
+        0.425,
+        0.4,
+        0.45
+      ]
+    },
+    "porta": {
+      "altura_h": [
+        1.175,
+        1.15,
+        1.2
+      ]
+    },
+    "simbolo_min_cabeca": 0.8,
+    "seta_traco_min_cabeca": 0.08,
+    "seta_ponta_min_cabeca": 0.3
+  },
+  "luz": {
+    "direcao_graus": 45,
+    "reducao_luminancia": [
+      0.1,
+      0.08,
+      0.12
+    ],
+    "sombra_contato": [
+      0.34,
+      0.25,
+      0.4
+    ],
+    "fundo_centro": [
+      0.08,
+      0.06,
+      0.1
+    ],
+    "contraste_figura": 4.5,
+    "contraste_texto": 7,
+    "halo": {
+      "opacidade": 0.32,
+      "quadros": 17
+    }
+  },
+  "efeitos": {
+    "intervalo_s": 3.5,
+    "max_simultaneos": 2,
+    "queda_max_quadros": 15,
+    "sombra_relativa": 0.1,
+    "limite_area_brusca": 0.10,
+    "repertorio": {
+      "virada_tipografica": {
+        "momento": "virada", "acao": "virada", "alvo": "negacao",
+        "cores": ["acento"], "duracao": [24, 40], "max_intensidade": 1, "sensivel": true
+      },
+      "foco_difuso": {
+        "momento": "transformacao", "acao": "levantar", "alvo": "agente",
+        "cores": ["acento", "osso"], "duracao": [18, 38], "max_intensidade": 0.22, "sensivel": false
+      },
+      "foco_entrega": {
+        "momento": "entrega", "acao": "fazer", "alvo": "oferta",
+        "cores": ["acento", "osso"], "duracao": [24, 44], "max_intensidade": 0.20, "sensivel": false
+      }
+    }
+  },
+  "metaforas": {
+    "verde": "agir",
+    "relogio": "esperar",
+    "setas_entrando": "receber",
+    "setas_saindo": "fazer",
+    "objeto": "o gesto chega a alguém"
+  },
+  "auditoria": {
+    "altura_tolerancia": 0.05,
+    "razao_tolerancia": 0.05,
+    "membro_delta": 0.03,
+    "escala_delta": 0.02
+  }
+}

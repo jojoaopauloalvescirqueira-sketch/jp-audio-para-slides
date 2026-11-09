@@ -53,7 +53,9 @@ try {
       }
       if(slide.classList.contains('editorial-jp')) {
         const mark=slide.querySelector('.watermark');
-        if(!mark || !mark.naturalWidth) arr.push({erro:'marca ausente'});
+        if(slide.dataset.marcaDagua==='desligada') {
+          if(mark) arr.push({erro:'marca presente com preferência desligada'});
+        } else if(!mark || !mark.naturalWidth) arr.push({erro:'marca ausente'});
         else {
           const r=mark.getBoundingClientRect();
           const width=Math.min(box.width*.09,160);

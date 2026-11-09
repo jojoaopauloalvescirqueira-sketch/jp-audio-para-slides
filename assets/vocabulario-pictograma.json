@@ -1,0 +1,78 @@
+{
+  "tipos": {
+    "figura": [
+      "andar",
+      "aparecer",
+      "destacar",
+      "levantar",
+      "mudar_cor",
+      "sentar",
+      "sumir",
+      "andar_ate",
+      "apontar",
+      "ajudar_a_levantar",
+      "abracar",
+      "pulsar"
+    ],
+    "banco": [
+      "aparecer",
+      "sumir"
+    ],
+    "relogio": [
+      "aparecer",
+      "girar",
+      "sumir"
+    ],
+    "reticencias": [
+      "aparecer",
+      "pulsar",
+      "sumir"
+    ],
+    "linha": [
+      "aparecer",
+      "desenhar",
+      "sumir",
+      "desenhar_linha",
+      "pulsar"
+    ],
+    "braco": [
+      "aparecer",
+      "desenhar",
+      "sumir",
+      "desenhar_linha",
+      "pulsar"
+    ],
+    "seta": [
+      "aparecer",
+      "desenhar",
+      "sumir",
+      "desenhar_linha",
+      "pulsar"
+    ],
+    "divisoria": [
+      "aparecer",
+      "desenhar",
+      "sumir",
+      "desenhar_linha",
+      "pulsar"
+    ],
+    "coluna": [
+      "aparecer",
+      "sumir"
+    ],
+    "texto": [
+      "anotar",
+      "aparecer",
+      "palavra",
+      "sumir",
+      "trocar_letra",
+      "contar"
+    ],
+    "objeto": [
+      "aparecer",
+      "sumir",
+      "entregar",
+      "pulsar"
+    ]
+  }
+}

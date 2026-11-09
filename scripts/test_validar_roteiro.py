@@ -45,6 +45,20 @@ class ProductionCases(unittest.TestCase):
         self.assertFalse(r['errors'])
         self.assertTrue(any('experimental' in w for w in r['warnings']))
 
+    def test_portuguese_interface_tags_need_no_custom_registration(self):
+        tags=('pausa','suavemente','devagar','com voz fraca','suspirando',
+              'com a voz embargada','rindo baixinho')
+        for tag in tags:
+            with self.subTest(tag=tag):
+                result=validate(f'[{tag}] Uma pergunta.', 'eleven_v4', 'Uma pergunta.')
+                self.assertTrue(result['spoken_text_equal_to_clean'])
+                self.assertFalse(result['errors'])
+                self.assertFalse(any('experimental' in w for w in result['warnings']))
+        unknown='[fale com lentidão] Uma pergunta.'
+        self.assertFalse(validate(unknown,'eleven_v4','Uma pergunta.')['spoken_text_equal_to_clean'])
+        self.assertTrue(validate(unknown,'eleven_v4','Uma pergunta.',
+                                 audio_tags=('fale com lentidão',))['spoken_text_equal_to_clean'])
+
     def test_qualitative_pause_is_not_given_fabricated_seconds(self):
         r = validate('[short pause] Uma pergunta.', 'eleven_v4')
         self.assertEqual(r['duration_estimate']['qualitative_pause_tags'], 1)

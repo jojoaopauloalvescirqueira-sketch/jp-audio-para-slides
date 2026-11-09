@@ -13,3 +13,13 @@ work/
 *.log
 .audio-normalizada-*/
 .render-*.mp4
+
+# Quadros, exportações de vídeo e renderizações locais
+.render/
+quadros/
+*.mp4
+
+# Projetos e evidências de produção locais
+outputs/
+/banco_de_provas/*
+!/banco_de_provas/inventario.md

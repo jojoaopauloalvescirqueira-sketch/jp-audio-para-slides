@@ -1,0 +1,7 @@
+{
+  "tipos": {
+    "imagem": ["entrar", "sair", "mover", "trocar_pose", "respirar", "piscar", "destacar", "surgir_em_grupo"],
+    "camera": ["camera", "transicao"],
+    "titulo": ["titulo_entra", "titulo_sai"]
+  }
+}

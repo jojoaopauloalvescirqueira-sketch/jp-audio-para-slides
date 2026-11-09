@@ -1,0 +1,780 @@
+{
+  "versao": 1,
+  "formato": "9:16",
+  "cenas": [
+    {
+      "id": "S01",
+      "entrada": {
+        "p": 7,
+        "trecho": "Deus não é"
+      },
+      "elementos": [
+        {
+          "id": "filete1",
+          "tipo": "linha",
+          "x": 357,
+          "y": 1105,
+          "w": 100,
+          "h": 32,
+          "pontos": [
+            12,
+            50,
+            88,
+            50
+          ],
+          "cor": "suave"
+        },
+        {
+          "id": "filete2",
+          "tipo": "linha",
+          "x": 466,
+          "y": 1105,
+          "w": 45,
+          "h": 32,
+          "pontos": [
+            12,
+            50,
+            88,
+            50
+          ],
+          "cor": "acento"
+        },
+        {
+          "id": "filete3",
+          "tipo": "linha",
+          "x": 521,
+          "y": 1105,
+          "w": 100,
+          "h": 32,
+          "pontos": [
+            12,
+            50,
+            88,
+            50
+          ],
+          "cor": "suave"
+        },
+        {
+          "id": "premissa",
+          "tipo": "texto",
+          "x": 106,
+          "y": 595,
+          "w": 760,
+          "h": 130,
+          "texto": "DEUS"
+        },
+        {
+          "id": "substantivo",
+          "tipo": "texto",
+          "x": 136,
+          "y": 752,
+          "w": 710,
+          "h": 255,
+          "texto": "AMOR",
+          "anotacao": "substantivo",
+          "visivel": false
+        },
+        {
+          "id": "risco",
+          "tipo": "linha",
+          "x": 324,
+          "y": 991,
+          "w": 320,
+          "h": 23,
+          "pontos": [
+            0,
+            50,
+            100,
+            50
+          ],
+          "cor": "acento",
+          "visivel": false
+        }
+      ],
+      "acoes": [
+        {
+          "alvo": "premissa",
+          "acao": "palavra",
+          "em": {
+            "p": 7,
+            "trecho": "não"
+          },
+          "valor": "DEUS NÃO"
+        },
+        {
+          "alvo": "premissa",
+          "acao": "palavra",
+          "em": {
+            "p": 7,
+            "trecho": "é amor"
+          },
+          "valor": "DEUS NÃO É"
+        },
+        {
+          "alvo": "substantivo",
+          "acao": "aparecer",
+          "em": {
+            "p": 7,
+            "trecho": "amor."
+          }
+        },
+        {
+          "alvo": "risco",
+          "acao": "aparecer",
+          "em": {
+            "p": 7,
+            "trecho": "amor."
+          }
+        },
+        {
+          "alvo": "risco",
+          "acao": "desenhar",
+          "em": {
+            "p": 7,
+            "trecho": "amor."
+          }
+        },
+        {
+          "alvo": "premissa",
+          "acao": "palavra",
+          "em": {
+            "p": 7,
+            "trecho": "Deus é"
+          },
+          "valor": "DEUS É"
+        },
+        {
+          "alvo": "substantivo",
+          "acao": "trocar_letra",
+          "em": {
+            "p": 7,
+            "trecho": "amar."
+          },
+          "valor": "AMAR"
+        },
+        {
+          "alvo": "substantivo",
+          "acao": "anotar",
+          "em": {
+            "p": 7,
+            "trecho": "amar."
+          },
+          "valor": "verbo"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "entrada": {
+        "p": 8,
+        "trecho": "Se Deus for amor"
+      },
+      "elementos": [
+        {
+          "id": "chao",
+          "tipo": "linha",
+          "x": 83,
+          "y": 1178,
+          "w": 786,
+          "h": 36,
+          "pontos": [
+            1,
+            50,
+            99,
+            50
+          ],
+          "cor": "suave",
+          "persistir": true,
+          "z": -3,
+          "piso": true
+        },
+        {
+          "id": "banco",
+          "tipo": "banco",
+          "x": 172,
+          "y": 1040,
+          "w": 167,
+          "h": 190,
+          "cor": "suave",
+          "z": -2
+        },
+        {
+          "id": "eu",
+          "tipo": "figura",
+          "x": 227,
+          "y": 826,
+          "w": 140,
+          "h": 386,
+          "apoio": "banco",
+          "persistir": true
+        },
+        {
+          "id": "outro",
+          "tipo": "figura",
+          "x": 724,
+          "y": 826,
+          "w": 143,
+          "h": 386,
+          "visivel": false,
+          "persistir": true,
+          "cor": "suave",
+          "estado": "ajoelhado"
+        },
+        {
+          "id": "condicao1",
+          "tipo": "texto",
+          "x": 90,
+          "y": 482,
+          "w": 792,
+          "h": 102,
+          "texto": "SE DEUS FOR AMOR…"
+        },
+        {
+          "id": "condicao2",
+          "tipo": "texto",
+          "x": 90,
+          "y": 482,
+          "w": 792,
+          "h": 102,
+          "texto": "SE DEUS FOR AMAR…",
+          "acento": "AMAR",
+          "visivel": false
+        },
+        {
+          "id": "relogio",
+          "tipo": "relogio",
+          "x": 488,
+          "y": 790,
+          "w": 122,
+          "h": 122,
+          "visivel": false
+        },
+        {
+          "id": "espera",
+          "tipo": "reticencias",
+          "x": 218,
+          "y": 732,
+          "w": 135,
+          "h": 42,
+          "visivel": false
+        },
+        {
+          "id": "braco",
+          "tipo": "braco",
+          "x": 492,
+          "y": 920,
+          "w": 250,
+          "h": 60,
+          "de": "eu",
+          "para": "outro",
+          "visivel": false,
+          "cor": "acento",
+          "z": 2
+        }
+      ],
+      "acoes": [
+        {
+          "alvo": "chao",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "Se Deus for amor"
+          }
+        },
+        {
+          "alvo": "eu",
+          "acao": "sentar",
+          "em": {
+            "p": 8,
+            "trecho": "sento"
+          }
+        },
+        {
+          "alvo": "relogio",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "espero"
+          }
+        },
+        {
+          "alvo": "relogio",
+          "acao": "girar",
+          "em": {
+            "p": 8,
+            "trecho": "espero"
+          }
+        },
+        {
+          "alvo": "espera",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "espero"
+          }
+        },
+        {
+          "alvo": "espera",
+          "acao": "pulsar",
+          "em": {
+            "p": 8,
+            "trecho": "espero"
+          }
+        },
+        {
+          "alvo": "condicao1",
+          "acao": "sumir",
+          "em": {
+            "p": 8,
+            "trecho": "Se Deus for amar"
+          },
+          "grupo": "virada_texto"
+        },
+        {
+          "alvo": "relogio",
+          "acao": "sumir",
+          "em": {
+            "p": 8,
+            "trecho": "Se Deus for amar"
+          },
+          "grupo": "virada_pessoas"
+        },
+        {
+          "alvo": "espera",
+          "acao": "sumir",
+          "em": {
+            "p": 8,
+            "trecho": "Se Deus for amar"
+          },
+          "grupo": "virada_pessoas"
+        },
+        {
+          "alvo": "condicao2",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "Se Deus for amar"
+          },
+          "grupo": "virada_texto"
+        },
+        {
+          "alvo": "outro",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "Se Deus for amar"
+          },
+          "grupo": "virada_pessoas"
+        },
+        {
+          "alvo": "eu",
+          "acao": "levantar",
+          "em": {
+            "p": 8,
+            "trecho": "levanto"
+          }
+        },
+        {
+          "alvo": "eu",
+          "acao": "mudar_cor",
+          "em": {
+            "p": 8,
+            "trecho": "levanto"
+          },
+          "valor": "acento"
+        },
+        {
+          "alvo": "eu",
+          "acao": "andar_ate",
+          "em": {
+            "p": 8,
+            "trecho": "e pratico"
+          },
+          "valor": "outro",
+          "fim_em": {
+            "p": 8,
+            "trecho": "pratico"
+          }
+        },
+        {
+          "alvo": "braco",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "pratico"
+          },
+          "grupo": "gesto"
+        },
+        {
+          "alvo": "braco",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "pratico"
+          },
+          "grupo": "gesto"
+        },
+        {
+          "alvo": "eu",
+          "acao": "destacar",
+          "em": {
+            "p": 8,
+            "trecho": "levanto"
+          }
+        },
+        {
+          "alvo": "outro",
+          "acao": "levantar",
+          "em": {
+            "p": 8,
+            "trecho": "pratico"
+          },
+          "grupo": "gesto"
+        },
+        {
+          "alvo": "outro",
+          "acao": "mudar_cor",
+          "em": {
+            "p": 8,
+            "trecho": "pratico"
+          },
+          "valor": "osso",
+          "grupo": "gesto"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "entrada": {
+        "p": 8,
+        "trecho": "Amor, a gente recebe"
+      },
+      "elementos": [
+        {
+          "id": "chao",
+          "tipo": "linha",
+          "x": 83,
+          "y": 1178,
+          "w": 786,
+          "h": 36,
+          "pontos": [
+            1,
+            50,
+            99,
+            50
+          ],
+          "cor": "suave",
+          "persistir": true,
+          "z": -3,
+          "piso": true
+        },
+        {
+          "id": "divisoria",
+          "tipo": "divisoria",
+          "x": 475,
+          "y": 667,
+          "w": 14,
+          "h": 490,
+          "pontos": [
+            50,
+            0,
+            50,
+            100
+          ],
+          "cor": "suave"
+        },
+        {
+          "id": "eu",
+          "tipo": "figura",
+          "x": 206,
+          "y": 879,
+          "w": 139,
+          "h": 333,
+          "persistir": true
+        },
+        {
+          "id": "outro",
+          "tipo": "figura",
+          "x": 640,
+          "y": 879,
+          "w": 139,
+          "h": 333,
+          "persistir": true,
+          "cor": "acento"
+        },
+        {
+          "id": "rotulo_amor",
+          "tipo": "texto",
+          "x": 112,
+          "y": 592,
+          "w": 322,
+          "h": 117,
+          "texto": "AMOR"
+        },
+        {
+          "id": "rotulo_amar",
+          "tipo": "texto",
+          "x": 545,
+          "y": 592,
+          "w": 322,
+          "h": 117,
+          "texto": "AMAR",
+          "cor": "acento",
+          "visivel": false
+        },
+        {
+          "id": "recebe",
+          "tipo": "texto",
+          "x": 94,
+          "y": 1260,
+          "w": 360,
+          "h": 55,
+          "texto": "A GENTE RECEBE",
+          "visivel": false,
+          "estilo_texto": "auxiliar",
+          "legenda_de": "eu"
+        },
+        {
+          "id": "faz",
+          "tipo": "texto",
+          "x": 532,
+          "y": 1260,
+          "w": 360,
+          "h": 55,
+          "texto": "A GENTE FAZ",
+          "cor": "acento",
+          "visivel": false,
+          "estilo_texto": "auxiliar",
+          "legenda_de": "outro"
+        },
+        {
+          "id": "recebe1",
+          "tipo": "seta",
+          "x": 155,
+          "y": 738,
+          "w": 70,
+          "h": 104,
+          "pontos": [
+            10,
+            5,
+            88,
+            92
+          ],
+          "visivel": false
+        },
+        {
+          "id": "recebe2",
+          "tipo": "seta",
+          "x": 239,
+          "y": 738,
+          "w": 70,
+          "h": 104,
+          "pontos": [
+            50,
+            0,
+            50,
+            94
+          ],
+          "visivel": false
+        },
+        {
+          "id": "recebe3",
+          "tipo": "seta",
+          "x": 323,
+          "y": 738,
+          "w": 70,
+          "h": 104,
+          "pontos": [
+            90,
+            5,
+            12,
+            92
+          ],
+          "visivel": false
+        },
+        {
+          "id": "faz1",
+          "tipo": "seta",
+          "x": 587,
+          "y": 738,
+          "w": 70,
+          "h": 104,
+          "pontos": [
+            88,
+            92,
+            10,
+            5
+          ],
+          "visivel": false,
+          "cor": "acento"
+        },
+        {
+          "id": "faz2",
+          "tipo": "seta",
+          "x": 671,
+          "y": 738,
+          "w": 70,
+          "h": 104,
+          "pontos": [
+            50,
+            94,
+            50,
+            0
+          ],
+          "visivel": false,
+          "cor": "acento"
+        },
+        {
+          "id": "faz3",
+          "tipo": "seta",
+          "x": 755,
+          "y": 738,
+          "w": 70,
+          "h": 104,
+          "pontos": [
+            12,
+            92,
+            90,
+            5
+          ],
+          "visivel": false,
+          "cor": "acento"
+        }
+      ],
+      "acoes": [
+        {
+          "alvo": "rotulo_amar",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "Amar, a gente faz"
+          }
+        },
+        {
+          "alvo": "recebe",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          }
+        },
+        {
+          "alvo": "recebe1",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          },
+          "grupo": "setas_recebe"
+        },
+        {
+          "alvo": "recebe1",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          },
+          "grupo": "setas_recebe"
+        },
+        {
+          "alvo": "recebe2",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          },
+          "grupo": "setas_recebe"
+        },
+        {
+          "alvo": "recebe2",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          },
+          "grupo": "setas_recebe"
+        },
+        {
+          "alvo": "recebe3",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          },
+          "grupo": "setas_recebe"
+        },
+        {
+          "alvo": "recebe3",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "recebe"
+          },
+          "grupo": "setas_recebe"
+        },
+        {
+          "alvo": "faz",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          }
+        },
+        {
+          "alvo": "faz1",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          },
+          "grupo": "setas_faz"
+        },
+        {
+          "alvo": "faz1",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          },
+          "grupo": "setas_faz"
+        },
+        {
+          "alvo": "faz2",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          },
+          "grupo": "setas_faz"
+        },
+        {
+          "alvo": "faz2",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          },
+          "grupo": "setas_faz"
+        },
+        {
+          "alvo": "faz3",
+          "acao": "aparecer",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          },
+          "grupo": "setas_faz"
+        },
+        {
+          "alvo": "faz3",
+          "acao": "desenhar",
+          "em": {
+            "p": 8,
+            "trecho": "faz"
+          },
+          "grupo": "setas_faz"
+        }
+      ]
+    }
+  ]
+}

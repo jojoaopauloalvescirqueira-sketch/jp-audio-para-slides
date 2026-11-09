@@ -1,5 +1,6 @@
 """Registro das escolhas do diretor de animação e do usuário."""
 from datetime import datetime, timezone
+import math
 import re
 
 from direcao import update_section
@@ -12,6 +13,7 @@ PALETTES = {
 OPTIONS = {
     'criacao': ('diretor', 'colaborativa', 'usuario'),
     'tom': ('sobrio', 'didatico', 'energetico'),
+    'densidade_animacao': ('moderada', 'abundante', 'maxima'),
     'metafora': ('literal', 'ilustrativa', 'metaforica'),
     'personagens': ('genericos', 'papeis', 'nomes'),
     'texto': ('palavras', 'frases', 'nenhum'),
@@ -20,14 +22,14 @@ OPTIONS = {
     'aprovacao': ('storyboard', 'direta'),
     'marca': ('sim', 'nao'),
 }
-DEFAULTS = dict(criacao='diretor', tom='didatico', metafora='ilustrativa', personagens='genericos',
+DEFAULTS = dict(criacao='diretor', tom='didatico', densidade_animacao='abundante', metafora='ilustrativa', personagens='genericos',
                 texto='palavras', legenda='sim', paleta='escura', aprovacao='storyboard', marca='nao')
-FIELDS = (*OPTIONS, 'cores', 'nomes_autorizados', 'descricoes')
+FIELDS = (*OPTIONS, 'cores', 'nomes_autorizados', 'descricoes', 'cauda_s')
 LABELS = {
     'criacao': 'Criação de cenas', 'tom': 'Tom visual', 'metafora': 'Metáfora',
-    'personagens': 'Personagens', 'texto': 'Texto na tela', 'legenda': 'Legenda palavra a palavra',
+    'densidade_animacao': 'Densidade de animação', 'personagens': 'Personagens', 'texto': 'Texto na tela', 'legenda': 'Legenda palavra a palavra',
     'paleta': 'Paleta', 'aprovacao': 'Aprovação', 'marca': 'Marca d’água', 'cores': 'Cores personalizadas',
-    'nomes_autorizados': 'Nomes autorizados', 'descricoes': 'Descrições fornecidas',
+    'cauda_s': 'Cauda de leitura em segundos', 'nomes_autorizados': 'Nomes autorizados', 'descricoes': 'Descrições fornecidas',
 }
 
 
@@ -35,6 +37,9 @@ def checked_value(field, value):
     if field in OPTIONS:
         if value not in OPTIONS[field]:
             raise ValueError(f'{field}: escolha fora das opções.')
+    elif field == 'cauda_s':
+        if type(value) not in (int, float) or not math.isfinite(value) or not 0 <= value <= 10:
+            raise ValueError('A cauda deve ter entre zero e dez segundos.')
     elif field == 'cores':
         if not isinstance(value, dict) or value.keys() != PALETTES['escura'].keys() or not all(
                 isinstance(color, str) and re.fullmatch(r'#[0-9a-fA-F]{6}', color) for color in value.values()):
@@ -82,18 +87,20 @@ def record(root, choices, assume=False):
             value = ', '.join(value)
         elif isinstance(value, dict):
             value = ', '.join(f'{key} {color}' for key, color in value.items())
-        lines.append(f'- **{LABELS[field]}** — {" ".join(value.split())} ({entry["origem"]}).')
+        lines.append(f'- **{LABELS[field]}** — {" ".join(str(value).split())} ({entry["origem"]}).')
     update_section(root / 'material/guia_producao.md', '## Direção visual', '\n'.join(lines))
     return current
 
 
 def settings(project):
     choices = project.get('direcao_visual', {})
-    missing = set(OPTIONS) - choices.keys() - {'marca'}
+    missing = set(OPTIONS) - choices.keys() - {'marca', 'densidade_animacao'}
     if missing:
         raise ValueError('Complete a direção visual antes de propor cenas: ' + ', '.join(sorted(missing)))
     values = {key: checked_value(key, entry['valor']) for key, entry in choices.items()}
     values.setdefault('marca', 'nao')
+    values.setdefault('densidade_animacao', 'abundante')
+    values.setdefault('cauda_s', 1.2)
     if values['paleta'] == 'personalizada' and 'cores' not in values:
         raise ValueError('Informe os tokens da paleta personalizada.')
     if values['criacao'] != 'diretor' and 'descricoes' not in values:

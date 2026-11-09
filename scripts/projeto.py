@@ -46,8 +46,10 @@ def config(root):
  c=read(Path(root)/'projeto.json')
  if not c.get('titulo','').strip():raise ValueError('Título do projeto ausente.')
  c.setdefault('autor','');c.setdefault('subtitulo','');c.setdefault('marca','');c.setdefault('cta_rotulo','');c.setdefault('cta_url','');c.setdefault('capa','');c.setdefault('formato','16:9');c.setdefault('idioma','pt');c.setdefault('fps',30)
- if c.get('estilo_video') in {'editorial_jp','legado'}:
-  c['perfil_visual']=c['estilo_video']
+ if c.get('estilo_video') not in (None,'editorial_jp','pictograma','ilustrado','legado'):
+  raise ValueError('Estilo de vídeo desconhecido.')
+ if c.get('estilo_video'):
+  c['perfil_visual']=PROFILE if c['estilo_video']==PROFILE else 'legado'
  c.setdefault('perfil_visual','legado')
  if c['perfil_visual'] not in {'legado',PROFILE}:raise ValueError('Perfil visual desconhecido.')
  if c['formato'] not in FORMATS:raise ValueError('Formato desconhecido.')
@@ -63,14 +65,15 @@ def audio_identity(root,c,ps):
 
 def load(root,require_audio=True):
  root=Path(root);c=config(root);ps=read(root/'material/paragrafos.json');scenes=read(root/'material/slides.json');sources=read(root/'material/fontes_figuras.json')
- if c.get('estilo_video')=='pictograma':
-  raise ValueError('Para este projeto, use scripts/pictograma.py.')
  if c.get('roteiro_sha256'):
   from fala import paragraphs,normalize
   canonical=root/'material/roteiro_limpo.txt'
   if sha(canonical)!=c['roteiro_sha256'] or [normalize(p['texto']) for p in ps]!=[normalize(p) for p in paragraphs(canonical.read_text(encoding='utf-8'))]:raise ValueError('Fala canônica alterada ou parágrafos incompatíveis; revise o projeto.')
  if not ps or not scenes:raise ValueError('Roteiro ou plano de slides vazio; prepare as cenas antes de gerar.')
- if [p['id'] for p in ps]!=[f'P{i:03}' for i in range(1,len(ps)+1)]:raise ValueError('Parágrafos precisam ter IDs consecutivos.')
+ start=1
+ if c.get('estilo_video') in {'pictograma','ilustrado'} and re.fullmatch(r'P\d{3,}',ps[0]['id']):
+  start=int(ps[0]['id'][1:])
+ if [p['id'] for p in ps]!=[f'P{i:03}' for i in range(start,start+len(ps))]:raise ValueError('Parágrafos precisam ter IDs consecutivos.')
  if require_audio:audio_files(audio(root,c),len(ps))
  offset=[0]
  for p in ps:

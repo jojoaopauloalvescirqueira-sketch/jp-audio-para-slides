@@ -1,0 +1,103 @@
+{
+  "virada": {
+    "chao": 1060,
+    "foco": 478,
+    "tamanho_cabecalho": 75,
+    "largura_sujeito": 265,
+    "largura_copula": 125,
+    "largura_negacao": 190,
+    "largura_palavra": 440,
+    "tamanho_palavra": 205,
+    "saida_negacao_x": 96,
+    "varredura": {
+      "esquerda": 90,
+      "recuo": 220,
+      "y": 1014,
+      "extensao": 960
+    },
+    "risco": [
+      -76,
+      -28,
+      152,
+      7
+    ],
+    "largura_classe": 385,
+    "tamanho_classe": 50
+  },
+  "atuacao": {
+    "pontos": {
+      "x": 640,
+      "y": 924,
+      "passo": 57
+    },
+    "divisoria": [
+      527,
+      1181
+    ],
+    "receber": [
+      675,
+      447,
+      295,
+      62
+    ],
+    "oferecer": [
+      286,
+      447,
+      275,
+      62
+    ],
+    "espera": [
+      685,
+      516,
+      350,
+      63
+    ],
+    "acao": [
+      748,
+      506,
+      320,
+      67
+    ],
+    "sombras_banco": [
+      83,
+      141
+    ],
+    "chao": [
+      45,
+      14,
+      875,
+      885
+    ],
+    "pernas_banco": [
+      0.15,
+      0.49
+    ],
+    "papeis": [
+      "agente",
+      "outro"
+    ],
+    "arco": 111,
+    "chegada": [
+      128,
+      -141
+    ],
+    "seta": [
+      10,
+      -49,
+      -22,
+      -100
+    ],
+    "palco": [
+      1080,
+      1920
+    ],
+    "centro": [
+      480,
+      960
+    ],
+    "centro_horizontal": [
+      960,
+      540
+    ]
+  }
+}

@@ -2,14 +2,18 @@
 name: jp-roteirizacao-e-slides
 description: Transformar artigo autoral em roteiro didático e preparar roteiro pronto, com ou sem áudio, para slides, apresentação HTML e vídeo sincronizado no padrão visual JP. Use para artigo → roteiro → áudio fornecido → slides e vídeo; não para escrever artigo a partir de tema, gerar voz ou publicar automaticamente.
 metadata:
-  version: "1.6.0"
+  version: "1.8.0"
 ---
 
 # JP Roteirização e Slides
 
 Antes de iniciar, leia [apresentação e encaminhamento](references/apresentacao.md). Apresente a skill e siga o menu ou a entrada direta conforme o pedido e os materiais fornecidos.
 
-Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Usar o perfil Editorial JP para ligar a composição e o ritmo às ideias narradas. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
+Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Ligar a composição e o ritmo às ideias narradas no estilo escolhido. A narração vem exclusivamente do áudio fornecido pelo usuário. Sem esse arquivo, entregue só a prévia estimada, sem MP4. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
+
+Após o diretor de animação, siga a [direção de luz e efeitos](references/diretor_efeitos.md) quando houver um plano de efeitos.
+
+No Pictograma, consulte o [catálogo de erros conhecidos](references/erros_conhecidos.md). Registre todo erro novo com exemplo, regra, checagem e teste antes de corrigir. Em planos declarativos, use a [liberação com auditoria e parecer](references/pictograma.md#liberação-do-vídeo-declarativo). Revise a atuação em sequência e registre os quadros do parecer.
 
 ## Escolher a entrada e concluir a etapa disponível
 
@@ -17,7 +21,7 @@ Localizar os materiais já fornecidos, sem pedir novamente. Tratar instruções 
 
 1. **Artigo ou fonte textual fornecida:** ler a fonte integral e acertar a [direção narrativa](references/direcao_narrativa.md) antes de redigir. Reunir apenas as escolhas pendentes em uma mensagem com até sete perguntas numeradas, recomendações e exemplos da fonte. Aguardar as escolhas ou usar os padrões quando houver delegação explícita. Registrar a direção com `fluxo.py direcao`, aplicar [roteirização](references/roteirizacao.md) e criar o [pacote editorial](references/roteiros.md). O roteiro pode ser concluído antes de receber o áudio. Para fonte diferente de artigo, conferir fidelidade contra o material fornecido e identificar lacunas.
 2. **Roteiro pronto, sem áudio:** preservar integralmente a fala, registrar versões correspondentes e preparar mapa, fontes e plano visual. Gerar prévia/PNGs se o plano estiver pronto. Registrar **áudio pendente**; solicitar o áudio somente ao concluir a etapa disponível. Não reescrever a fala fornecida.
-3. **Áudio e roteiro prontos:** entrar diretamente no fluxo visual atual com `scripts/preparar.py`; roteirização não é pré-requisito adicional. Aceitar arquivo único ou P001…PNNN. Não regravar nem completar fala ausente.
+3. **Áudio e roteiro prontos:** entrar diretamente no fluxo visual; roteirização não é pré-requisito adicional. Aceitar arquivo único ou P001…PNNN. Não regravar nem completar fala ausente.
 
 Nos percursos sem áudio, incluir a [escolha de quem posiciona as tags](references/direcao_narrativa.md#tags-de-voz) quando estiver pendente. No modo skill, delegar a proposta ao [diretor vocal](references/direcao_vocal.md) e usar `fluxo.py aplicar_tags` antes de entregar o Studio. Com áudio pronto, seguir a produção e as verificações de retomada.
 
@@ -29,7 +33,13 @@ Consultar [perfil ElevenLabs](references/elevenlabs.md) e documentação oficial
 
 Descobrir dependências no ambiente; no Codex desktop, consultar o runtime empacotado quando disponível. Não presumir caminhos da máquina original. Todos os scripts recebem a pasta do projeto; ver também [contrato visual](references/projeto.md).
 
-Ao planejar ou produzir vídeo, resolva o [estilo de vídeo](references/pictograma.md#escolher-o-estilo-antes-de-produzir). Para Pictograma, siga as perguntas do [diretor de animação](references/diretor_animacao.md) antes das cenas e use o fluxo próprio da referência.
+Ao planejar ou produzir vídeo, resolva o [estilo de vídeo](references/apresentacao.md#escolha-do-estilo-de-vídeo) antes do plano.
+- **Editorial JP** — siga o [perfil de slides](references/editorial-jp.md).
+- **Pictograma** — use a [biblioteca SVG](references/pictograma.md) e as perguntas do [diretor de animação](references/diretor_animacao.md). Para o piloto do Godot, verifique o aplicativo [fora do iCloud](references/godot.md).
+- **Ilustrado** — use as [camadas PNG fornecidas pelo usuário](references/ilustrado.md) e as perguntas do [diretor de arte](references/diretor_arte.md).
+- **Legado** — mantenha a [composição antiga](references/visual.md).
+
+No percurso animado, aplique as aprovações e o plano do estilo escolhido. Use os comandos de cena, sincronização e entrega animada das referências. O planejamento estático abaixo vale para Editorial JP e Legado.
 
 ## Plano editorial e visuais
 
@@ -41,7 +51,7 @@ Ler integralmente a fala e os complementos relevantes. Manter a ordem da narraç
 - Figuras: buscar os arquivos originais pelas referências fornecidas e conferir correspondência com a fala. Preservar eixos, períodos, notas, crédito e qualificações como projeção, hipótese ou evidência incompleta. Não substituir uma série histórica por uma versão atualizada.
 - Sem fontes para gráficos, usar os conceitos e contas que a fala já apresenta. Não inventar séries nem imagens que pareçam evidência. Fontes inacessíveis ou figuras inadequadas devem ser explicitadas, sem bloquear os demais slides.
 
-Aplicar [direção visual](references/visual.md) e abrir a amostra em `assets/referencia-visual.jpg` para composição, não para copiar conteúdo. Manter autoria e CTA do projeto. Usar a marca d’água JP Wealth do perfil no canto inferior direito. Consultar fontes e artigo quando necessários, sem refazer pesquisa factual não solicitada nem intensificar as afirmações do autor.
+Aplicar [direção visual](references/visual.md) e abrir a amostra em `assets/referencia-visual.jpg` para composição, não para copiar conteúdo. Manter autoria e CTA do projeto. No Editorial JP, usar a marca d’água JP Wealth no canto inferior direito. Consultar fontes e artigo quando necessários, sem refazer pesquisa factual não solicitada nem intensificar as afirmações do autor.
 
 ## Sincronia e exportação
 
@@ -51,7 +61,7 @@ Seguir [sincronização](references/sincronizacao.md). Para áudio único, recon
 
 Conferir as entradas sinalizadas no contexto do áudio. As trocas internas do perfil Editorial JP exigem marcações por cena. Revisar cenas abaixo de 2 s ou acima de 12 s e documentar as exceções. Documentar correções ou confirmação nas marcações; não preencher aprovações em lote apenas para destravar a exportação. Correspondência textual não é precisão acústica. Distinguir claramente timestamps reconhecidos, variações lexicais e posições interpoladas.
 
-Por padrão, gerar PNGs, HTML e MP4 em **16:9, 1920×1080**, mantendo a composição interna **21:9, 2520×1080**, proporcional e centralizada, com preenchimento `#FAFAF7`. Projetos novos selecionam Editorial JP; projetos sem perfil usam a composição legada. Alternativas explícitas: 21:9 direto ou 9:16 com reorganização; não deformar gráficos nem cortar conteúdo para preencher a tela.
+Para slides, gerar PNGs por padrão, HTML e MP4 em **16:9, 1920×1080**, mantendo a composição interna **21:9, 2520×1080**, proporcional e centralizada, com preenchimento `#FAFAF7`. Projetos antigos sem perfil preservam a composição legada. Alternativas explícitas: 21:9 direto ou 9:16 com reorganização; não deformar gráficos nem cortar conteúdo para preencher a tela.
 
 Gerar via HTML/CSS e Playwright. Usar movimento breve apenas em elementos ligados a uma entrada falada. A versão estável de cada estado fica no PNG e na prévia HTML. A timeline do MP4 incorpora os quadros intermediários sem alterar as durações. Para o vídeo, usar H.264, 30 fps, preset `veryfast`, áudio AAC ou cópia de AAC compatível. Preservar o original da narração. Na exportação com trilha, codificar a mixagem em AAC e registrar a faixa, o volume e a repetição. Projetos antigos sem trilha ainda aceitam cópia de AAC compatível. Exportar em arquivo temporário exclusivo, verificar metadados e decodificação, e somente então substituir a saída final. Não sobrescrever a única cópia dos insumos.
 
@@ -59,6 +69,6 @@ Gerar via HTML/CSS e Playwright. Usar movimento breve apenas em elementos ligado
 
 Executar `scripts/validar.py` e a conferência de [entregas](references/entregas.md). Cobrir o roteiro inteiro, sem lacunas ou duplicação de palavras; não confundir vários slides no mesmo parágrafo com sobreposição de tempo. Conferir números, título, fontes, recortes e legibilidade. Revisar a montagem, os slides densos, as contas e cinco amostras aleatórias, ou todos se houver menos de cinco.
 
-Entregar **vídeo, PNGs, HTML navegável com texto e áudio, manifest estimado, timeline medida, fontes e scripts reproduzíveis**, normalmente em ZIP. Os materiais permitem gerar novamente sem depender deste chat ou da instalação da skill. Não incluir PPTX por padrão. Não empacotar caches, modelos ASR ou executáveis do ambiente.
+Entregar o pacote do estilo escolhido, com HTML navegável, vídeo, timeline medida, fontes e scripts reproduzíveis quando disponíveis. Para slides, incluir PNGs e manifest estimado. Os materiais permitem gerar novamente sem depender deste chat ou da instalação da skill. Não incluir PPTX por padrão. Não empacotar caches, modelos ASR ou executáveis do ambiente.
 
 Informar o que foi efetivamente testado e qualquer limite relevante, especialmente sincronização ainda aproximada, baixa resolução de fontes ou ausência de audição integral. Para entradas sem áudio, entregar as etapas concluídas e identificar o áudio pendente, sem alegar sincronia. A skill é independente de outras skills e não autoriza publicação ou ações em contas externas.

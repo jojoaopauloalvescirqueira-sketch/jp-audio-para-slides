@@ -16,7 +16,7 @@ Entradas sem áudio e retomada usam [fluxo de roteiros](roteiros.md). Os contrat
 
 ## Arquivos
 
-`projeto.json`: `titulo`, `subtitulo`, `autor`, `marca`, `cta_rotulo`, `cta_url`, `capa` (caminho relativo opcional), `audio` (arquivo ou pasta relativa; null antes da entrega do áudio), `formato` (16:9 padrão), `idioma` (pt padrão), `fps` (30). O campo `estilo_video` guarda `editorial_jp`, `pictograma` ou `legado` após a escolha. Projetos novos começam com null para indicar escolha pendente. Ausência do campo preserva o perfil implícito em projetos anteriores. `direcao_visual` registra, por escolha, `valor`, `origem` e `data` para o [Pictograma](pictograma.md). Campos de autoria, capa e CTA vazios são válidos; não os preencher com dados de outro projeto. `audio_previa` é usado quando o sincronizador unifica uma pasta de áudios.
+`projeto.json`: `titulo`, `subtitulo`, `autor`, `marca`, `cta_rotulo`, `cta_url`, `capa` (caminho relativo opcional), `audio` (arquivo ou pasta relativa; null antes da entrega do áudio), `formato` (16:9 padrão), `idioma` (pt padrão), `fps` (30). O campo `estilo_video` guarda `editorial_jp`, `pictograma`, `ilustrado` ou `legado` após a escolha. Projetos novos começam com null para indicar escolha pendente. Ausência do campo preserva o perfil implícito em projetos anteriores. `direcao_visual` registra, por escolha, `valor`, `origem` e `data` para o [Pictograma](pictograma.md) ou [Ilustrado](ilustrado.md). `origem_estilo_video` identifica a origem da escolha. Trocas de estilo com plano existente exigem confirmação e arquivam o material anterior sob `material/historico/`. Cada estilo animado valida seu plano e gera `slides.json` para o alinhador. Campos de autoria, capa e CTA vazios são válidos; não os preencher com dados de outro projeto. `audio_previa` é usado quando o sincronizador unifica uma pasta de áudios.
 
 `material/paragrafos.json`: lista de objetos `{"id":"P001","texto":"fala integral"}`. Preservar a segmentação do roteiro original. Se a fala estiver em MD ou contiver metadados, separar editorialmente fala e instruções antes de numerar; não presumir que todo título ou tabela de produção é falado.
 
@@ -52,3 +52,7 @@ python3 "$SKILL/scripts/gerar_slides.py" --root "$PROJETO" --formato 9:16
 Usar `--html-only` para atualizar a prévia depois do alinhamento sem recriar PNGs. Formato padrão grava em slides/; alternativas em slides-21x9/ e slides-9x16/. O renderizador interrompe a geração quando encontra problemas geométricos e registra o diagnóstico para correção.
 
 Reconstruir o plano de aula e mapa de parágrafos em material/ quando não forem fornecidos. Seus nomes e quantidade de blocos são livres; os IDs em slides.json devem manter rastreabilidade.
+
+### Privacidade da legenda Pictograma
+
+Use `pessoas_privadas` como lista de nomes a bloquear em qualquer texto visível. Em `substituicoes_legenda`, registre `original`, `substituto`, `motivo`, `origem: usuario` e `data` para cada expressão autorizada. A substituição preserva o número de palavras e os quadros do áudio. A fala, as âncoras e o alinhamento permanecem canônicos.

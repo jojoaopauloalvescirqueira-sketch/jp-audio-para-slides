@@ -70,7 +70,7 @@ def _inspect(root):
     output = outdir(root, fmt)
     video = root / ('video.mp4' if fmt == '16:9' else f"video-{fmt.replace(':', 'x')}.mp4")
     next_step = _next_step(material, output, video, paragraphs, scenes, audio, recorded_audio)
-    pictogram_artifacts = []
+    animated_artifacts = []
     if project.get('estilo_video') == 'pictograma':
         plan = material / 'cenas_pictograma.json'
         board = material / 'storyboard_pictograma.json'
@@ -85,12 +85,58 @@ def _inspect(root):
             rendered = root / ('pictograma-' + fmt.replace(':', 'x')) / 'video.mp4'
             next_step = ('Retomar — revisar e entregar o Pictograma.' if rendered.is_file()
                          else 'Retomar — alinhar as palavras e renderizar o Pictograma.')
-        pictogram_artifacts = [plan, board, approval]
+        animated_artifacts = [plan, board, approval]
         for format_key in ('9x16', '16x9'):
             folder = root / ('pictograma-' + format_key)
-            pictogram_artifacts.extend(folder / name for name in (
+            animated_artifacts.extend(folder / name for name in (
                 'apresentacao.html', 'timeline_pictograma.json', 'video.mp4', 'storyboard/index.html'))
-    activity = [root / 'projeto.json', *audio, *pictogram_artifacts]
+    if project.get('estilo_video') == 'ilustrado' and paragraphs:
+        folder = material / 'ilustrado'
+        plan = material / 'cenas_ilustrado.json'
+        status = folder / 'assets.json'
+        prompts = folder / 'prompts_imagens.json'
+        board = folder / 'aprovacao_storyboard.json'
+        bible = folder / 'aprovacao_biblia.json'
+        output = root / 'ilustrado' / fmt.replace(':','x')
+        animated_artifacts = [plan, status, prompts, board, bible, folder/'storyboard.md',
+                              folder/'biblia.json', folder/'elenco.json', folder/'cenarios.json',
+                              root/'ilustrado/folha_contato.html']
+        for key in ('9x16','16x9'):
+            animated_artifacts.extend(root/'ilustrado'/key/name for name in
+                                      ('apresentacao.html','timeline_ilustrado.json','video.mp4','validacao.json'))
+        if not project.get('direcao_visual'):
+            next_step = 'Retomar — definir a direção de arte.'
+        elif not (folder/'biblia.json').is_file():
+            next_step = 'Retomar — preparar a bíblia visual e o elenco.'
+        elif not bible.is_file():
+            next_step = 'Retomar — aprovar a bíblia visual.'
+        elif not plan.is_file():
+            next_step = 'Retomar — preparar o storyboard textual.'
+        elif not board.is_file() and project['direcao_visual'].get('storyboard',{}).get('valor')!='direto':
+            next_step = 'Retomar — aprovar o storyboard textual.'
+        elif not prompts.is_file():
+            next_step = 'Retomar — gerar os prompts de imagens.'
+        else:
+            requested = read(prompts)['prompts']
+            inventory = read(status)['assets'] if status.is_file() else []
+            by_id = {row['id']:row for row in inventory}
+            missing = []
+            for request in requested:
+                row = by_id.get(request['id'],{})
+                if (row.get('status') not in ('recebida','aprovada')
+                        or row.get('prompt_sha256') != request['prompt_sha256']
+                        or not (folder/'imagens'/request['arquivo']).is_file()):
+                    missing.append(request['id'])
+            if missing:
+                next_step = f'Retomar — faltam {len(missing)} imagens: '+', '.join(missing)+'.'
+            elif any(row['status']=='recebida' for row in inventory):
+                next_step = 'Retomar — aprovar a folha de contato.'
+            elif not audio:
+                next_step = 'Retomar — localizar ou completar o áudio registrado.' if recorded_audio else 'Retomar — falta o áudio.'
+            else:
+                next_step = ('Retomar — revisar e entregar o Ilustrado.' if (output/'video.mp4').is_file()
+                             else 'Retomar — alinhar as palavras e renderizar o Ilustrado.')
+    activity = [root / 'projeto.json', *audio, *animated_artifacts]
     activity.extend(material / name for name in (
         'roteiro_limpo.txt', 'roteiro_studio.txt', 'guia_producao.md', 'mapa_didatico.md',
         'fidelidade.md', 'paragrafos.json', 'slides.json', 'fontes_figuras.json',
