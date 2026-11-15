@@ -19,6 +19,12 @@ Antes do áudio, entregar os materiais de [roteirização](roteiros.md), planeja
 
 Inclua narração, fala canônica, prévia HTML, plano, storyboard, timeline, MP4, referências e scripts. No Pictograma, inclua o storyboard de quadros-chave e as amostras finais. No Ilustrado, inclua a bíblia, elenco, cenários, prompts, inventário, PNGs aprovados, folha de contato, revisões e `FONTES.md`. Mantenha os caminhos relativos. Exclua do ZIP as sequências de renderização (`.render/quadros/` e `ilustrado/<formato>/quadros/`) e caches. Os PNGs de origem e os quadros-chave para revisão fazem parte da entrega.
 
+## Thumbnail de publicação
+
+Quando a entrega incluir uma [thumbnail JP Wealth](thumbnail_jp_wealth.md), use `thumbnail.png` ou `thumbnail.jpg` na raiz da entrega. Inclua o arquivo no ZIP quando houver. Registre no `LEIAME.md` o caminho relativo, o destino, a frase usada e uma justificativa breve do conceito. O caminho da imagem de abertura continua no campo `capa` do projeto.
+
+Em retomadas, confira se a thumbnail registrada ainda existe e corresponde à tese e ao destino atuais. Reuse-a se estiver adequada. No fechamento, abra a exportação, confira o formato e a resolução, inspecione a grafia e a leitura reduzida e verifique se o arquivo do ZIP corresponde ao entregue. Se faltar geração de imagem, registre a pendência no guia e inclua o conceito, a frase e o prompt disponíveis.
+
 ## Conferência
 
 ```sh
