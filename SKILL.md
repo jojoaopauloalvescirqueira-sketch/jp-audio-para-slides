@@ -1,6 +1,6 @@
 ---
 name: jp-roteirizacao-e-slides
-description: Transformar artigo autoral em roteiro didático e preparar roteiro pronto, com ou sem áudio, para slides, apresentação HTML e vídeo sincronizado no padrão visual JP. Use para artigo → roteiro → áudio fornecido → slides e vídeo; não para escrever artigo a partir de tema, gerar voz ou publicar automaticamente.
+description: Transformar artigo autoral em roteiro didático e preparar roteiro pronto, com ou sem áudio, para slides, apresentação HTML, vídeo sincronizado e thumbnail JP Wealth para YouTube. Use para artigo → roteiro → áudio fornecido → slides e vídeo; não para escrever artigo a partir de tema, gerar voz ou publicar automaticamente.
 metadata:
   version: "1.8.0"
 ---
@@ -9,7 +9,7 @@ metadata:
 
 Antes de iniciar, leia [apresentação e encaminhamento](references/apresentacao.md). Apresente a skill e siga o menu ou a entrada direta conforme o pedido e os materiais fornecidos.
 
-Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Ligar a composição e o ritmo às ideias narradas no estilo escolhido. A narração vem exclusivamente do áudio fornecido pelo usuário. Sem esse arquivo, entregue só a prévia estimada, sem MP4. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
+Reunir **artigo → roteiro → áudio fornecido pelo usuário → slides e vídeo** em um pacote rastreável. Ligar a composição e o ritmo às ideias narradas no estilo escolhido. A narração vem exclusivamente do áudio fornecido pelo usuário. Para a etapa de vídeo, a falta desse arquivo limita a entrega à prévia estimada. A fala limpa governa o conteúdo; o áudio medido governa os tempos. Não gerar voz, acessar ElevenLabs, realizar operações pagas ou publicar automaticamente. Esta skill inclui a roteirização e não depende de `jp-tiktok-artigos`; não alterar a skill original.
 
 Após o diretor de animação, siga a [direção de luz e efeitos](references/diretor_efeitos.md) quando houver um plano de efeitos.
 
@@ -67,7 +67,9 @@ Gerar via HTML/CSS e Playwright. Usar movimento breve apenas em elementos ligado
 
 ## Conferência e entrega
 
-Executar `scripts/validar.py` e a conferência de [entregas](references/entregas.md). Cobrir o roteiro inteiro, sem lacunas ou duplicação de palavras; não confundir vários slides no mesmo parágrafo com sobreposição de tempo. Conferir números, título, fontes, recortes e legibilidade. Revisar a montagem, os slides densos, as contas e cinco amostras aleatórias, ou todos se houver menos de cinco.
+Inclua uma thumbnail JP Wealth ao entregar um vídeo final destinado ao YouTube convencional. Use o destino informado no pedido atual, no briefing ou no projeto, nessa ordem. Trate “destino a confirmar” como indefinido. A proporção do vídeo, sozinha, não indica a plataforma. Pedidos explícitos para criar ou omitir a thumbnail prevalecem, inclusive em trabalhos de roteiro, revisão e prévia. Em pacote para publicação com destino indefinido, pergunte qual é a plataforma e conclua os outros itens. Leia a [direção de arte de thumbnails](references/thumbnail_jp_wealth.md) quando a entrega incluir a imagem.
+
+Em trabalhos de slides e vídeo, executar `scripts/validar.py` e a conferência de [entregas](references/entregas.md). Cobrir o roteiro inteiro, sem lacunas ou duplicação de palavras; não confundir vários slides no mesmo parágrafo com sobreposição de tempo. Conferir números, título, fontes, recortes e legibilidade. Revisar a montagem, os slides densos, as contas e cinco amostras aleatórias, ou todos se houver menos de cinco.
 
 Entregar o pacote do estilo escolhido, com HTML navegável, vídeo, timeline medida, fontes e scripts reproduzíveis quando disponíveis. Para slides, incluir PNGs e manifest estimado. Os materiais permitem gerar novamente sem depender deste chat ou da instalação da skill. Não incluir PPTX por padrão. Não empacotar caches, modelos ASR ou executáveis do ambiente.
 
